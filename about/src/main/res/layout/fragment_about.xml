@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.vlad1m1r.bltaxi.about.AboutViewModel" />
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_normal">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/margin_small"
+                            android:text="@string/about__author"
+                            android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+                    <TextView
+                            android:id="@+id/textAppVersion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_mini"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="@dimen/margin_small"
+                            android:text="@{String.format(@string/about__version, viewModel.appVersionName)}"
+                            android:textAppearance="?attr/textAppearanceBody1"
+                            tools:text="Version: 1.2.3"/>
+
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/buttonSendMail"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:backgroundTint="@color/background"
+                            android:foregroundTint="?attr/colorSecondary"
+                            android:gravity="center_vertical"
+                            android:onClick="@{() -> viewModel.writeEmail()}"
+                            android:text="@string/about__email"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            app:icon="@drawable/ic_email"
+                            app:iconPadding="@dimen/button_icon_padding"
+                            app:strokeColor="?attr/colorSecondary"
+                            app:strokeWidth="@dimen/button_stroke_width" />
+
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/buttonRateApp"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:backgroundTint="@color/background"
+                            android:foregroundTint="?attr/colorSecondary"
+                            android:gravity="center_vertical"
+                            android:onClick="@{() -> viewModel.rateApp()}"
+                            android:text="@string/about__rate_app"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            app:icon="@drawable/ic_star"
+                            app:iconPadding="@dimen/button_icon_padding"
+                            app:strokeColor="?attr/colorSecondary"
+                            app:strokeWidth="@dimen/button_stroke_width" />
+
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/buttonShareApp"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:backgroundTint="@color/background"
+                            android:foregroundTint="?attr/colorSecondary"
+                            android:gravity="center_vertical"
+                            android:onClick="@{() -> viewModel.shareApp()}"
+                            android:text="@string/about__share_app"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            app:icon="@drawable/ic_share"
+                            app:iconPadding="@dimen/button_icon_padding"
+                            app:strokeColor="?attr/colorSecondary"
+                            app:strokeWidth="@dimen/button_stroke_width" />
+
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/buttonPrivacyPolicy"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:backgroundTint="@color/background"
+                            android:foregroundTint="?attr/colorSecondary"
+                            android:gravity="center_vertical"
+                            android:onClick="@{() -> viewModel.openPrivacyPolicy()}"
+                            android:text="@string/about__privacy_policy"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            app:icon="@drawable/ic_lock"
+                            app:iconPadding="@dimen/button_icon_padding"
+                            app:strokeColor="?attr/colorSecondary"
+                            app:strokeWidth="@dimen/button_stroke_width" />
+
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/buttonTermsAndConditions"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:backgroundTint="@color/background"
+                            android:foregroundTint="?attr/colorSecondary"
+                            android:gravity="center_vertical"
+                            android:onClick="@{() -> viewModel.openTermsAndConditions()}"
+                            android:text="@string/about__terms_and_conditions"
+                            android:textAppearance="?attr/textAppearanceListItem"
+                            app:icon="@drawable/ic_subject"
+                            app:iconPadding="@dimen/button_icon_padding"
+                            app:strokeColor="?attr/colorSecondary"
+                            app:strokeWidth="@dimen/button_stroke_width" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+</layout>

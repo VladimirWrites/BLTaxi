@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="taxi__call">Pozovi</string>
+    <string name="taxi__viber">Viber</string>
+    <string name="taxi__start_taxi">Start: </string>
+    <string name="taxi__kilometer_taxi">Kilometar: </string>
+
+    <string name="settings">Podešavanja</string>
+    <string name="about">O aplikaciji</string>
+
+    <string name="taxi__title">Podaci nisu učitani!</string>
+    <string name="taxi__message">Provjerite Vašu internet vezu.</string>
+    <string name="taxi__try_again">Pokušajte ponovo</string>
+</resources>

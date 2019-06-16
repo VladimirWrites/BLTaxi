@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="viewModel"
+                type="com.vlad1m1r.bltaxi.taxi.TaxiViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:goneUnless="@{viewModel.isErrorShown}">
+
+        <ImageView
+                android:layout_width="@dimen/error_logo"
+                android:layout_height="@dimen/error_logo"
+                app:srcCompat="@drawable/ic_error"
+                android:id="@+id/imageError"
+                android:layout_marginTop="@dimen/margin_small"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/margin_small"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="@dimen/margin_small"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="@dimen/margin_small"
+                app:layout_constraintEnd_toStartOf="@+id/view"/>
+        <TextView
+                android:text="@string/taxi__title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/margin_small"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                android:layout_marginStart="@dimen/margin_small"
+                app:layout_constraintBottom_toTopOf="@+id/textMessage"
+                android:textAppearance="?attr/textAppearanceHeadline5"/>
+        <TextView
+                android:text="@string/taxi__message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textMessage"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/margin_small"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                app:layout_constraintBottom_toTopOf="@+id/view"
+                android:textAppearance="?attr/textAppearanceSubtitle1"/>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonTryAgain"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
+                android:onClick="@{() -> viewModel.loadTaxis()}"
+                app:layout_constraintTop_toBottomOf="@+id/textMessage"
+                android:text="@string/taxi__try_again"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/margin_small"
+                app:layout_constraintStart_toEndOf="@+id/view"/>
+        <View
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:id="@+id/view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

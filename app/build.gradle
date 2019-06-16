@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion Versions.compile_sdk
+    buildToolsVersion Versions.build_tools
+    defaultConfig {
+        applicationId "com.vlad1m1r.bltaxi"
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode Versions.version_code
+        versionName Versions.version_name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        setProperty("archivesBaseName", "BL Taxi-$versionName")
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation Deps.kotlin_stdlib
+    implementation Deps.kotlin_coroutines_android
+
+    implementation Deps.preference_ktx
+
+    testImplementation Deps.junit
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation Deps.koin
+
+    implementation project(Modules.domain)
+    implementation project(Modules.basedata)
+    implementation project(Modules.baseui)
+    implementation project(Modules.repository)
+    implementation project(Modules.settings)
+    implementation project(Modules.about)
+    implementation project(Modules.remote)
+    implementation project(Modules.local)
+    implementation project(Modules.actions)
+    implementation project(Modules.taxi)
+    implementation project(Modules.analytics)
+    implementation project(Modules.settings)
+}
+apply plugin: 'com.google.gms.google-services'
