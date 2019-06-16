@@ -1,0 +1,57 @@
+{
+  "project_info": {
+    "project_number": "128071487573",
+    "firebase_url": "https://bl-taxi.firebaseio.com",
+    "project_id": "bl-taxi",
+    "storage_bucket": "bl-taxi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128071487573:android:9d186bf4ec3984cd",
+        "android_client_info": {
+          "package_name": "com.vlad1m1r.bltaxi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128071487573-hffmuf883j0qe7vntat46105n85pne2o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vlad1m1r.bltaxi",
+            "certificate_hash": "afc001b493c89a407d943d64be91a85ec67cca57"
+          }
+        },
+        {
+          "client_id": "128071487573-fmbhk82jf5iu2sbpihfhcrcno2nod2gt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vlad1m1r.bltaxi",
+            "certificate_hash": "92ca890934ebbf7555f21b6076330688cf5ba7e8"
+          }
+        },
+        {
+          "client_id": "128071487573-hiun2jq19q27salsf0tp3f2bfoavhj0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJI0U0ZjXUxisNlIxf5klSA2s1qcmcK88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128071487573-hiun2jq19q27salsf0tp3f2bfoavhj0s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-8934395529816082~5866111855"
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action__call_number">Pozovi broj</string>
+    <string name="action__tel">tel:</string>
+    <string name="action__share_via">Podijeli</string>
+
+</resources>

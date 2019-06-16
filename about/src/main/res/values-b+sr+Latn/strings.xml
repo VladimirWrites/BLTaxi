@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about__name">O aplikaciji</string>
+    <string name="about__author">Autor: Vladimir Jovanović</string>
+    <string name="about__version">Verzija: %1$s</string>
+    <string name="about__rate_app">Ocijenite aplikaciju</string>
+    <string name="about__share_app">Podijelite aplikaciju</string>
+    <string name="about__privacy_policy">Politika privatnosti</string>
+    <string name="about__terms_and_conditions">Uslovi i odredbe</string>
+</resources>

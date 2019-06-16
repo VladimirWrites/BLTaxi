@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.preference.PreferenceCategory
+            android:title="@string/settings__category_user_data">
+
+        <androidx.preference.SwitchPreference
+                android:persistent="true"
+                android:icon="@drawable/ic_analytics"
+                android:key="@string/pref_key_analytics"
+                android:summary="@string/settings__analytics_description"
+                android:title="@string/settings__analytics_title" />
+
+        <androidx.preference.SwitchPreference
+                android:persistent="true"
+                android:icon="@drawable/ic_crash"
+                android:key="@string/pref_key_crash_reports"
+                android:summary="@string/settings__crash_reporting_description"
+                android:title="@string/settings__crash_reporting_title" />
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+            android:title="@string/settings__category_theme">
+        <androidx.preference.ListPreference
+                android:dialogTitle="@string/settings__pick_theme"
+                android:icon="@drawable/ic_style"
+                android:entries="@array/themes"
+                android:title="@string/settings__pick_theme"
+                android:entryValues="@array/themes_values"
+                android:key="@string/pref_key_theme_picker" />
+
+    </androidx.preference.PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

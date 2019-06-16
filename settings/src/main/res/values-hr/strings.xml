@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="settings__name">Podešavanja</string>
+    <string name="settings__category_user_data">Korisnički podaci</string>
+    <string name="settings__analytics_title">Analitika</string>
+    <string name="settings__analytics_description">Aplikacija automatski šalje podatke o tome kako koristite aplikaciju. Ako ne želite da se izvještaji šalju možete ih isključiti ovdje.</string>
+    <string name="settings__crash_reporting_title">Izvještaji o rušenju</string>
+    <string name="settings__crash_reporting_description">Aplikacija automatski šalje izvještaje o rušenju. Ako ne želite da se izvještaji šalju možete ih isključiti ovdje.</string>
+
+    <string name="settings__category_theme">Tema</string>
+    <string name="settings__pick_theme">Izaberi temu</string>
+    <string name="settings__theme_light">Svijetla</string>
+    <string name="settings__theme_dark">Tamna</string>
+    <string name="settings__theme_default">Prati sistemska podešavanja</string>
+
+</resources>

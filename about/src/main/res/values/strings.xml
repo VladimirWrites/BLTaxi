@@ -1,0 +1,14 @@
+<resources>
+    <string name="about__name">About</string>
+    <string name="about__author">Author: Vladimir Jovanović</string>
+    <string name="about__version">Version: %1$s</string>
+    <string name="about__rate_app">Rate the App</string>
+    <string name="about__share_app">Share the App</string>
+    <string name="about__privacy_policy">Privacy Policy</string>
+    <string name="about__terms_and_conditions">Terms &amp; Conditions</string>
+
+    <string name="about__email" translatable="false">write@vladimirj.com</string>
+    <string name="about__play_store_url" translatable="false">https://play.google.com/store/apps/details?id=com.vlad1m1r.bltaxi</string>
+    <string name="about__terms_and_conditions_url" translatable="false">http://htmlpreview.github.io/?https://github.com/VladimirWrites/BLTaxi/blob/master/remote_data/legal/terms_and_conditions.html</string>
+    <string name="about__privacy_policy_url" translatable="false">http://htmlpreview.github.io/?https://github.com/VladimirWrites/BLTaxi/blob/master/remote_data/legal/privacy_policy.html</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- margins -->
+    <dimen name="margin_nano">2dp</dimen>
+    <dimen name="margin_mini">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <dimen name="margin_huge">32dp</dimen>
+
+    <dimen name="button_icon_padding">12dp</dimen>
+
+    <dimen name="button_stroke_width">1dp</dimen>
+</resources>

@@ -1,0 +1,10 @@
+include ':app', ':taxi', ':analytics',
+        ':remote',
+        ':domain',
+        ':baseui',
+        ':basedata',
+        ':local',
+        ':repository',
+        ':about',
+        ':settings',
+        ':actions'

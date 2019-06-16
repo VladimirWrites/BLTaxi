@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="action__call_number">Call</string>
+    <string name="action__tel">tel:</string>
+    <string name="action__share_via">Share via</string>
+
+</resources>

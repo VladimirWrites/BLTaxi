@@ -1,0 +1,16 @@
+<resources>
+    <string name="settings__name">Settings</string>
+
+    <string name="settings__category_user_data">User data</string>
+    <string name="settings__analytics_title">Analytics</string>
+    <string name="settings__analytics_description">The application automatically sends analytics reports. If you don\'t want them to be sent you can opt-out here.</string>
+    <string name="settings__crash_reporting_title">Crash reporting</string>
+    <string name="settings__crash_reporting_description">The application automatically sends crash reports. If you don\'t want them to be sent you can opt-out here.</string>
+
+    <string name="settings__category_theme">Theme</string>
+    <string name="settings__pick_theme">Pick theme</string>
+    <string name="settings__theme_light">Light</string>
+    <string name="settings__theme_dark">Dark</string>
+    <string name="settings__theme_default">Follow OS settings</string>
+
+</resources>

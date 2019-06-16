@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "additional": "20% popusta na sve vožnje",
+    "name": "Avala Taxi",
+    "number": "1500",
+    "price": "1,50 KM",
+    "start": "2,00 KM"
+  },
+  {
+    "id": 2,
+    "additional": "20% popusta na vožnje do 20 KM",
+    "name": "Banja Luka Taxi",
+    "number": "1544",
+    "price": "1,50 KM",
+    "start": "2,00 KM",
+    "viber": "065331544"
+  },
+  {
+    "id": 3,
+    "additional": "30% popusta na vožnje do 15 KM",
+    "name": "Bel Taxi",
+    "number": "1550",
+    "price": "1,80 KM",
+    "start": "2,00 KM",
+    "viber": "066155000"
+  },
+  {
+    "id": 4,
+    "additional": "20% popusta na vožnje do 15 KM",
+    "name": "Big Taxi",
+    "number": "1511",
+    "price": "1,50 KM",
+    "start": "2,00 KM",
+    "viber": "066211511"
+  },
+  {
+    "id": 5,
+    "additional": "20% popusta na vožnje do 10 kilometara",
+    "name": "Euro Taxi",
+    "number": "1555",
+    "price": "1,50 KM",
+    "start": "2,00 KM"
+  },
+  {
+    "id": 6,
+    "additional": "20% na gradske vožnje. Vožnja do Sarajeva 220 KM",
+    "name": "Hallo Taxi",
+    "number": "065561955",
+    "price": "1,80 KM",
+    "start": "2,00 KM"
+  },
+  {
+    "id": 7,
+    "additional": "30% popusta na vožnje do 7 KM",
+    "name": "Ideal Taxi",
+    "number": "1545",
+    "price": "1,50 KM",
+    "start": "2,00 KM"
+  },
+  {
+    "id": 8,
+    "additional": "20% popusta na sve vožnje",
+    "name": "Maxi Taxi",
+    "number": "1551",
+    "price": "1,50 KM",
+    "start": "2,00 KM"
+  },
+  {
+    "id": 9,
+    "additional": "30% popusta na vožnje do 7 KM",
+    "name": "Mobil Taxi",
+    "number": "1566",
+    "price": "1,5 KM",
+    "start": "2,00 KM"
+  },
+  {
+    "id": 10,
+    "additional": "20% popusta na sve vožnje",
+    "name": "Patrol Taxi",
+    "number": "1533",
+    "price": "1,50 KM",
+    "start": "2,00 KM",
+    "viber": "066015330"
+  }
+]
