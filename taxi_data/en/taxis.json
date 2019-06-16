@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "additional": "20% discount on all rides",
+    "name": "Avala Taxi",
+    "number": "1500",
+    "price": "1.50KM",
+    "start": "2.00KM"
+  },
+  {
+    "id": 2,
+    "additional": "20% discount on prices up to 20KM",
+    "name": "Banja Luka Taxi",
+    "number": "1544",
+    "price": "1.50KM",
+    "start": "2.00KM",
+    "viber": "065331544"
+  },
+  {
+    "id": 3,
+    "additional": "30% discount on prices up to 15KM",
+    "name": "Bel Taxi",
+    "number": "1550",
+    "price": "1.80KM",
+    "start": "2.00KM",
+    "viber": "066155000"
+  },
+  {
+    "id": 4,
+    "additional": "20% discount on prices up to 15KM",
+    "name": "Big Taxi",
+    "number": "1511",
+    "price": "1.50KM",
+    "start": "2.00KM",
+    "viber": "066211511"
+  },
+  {
+    "id": 5,
+    "additional": "20% discount on rides up to 10 kilometres",
+    "name": "Euro Taxi",
+    "number": "1555",
+    "price": "1.50KM",
+    "start": "2.00KM"
+  },
+  {
+    "id": 6,
+    "additional": "20% discount on city rides. Ride to Sarajevo costs 220KM",
+    "name": "Hallo Taxi",
+    "number": "065561955",
+    "price": "1.80KM",
+    "start": "2.00KM"
+  },
+  {
+    "id": 7,
+    "additional": "30% discount on prices up to 7KM",
+    "name": "Ideal Taxi",
+    "number": "1545",
+    "price": "1.50KM",
+    "start": "2.00KM"
+  },
+  {
+    "id": 8,
+    "additional": "20% discount on all rides",
+    "name": "Maxi Taxi",
+    "number": "1551",
+    "price": "1.50KM",
+    "start": "2.00KM"
+  },
+  {
+    "id": 9,
+    "additional": "30% discount on prices up to 7KM",
+    "name": "Mobil Taxi",
+    "number": "1566",
+    "price": "1.5KM",
+    "start": "2.00KM"
+  },
+  {
+    "id": 10,
+    "additional": "20% discount on all rides",
+    "name": "Patrol Taxi",
+    "number": "1533",
+    "price": "1.50KM",
+    "start": "2.00KM",
+    "viber": "066015330"
+  }
+]
