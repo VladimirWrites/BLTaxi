@@ -8,9 +8,9 @@ import android.util.Patterns
 import com.vlad1m1r.actions.R
 import com.vlad1m1r.bltaxi.domain.Action
 
-class CallNumberExecutor(private val context: Context) {
+internal open class CallNumberExecutor(private val context: Context) {
 
-    operator fun invoke(action: Action.CallNumberAction) {
+    open operator fun invoke(action: Action.CallNumberAction) {
         if (Patterns.PHONE.matcher(action.phoneNumber).matches()) {
             val i = Intent(Intent.ACTION_DIAL)
             i.data = Uri.parse("tel:${action.phoneNumber}")

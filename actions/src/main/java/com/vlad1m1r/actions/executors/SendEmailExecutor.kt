@@ -6,8 +6,8 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.util.Patterns
 import com.vlad1m1r.bltaxi.domain.Action
 
-class SendEmailExecutor(private val context: Context) {
-    operator fun invoke(action: Action.SendEmailAction) {
+internal open class SendEmailExecutor(private val context: Context) {
+    open operator fun invoke(action: Action.SendEmailAction) {
         val email =  action.email
         if (Patterns.EMAIL_ADDRESS.matcher(email).matches()
             || (email.startsWith("mailto:") && Patterns.EMAIL_ADDRESS.matcher(email.substring(7)).matches())

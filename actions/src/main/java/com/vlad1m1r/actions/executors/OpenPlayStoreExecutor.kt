@@ -6,9 +6,9 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import com.vlad1m1r.bltaxi.domain.Action
 
-class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor) {
+internal open class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor) {
 
-    operator fun invoke(action: Action.OpenPlayStoreAction) {
+    open operator fun invoke(action: Action.OpenPlayStoreAction) {
 
         val storeIntent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${action.applicationId}"))
         if (context.packageManager.getListOfResolveInfo(storeIntent).isNotEmpty()) {

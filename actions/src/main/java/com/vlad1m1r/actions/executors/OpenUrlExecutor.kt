@@ -5,9 +5,9 @@ import android.content.Intent
 import android.net.Uri
 import com.vlad1m1r.bltaxi.domain.Action
 
-class OpenUrlExecutor(private val context: Context) {
+internal open class OpenUrlExecutor(private val context: Context) {
 
-    operator fun invoke(action: Action.OpenUrlAction) {
+    open operator fun invoke(action: Action.OpenUrlAction) {
         var url = action.url
         if (!url.startsWith("http://") && !url.startsWith("https://")) {
             url = "http://$url"
