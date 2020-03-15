@@ -27,7 +27,7 @@ object Versions {
     const val ok_http_interceptor = "4.4.0"
 
     const val junit = "4.13"
-    const val mockito_core = "3.3.0"
+    const val mockito_core = "3.3.3"
     const val mockito_kotlin = "2.2.0"
     const val truth = "1.0.1"
     const val robolectric = "4.3.1"
