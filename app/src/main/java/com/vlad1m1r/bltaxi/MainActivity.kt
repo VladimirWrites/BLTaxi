@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_base)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
     }
 
     override fun onSupportNavigateUp() =
