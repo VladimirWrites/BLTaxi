@@ -16,6 +16,8 @@ import com.vlad1m1r.bltaxi.remote.di.remoteModule
 import com.vlad1m1r.bltaxi.repository.di.repositoryModule
 import com.vlad1m1r.bltaxi.settings.di.settingsModule
 import com.vlad1m1r.bltaxi.taxi.di.taxiModule
+import com.vladimir.bltaxi.sync.SyncTaxisWorkManager
+import com.vladimir.bltaxi.sync.di.syncModule
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -38,10 +40,14 @@ class ApplicationTaxi : Application() {
                     taxiModule,
                     aboutModule,
                     analyticsModule,
-                    settingsModule
+                    settingsModule,
+                    syncModule
                 )
             )
         }
+
+        val syncTaxisWorkManager: SyncTaxisWorkManager by inject()
+        syncTaxisWorkManager.start()
 
         val sharedPreferences: SharedPreferences by inject()
         val keyAnalytics = getString(R.string.pref_key_analytics)

@@ -7,8 +7,6 @@ import com.vlad1m1r.bltaxi.local.language.LanguageProvider
 import com.vlad1m1r.bltaxi.local.order.OrderProvider
 import com.vlad1m1r.bltaxi.local.taxi.TaxiProviderLocal
 import com.vlad1m1r.bltaxi.remote.TaxiProviderRemote
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 internal class RepositoryImpl(
@@ -22,30 +20,13 @@ internal class RepositoryImpl(
         val currentLanguage = languageProvider.getLanguage()
         val localTaxis = taxiProviderLocal.getTaxis(currentLanguage)
 
-
-        val result: TaxisResult = if (localTaxis.isNotEmpty()) {
+        return if (localTaxis.isNotEmpty()) {
             TaxisResult.Success(localTaxis)
         } else {
             try {
                 fetchRemoteData(currentLanguage)
             } catch (e: Exception) {
                 TaxisResult.Error
-            }
-        }
-
-        withContext(Dispatchers.IO) {
-            refreshCache(currentLanguage)
-        }
-
-        return result
-    }
-
-    private suspend fun refreshCache(currentLanguage: Language) {
-        if(taxiProviderLocal.isCacheOld(currentLanguage)) {
-            try {
-                fetchRemoteData(currentLanguage)
-            } catch (e: Exception) {
-
             }
         }
     }

@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/remote" />
             <option value="$PROJECT_DIR$/repository" />
             <option value="$PROJECT_DIR$/settings" />
+            <option value="$PROJECT_DIR$/sync" />
             <option value="$PROJECT_DIR$/taxi" />
           </set>
         </option>

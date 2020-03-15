@@ -7,6 +7,7 @@ data class ItemTaxi(
     val startPrice: String,
     val pricePerKm: String,
     val additionalInfo: String? = null,
-    val viberNumber: String? = null,
+    val viberNumber: String? = null
+) {
     val isViberVisible: Boolean = viberNumber != null
-)
+}

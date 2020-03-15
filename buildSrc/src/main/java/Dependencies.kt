@@ -11,6 +11,7 @@ object Versions {
     const val android_x_constraint_layout = "1.1.3"
     const val material_design = "1.1.0-rc02"
     const val android_x_preference = "1.1.0"
+    const val android_x_work_manager = "2.3.3"
 
     const val android_x_navigation = "2.2.1"
 
@@ -27,9 +28,9 @@ object Versions {
 
     const val junit = "4.13"
     const val mockito_core = "3.3.0"
-    const val mockito_kotlin = "1.6.0"
+    const val mockito_kotlin = "2.2.0"
     const val truth = "1.0.1"
-    const val robolectric = "3.8.0"
+    const val robolectric = "4.3.1"
 
     const val gradle_android = "3.6.1"
     const val google_services = "4.3.3"
@@ -59,6 +60,8 @@ object Deps {
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.android_x_constraint_layout}"
     const val preference = "androidx.preference:preference:${Versions.android_x_preference}"
     const val preference_ktx = "androidx.preference:preference-ktx:${Versions.android_x_preference}"
+    const val work_manager = "androidx.work:work-runtime-ktx:${Versions.android_x_work_manager}"
+
 
     const val lifecycle = "androidx.lifecycle:lifecycle-viewmodel:${Versions.android_x_lifecycle}"
 
@@ -84,7 +87,7 @@ object Deps {
 
     const val junit = "junit:junit:${Versions.junit}"
     const val mockito_core = "org.mockito:mockito-core:${Versions.mockito_core}"
-    const val mockito_kotlin = "com.nhaarman:mockito-kotlin:${Versions.mockito_kotlin}"
+    const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
     const val truth = "com.google.truth:truth:${Versions.truth}"
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
 
@@ -106,4 +109,5 @@ object Modules {
     const val settings = ":settings"
     const val taxi = ":taxi"
     const val analytics = ":analytics"
+    const val sync = ":sync"
 }

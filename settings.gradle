@@ -1,4 +1,6 @@
-include ':app', ':taxi', ':analytics',
+include ':app',
+        ':taxi',
+        ':analytics',
         ':remote',
         ':domain',
         ':baseui',
@@ -7,4 +9,5 @@ include ':app', ':taxi', ':analytics',
         ':repository',
         ':about',
         ':settings',
-        ':actions'
+        ':actions',
+        ':sync'
