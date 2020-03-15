@@ -27,7 +27,7 @@ object Versions {
     const val ok_http_interceptor = "4.4.0"
 
     const val junit = "4.13"
-    const val mockito_core = "3.3.3"
+    const val mockito = "3.3.3"
     const val mockito_kotlin = "2.2.0"
     const val truth = "1.0.1"
     const val robolectric = "4.3.1"
@@ -86,7 +86,8 @@ object Deps {
     const val room_common = "androidx.room:room-common:${Versions.room}"
 
     const val junit = "junit:junit:${Versions.junit}"
-    const val mockito_core = "org.mockito:mockito-core:${Versions.mockito_core}"
+    const val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
+    const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito}"
     const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
     const val truth = "com.google.truth:truth:${Versions.truth}"
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
