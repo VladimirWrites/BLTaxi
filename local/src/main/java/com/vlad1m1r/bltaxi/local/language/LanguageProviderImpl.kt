@@ -3,7 +3,7 @@ package com.vlad1m1r.bltaxi.local.language
 import android.content.Context
 import android.os.Build
 import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.fromCode
+import com.vlad1m1r.bltaxi.domain.Language.Companion.fromCode
 import java.util.*
 
 internal class LanguageProviderImpl(private val context: Context) : LanguageProvider {

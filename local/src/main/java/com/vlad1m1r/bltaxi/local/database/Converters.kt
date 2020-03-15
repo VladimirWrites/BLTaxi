@@ -2,7 +2,7 @@ package com.vlad1m1r.bltaxi.local.database
 
 import androidx.room.TypeConverter
 import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.fromCode
+import com.vlad1m1r.bltaxi.domain.Language.Companion.fromCode
 
 class Converters {
     @TypeConverter
