@@ -9,5 +9,5 @@ data class ItemTaxi(
     val additionalInfo: String? = null,
     val viberNumber: String? = null
 ) {
-    val isViberVisible: Boolean = viberNumber != null
+    val isViberVisible: Boolean = !viberNumber.isNullOrBlank()
 }
