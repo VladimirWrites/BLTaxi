@@ -1,4 +1,4 @@
-package com.vlad1m1r.bltaxi.repository
+package com.vlad1m1r.bltaxi.remote
 
 import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
