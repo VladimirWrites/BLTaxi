@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:id="@+id/contentFrame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/contentFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <fragment
                 android:id="@+id/nav_host_fragment"
@@ -16,6 +16,5 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/navigation_graph" />
 
-
-    </FrameLayout>
+    </androidx.fragment.app.FragmentContainerView>
 </layout>
