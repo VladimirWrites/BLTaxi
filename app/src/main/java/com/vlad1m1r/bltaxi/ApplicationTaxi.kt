@@ -15,6 +15,7 @@ import com.vlad1m1r.bltaxi.local.di.localModule
 import com.vlad1m1r.bltaxi.remote.di.remoteModule
 import com.vlad1m1r.bltaxi.repository.di.repositoryModule
 import com.vlad1m1r.bltaxi.settings.di.settingsModule
+import com.vlad1m1r.bltaxi.shortcuts.di.shortcutsModule
 import com.vlad1m1r.bltaxi.taxi.di.taxiModule
 import com.vladimir.bltaxi.sync.SyncTaxisWorkManager
 import com.vladimir.bltaxi.sync.di.syncModule
@@ -41,7 +42,8 @@ class ApplicationTaxi : Application() {
                     aboutModule,
                     analyticsModule,
                     settingsModule,
-                    syncModule
+                    syncModule,
+                    shortcutsModule
                 )
             )
         }

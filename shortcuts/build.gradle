@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
 android {
+
     compileSdkVersion Versions.compile_sdk
     defaultConfig {
         minSdkVersion Versions.min_sdk
@@ -12,8 +12,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -27,26 +27,18 @@ android {
             minifyEnabled false
         }
     }
-    dataBinding {
-        enabled = true
-    }
+
 }
 
 dependencies {
     implementation Deps.kotlin_stdlib
-    implementation Deps.kotlin_coroutines_android
-
     implementation Deps.koin
-    implementation Deps.koin_viewmodel
+    implementation Deps.appcompat
 
-    implementation project(Modules.repository)
-    implementation project(Modules.basedata)
-    implementation project(Modules.baseui)
     implementation project(Modules.domain)
-    implementation project(Modules.analytics)
-    implementation project(Modules.shortcuts)
 
     testImplementation Deps.junit
-    androidTestImplementation 'androidx.test:runner:1.2.0'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

@@ -65,5 +65,6 @@ dependencies {
     implementation project(Modules.analytics)
     implementation project(Modules.settings)
     implementation project(Modules.sync)
+    implementation project(Modules.shortcuts)
 }
 apply plugin: 'com.google.gms.google-services'

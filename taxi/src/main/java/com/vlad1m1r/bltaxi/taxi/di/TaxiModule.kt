@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val taxiModule = module {
     factory { TaxiInteractor(get()) }
     factory { ActionInteractor(get()) }
-    viewModel { TaxiViewModel(get(), get(), get(), get()) }
+    viewModel { TaxiViewModel(get(), get(), get(), get(), get()) }
 }

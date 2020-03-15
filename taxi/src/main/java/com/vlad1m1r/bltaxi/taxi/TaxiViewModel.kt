@@ -1,5 +1,6 @@
 package com.vlad1m1r.bltaxi.taxi
 
+import android.os.Build
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,10 +15,12 @@ import com.vlad1m1r.bltaxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.domain.interactor.ActionInteractor
 import com.vlad1m1r.bltaxi.domain.interactor.TaxiInteractor
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class TaxiViewModel(
+    private val shortcutHandler: ShortcutHandler,
     private val taxiInteractor: TaxiInteractor,
     private val actionInteractor: ActionInteractor,
     private val tracker: Tracker,
@@ -62,5 +65,11 @@ class TaxiViewModel(
     fun callTaxiOnViber(itemTaxi: ItemTaxi) {
         tracker.track(CallEvent(itemTaxi.id, itemTaxi.name, CallEvent.CallVariant.VIBER))
         actionInteractor.execute(Action.CallNumberOnViberAction(itemTaxi.viberNumber!!))
+    }
+
+    fun addShortcuts(taxis: List<ItemTaxi>) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            shortcutHandler.addShortcutsForTaxis(taxis)
+        }
     }
 }

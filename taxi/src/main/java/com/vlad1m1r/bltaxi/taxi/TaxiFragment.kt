@@ -15,7 +15,6 @@ import android.view.*
 import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding
 import org.koin.android.ext.android.inject
 
-
 class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
     private lateinit var binding: FragmentTaxiBinding
 
@@ -24,10 +23,6 @@ class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
 
     private lateinit var itemTouchHelper: ItemTouchHelper
     private lateinit var taxiAdapter: AdapterTaxiRecycler
-
-    interface FragmentHolder {
-        fun addShortcuts(itemTaxiArrayList: List<ItemTaxi>)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +58,7 @@ class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
 
     override fun saveChanges(taxis: List<ItemTaxi>) {
         viewModel.setTaxiOrder(taxis)
-        (activity as FragmentHolder).addShortcuts(taxis)
+        addShortcuts(taxis)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -107,5 +102,9 @@ class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
         }
         taxiAdapter = binding.recyclerView.adapter as AdapterTaxiRecycler
         return taxiAdapter
+    }
+
+    private fun addShortcuts(taxis: List<ItemTaxi>) {
+        viewModel.addShortcuts(taxis)
     }
 }

@@ -110,4 +110,5 @@ object Modules {
     const val taxi = ":taxi"
     const val analytics = ":analytics"
     const val sync = ":sync"
+    const val shortcuts = ":shortcuts"
 }
