@@ -31,6 +31,8 @@ dependencies {
     implementation Deps.kotlin_coroutines_android
 
     implementation project(Modules.domain)
+    implementation project(Modules.local)
+    implementation project(Modules.remote)
 
 
     testImplementation Deps.junit

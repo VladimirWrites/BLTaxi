@@ -1,13 +1,12 @@
-package com.vlad1m1r.bltaxi.local
+package com.vlad1m1r.bltaxi.local.language
 
 import android.content.Context
 import android.os.Build
 import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.fromCode
-import com.vlad1m1r.bltaxi.repository.LanguageProvider
 import java.util.*
 
-class LanguageProviderImpl(private val context: Context) : LanguageProvider {
+internal class LanguageProviderImpl(private val context: Context) : LanguageProvider {
 
     override fun getLanguage(): Language {
         val defaultLanguage = context.getLocale().language

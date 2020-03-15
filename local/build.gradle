@@ -41,7 +41,6 @@ dependencies {
     implementation Deps.koin
 
     implementation project(Modules.domain)
-    implementation project(Modules.repository)
 
     testImplementation Deps.junit
     androidTestImplementation 'androidx.test:runner:1.2.0'

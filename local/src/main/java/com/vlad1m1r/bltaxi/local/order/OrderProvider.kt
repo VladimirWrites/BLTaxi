@@ -1,6 +1,6 @@
-package com.vlad1m1r.bltaxi.repository
+package com.vlad1m1r.bltaxi.local.order
 
-interface Order {
+interface OrderProvider {
     fun getItemPosition(id: Long): Int
     fun setItemPosition(id: Long, position: Int)
 }

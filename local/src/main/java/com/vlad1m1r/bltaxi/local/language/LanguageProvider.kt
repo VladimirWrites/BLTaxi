@@ -1,4 +1,4 @@
-package com.vlad1m1r.bltaxi.repository
+package com.vlad1m1r.bltaxi.local.language
 
 import com.vlad1m1r.bltaxi.domain.Language
 

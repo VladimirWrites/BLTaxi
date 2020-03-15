@@ -1,11 +1,10 @@
-package com.vlad1m1r.bltaxi.local
+package com.vlad1m1r.bltaxi.local.order
 
 import android.content.SharedPreferences
-import com.vlad1m1r.bltaxi.repository.Order
 
 private const val KEY_ITEM_POSITION = "item_position"
 
-class OrderImpl(private val sharedPreferences: SharedPreferences) : Order {
+internal class OrderProviderImpl(private val sharedPreferences: SharedPreferences) : OrderProvider {
 
     override fun getItemPosition(id: Long): Int {
         return this.sharedPreferences.getInt(KEY_ITEM_POSITION + id.toString(), id.toInt() - 1)

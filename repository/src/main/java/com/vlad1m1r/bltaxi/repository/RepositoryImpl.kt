@@ -3,12 +3,16 @@ package com.vlad1m1r.bltaxi.repository
 import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.Repository
 import com.vlad1m1r.bltaxi.domain.TaxisResult
+import com.vlad1m1r.bltaxi.local.language.LanguageProvider
+import com.vlad1m1r.bltaxi.local.order.OrderProvider
+import com.vlad1m1r.bltaxi.local.taxi.TaxiProviderLocal
+import com.vlad1m1r.bltaxi.remote.TaxiProviderRemote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 internal class RepositoryImpl(
-    private val order: Order,
+    private val orderProvider: OrderProvider,
     private val taxiProviderLocal: TaxiProviderLocal,
     private val taxiProviderRemote: TaxiProviderRemote,
     private val languageProvider: LanguageProvider
@@ -53,10 +57,10 @@ internal class RepositoryImpl(
     }
 
     override fun getItemPosition(id: Long): Int {
-        return order.getItemPosition(id)
+        return orderProvider.getItemPosition(id)
     }
 
     override fun setItemPosition(id: Long, position: Int) {
-        order.setItemPosition(id, position)
+        orderProvider.setItemPosition(id, position)
     }
 }
