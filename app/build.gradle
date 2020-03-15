@@ -20,6 +20,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -60,5 +64,6 @@ dependencies {
     implementation project(Modules.taxi)
     implementation project(Modules.analytics)
     implementation project(Modules.settings)
+    implementation project(Modules.sync)
 }
 apply plugin: 'com.google.gms.google-services'
