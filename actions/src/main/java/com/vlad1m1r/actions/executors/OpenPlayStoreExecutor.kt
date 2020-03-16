@@ -6,7 +6,7 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import com.vlad1m1r.bltaxi.domain.Action
 
-internal open class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor) {
+open class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor) {
 
     open operator fun invoke(action: Action.OpenPlayStoreAction) {
 

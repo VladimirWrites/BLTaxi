@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import com.vlad1m1r.bltaxi.domain.Action
 
-internal open class OpenUrlExecutor(private val context: Context) {
+open class OpenUrlExecutor(private val context: Context) {
 
     open operator fun invoke(action: Action.OpenUrlAction) {
         var url = action.url

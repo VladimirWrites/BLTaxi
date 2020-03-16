@@ -6,7 +6,7 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import com.vlad1m1r.actions.R
 import com.vlad1m1r.bltaxi.domain.Action
 
-internal open class ShareExecutor(private val context: Context) {
+open class ShareExecutor(private val context: Context) {
     open operator fun invoke(action: Action.ShareAction) {
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"

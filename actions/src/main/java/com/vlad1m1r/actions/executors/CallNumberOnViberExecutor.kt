@@ -11,7 +11,7 @@ import android.util.Patterns
 import com.vlad1m1r.actions.R
 import com.vlad1m1r.bltaxi.domain.Action
 
-internal open class CallNumberOnViberExecutor(private val context: Context, private val openPlayStoreExecutor: OpenPlayStoreExecutor) {
+open class CallNumberOnViberExecutor(private val context: Context, private val openPlayStoreExecutor: OpenPlayStoreExecutor) {
 
     open operator fun invoke(action: Action.CallNumberOnViberAction) {
         if (Patterns.PHONE.matcher(action.phoneNumber).matches()) {

@@ -8,7 +8,7 @@ import android.util.Patterns
 import com.vlad1m1r.actions.R
 import com.vlad1m1r.bltaxi.domain.Action
 
-internal open class CallNumberExecutor(private val context: Context) {
+open class CallNumberExecutor(private val context: Context) {
 
     open operator fun invoke(action: Action.CallNumberAction) {
         if (Patterns.PHONE.matcher(action.phoneNumber).matches()) {
