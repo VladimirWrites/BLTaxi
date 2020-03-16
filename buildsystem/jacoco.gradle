@@ -1,0 +1,99 @@
+def fileFilter = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Should*.*',
+        'android/**/*.*',
+        'androidx/**/*.*',
+        '**/generated/**',
+        '**/di/*.*',
+
+        //DataBinding
+        '**/BR.class',
+        '**/DataBindingInfo.class',
+        '**/DataBinderMapperImpl$InnerBrLookup.class',
+        '**/*Binding.class',
+        '**/*BindingImpl.class',
+        '**/DataBinderMapperImpl$InnerLayoutIdLookup.class',
+        '**/DataBinderMapperImpl.class',
+        '**/databinding/*.*'
+
+]
+
+task report(type: JacocoReport) {
+    group = 'Reporting'
+    description = "Generate Jacoco coverage reports for the debug build. Only unit tests."
+
+    //Make sure that tests from all modules are run before coverage report
+    dependsOn ":about:testDebugUnitTest"
+    dependsOn ":actions:testDebugUnitTest"
+    dependsOn ":analytics:testDebugUnitTest"
+    dependsOn ":app:testDebugUnitTest"
+    dependsOn ":basedata:testDebugUnitTest"
+    dependsOn ":baseui:testDebugUnitTest"
+    dependsOn ":domain:testDebugUnitTest"
+    dependsOn ":local:testDebugUnitTest"
+    dependsOn ":remote:testDebugUnitTest"
+    dependsOn ":repository:testDebugUnitTest"
+    dependsOn ":settings:testDebugUnitTest"
+    dependsOn ":shortcuts:testDebugUnitTest"
+    dependsOn ":sync:testDebugUnitTest"
+    dependsOn ":taxi:testDebugUnitTest"
+
+    getClassDirectories().setFrom(files([
+            fileTree(dir: "$project.rootDir/about/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/actions/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/analytics/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/app/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/basedata/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/baseui/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/domain/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/local/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/remote/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/repository/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/settings/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/shortcuts/build/tmp/kotlin-classes/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/sync/build/tmp/kotlin-classesv/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/taxi/build/tmp/kotlin-classes/debug", excludes: fileFilter)
+    ]))
+    def coverageSourceDirs = [
+            "$project.rootDir/about/src/main/java",
+            "$project.rootDir/actions/src/main/java",
+            "$project.rootDir/analytics/src/main/java",
+            "$project.rootDir/app/src/main/java",
+            "$project.rootDir/basedata/src/main/java",
+            "$project.rootDir/baseui/src/main/java",
+            "$project.rootDir/domain/src/main/java",
+            "$project.rootDir/local/src/main/java",
+            "$project.rootDir/remote/src/main/java",
+            "$project.rootDir/repository/src/main/java",
+            "$project.rootDir/settings/src/main/java",
+            "$project.rootDir/shortcuts/src/main/java",
+            "$project.rootDir/sync/src/main/java",
+            "$project.rootDir/taxi/src/main/java"
+    ]
+    getAdditionalSourceDirs().setFrom(files(coverageSourceDirs))
+    getSourceDirectories().setFrom(files(coverageSourceDirs))
+    getExecutionData().setFrom(fileTree(dir: project.rootDir, includes: [
+            'about/build/jacoco/testDebugUnitTest.exec',
+            'actions/build/jacoco/testDebugUnitTest.exec',
+            'analytics/build/jacoco/testDebugUnitTest.exec',
+            'app/build/jacoco/testDebugUnitTest.exec',
+            'basedata/build/jacoco/testDebugUnitTest.exec',
+            'baseui/build/jacoco/testDebugUnitTest.exec',
+            'domain/build/jacoco/testDebugUnitTest.exec',
+            'local/build/jacoco/testDebugUnitTest.exec',
+            'remote/build/jacoco/testDebugUnitTest.exec',
+            'repository/build/jacoco/testDebugUnitTest.exec',
+            'settings/build/jacoco/testDebugUnitTest.exec',
+            'shortcuts/build/jacoco/testDebugUnitTest.exec',
+            'sync/build/jacoco/testDebugUnitTest.exec',
+            'taxi/build/jacoco/testDebugUnitTest.exec'
+    ]))
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}

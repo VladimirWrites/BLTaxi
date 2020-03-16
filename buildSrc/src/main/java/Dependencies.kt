@@ -35,6 +35,7 @@ object Versions {
     const val gradle_android = "3.6.1"
     const val google_services = "4.3.3"
     const val fabric_plugin = "1.31.2"
+    const val jacoco = "0.8.5"
 
     const val min_sdk = 21
     const val target_sdk = 29
@@ -96,6 +97,7 @@ object Deps {
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val google_services_plugin = "com.google.gms:google-services:${Versions.google_services}"
     const val fabric_plugin = "io.fabric.tools:gradle:${Versions.fabric_plugin}"
+    const val jacoco_plugin = "org.jacoco:org.jacoco.core:${Versions.jacoco}"
 }
 
 object Modules {

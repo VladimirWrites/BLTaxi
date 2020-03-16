@@ -3,6 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'io.fabric'
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = Versions.jacoco
+    reportsDir = file("$buildDir/jacocoReport")
+}
+
+apply from: '../buildsystem/jacoco.gradle'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -26,18 +34,25 @@ android {
 
     buildTypes {
         debug {
+            testCoverageEnabled true
             minifyEnabled false
         }
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
         }
     }
+
     dataBinding {
         enabled = true
     }
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
 }
 
 dependencies {

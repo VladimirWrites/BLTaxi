@@ -14,6 +14,7 @@ buildscript {
         classpath Deps.kotlin_gradle_plugin
         classpath Deps.google_services_plugin
         classpath Deps.fabric_plugin
+        classpath Deps.jacoco_plugin
     }
 }
 
