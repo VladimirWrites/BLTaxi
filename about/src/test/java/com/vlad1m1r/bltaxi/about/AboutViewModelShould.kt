@@ -7,12 +7,12 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.vlad1m1r.basedata.StringResolver
 import com.vlad1m1r.bltaxi.about.di.AppInfoProvider
 import com.vlad1m1r.bltaxi.domain.Action
-import com.vlad1m1r.bltaxi.domain.interactor.ActionInteractor
+import com.vlad1m1r.bltaxi.domain.usecase.ExecuteAction
 import org.junit.Test
 
 class AboutViewModelShould {
 
-    private val actionInteractor = mock<ActionInteractor>()
+    private val actionInteractor = mock<ExecuteAction>()
     private val appInfoProvider = mock<AppInfoProvider>() {
         on { getVersionName() }.thenReturn("verson_name")
     }
@@ -30,7 +30,7 @@ class AboutViewModelShould {
         val email = "email"
         whenever(stringResolver.getString(R.string.about__email)).thenReturn(email)
         aboutViewModel.writeEmail()
-        verify(actionInteractor).execute(Action.SendEmailAction(email))
+        verify(actionInteractor).invoke(Action.SendEmailAction(email))
     }
 
     @Test
@@ -38,7 +38,7 @@ class AboutViewModelShould {
         val appId = "app_id"
         whenever(appInfoProvider.getApplicationId()).thenReturn(appId)
         aboutViewModel.rateApp()
-        verify(actionInteractor).execute(Action.OpenPlayStoreAction(appId))
+        verify(actionInteractor).invoke(Action.OpenPlayStoreAction(appId))
     }
 
     @Test
@@ -46,7 +46,7 @@ class AboutViewModelShould {
         val playStoreUrl = "play_store_url"
         whenever(stringResolver.getString(R.string.about__play_store_url)).thenReturn(playStoreUrl)
         aboutViewModel.shareApp()
-        verify(actionInteractor).execute(Action.ShareAction(playStoreUrl))
+        verify(actionInteractor).invoke(Action.ShareAction(playStoreUrl))
     }
 
     @Test
@@ -54,7 +54,7 @@ class AboutViewModelShould {
         val privacyPolicy = "privacy_policy"
         whenever(stringResolver.getString(R.string.about__privacy_policy_url)).thenReturn(privacyPolicy)
         aboutViewModel.openPrivacyPolicy()
-        verify(actionInteractor).execute(Action.OpenUrlAction(privacyPolicy))
+        verify(actionInteractor).invoke(Action.OpenUrlAction(privacyPolicy))
     }
 
     @Test
@@ -62,6 +62,6 @@ class AboutViewModelShould {
         val termsAndConditions = "terms_and_conditions"
         whenever(stringResolver.getString(R.string.about__terms_and_conditions_url)).thenReturn(termsAndConditions)
         aboutViewModel.openTermsAndConditions()
-        verify(actionInteractor).execute(Action.OpenUrlAction(termsAndConditions))
+        verify(actionInteractor).invoke(Action.OpenUrlAction(termsAndConditions))
     }
 }

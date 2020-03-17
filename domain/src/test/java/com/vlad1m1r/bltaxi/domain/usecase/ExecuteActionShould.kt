@@ -1,4 +1,4 @@
-package com.vlad1m1r.bltaxi.domain.interactor
+package com.vlad1m1r.bltaxi.domain.usecase
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -6,16 +6,16 @@ import com.vlad1m1r.bltaxi.domain.Action
 import com.vlad1m1r.bltaxi.domain.ActionExecutor
 import org.junit.Test
 
-class ActionInteractorShould {
+class ExecuteActionShould {
 
     val actionExecutor = mock<ActionExecutor>()
-    val actionInteractor = ActionInteractor(actionExecutor)
+    val executeAction = ExecuteAction(actionExecutor)
 
     @Test
     fun callActionExecutor() {
         val action = mock<Action>()
 
-        actionInteractor.execute(action)
+        executeAction(action)
 
         verify(actionExecutor).execute(action)
     }

@@ -1,4 +1,4 @@
-package com.vlad1m1r.bltaxi.domain.interactor
+package com.vlad1m1r.bltaxi.domain.usecase
 
 import com.vlad1m1r.bltaxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.domain.Repository
