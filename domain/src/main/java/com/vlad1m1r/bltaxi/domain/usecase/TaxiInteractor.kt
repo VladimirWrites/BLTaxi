@@ -4,7 +4,7 @@ import com.vlad1m1r.bltaxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.domain.Repository
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 
-class TaxiInteractor(private val repository: Repository) {
+class TaxiInteractor(private val repository: Repository, private val getTaxiPosition: GetTaxiPosition) {
 
     suspend operator fun invoke(): TaxisResult {
         return when(val taxis = repository.getTaxis()) {
@@ -13,7 +13,7 @@ class TaxiInteractor(private val repository: Repository) {
         }
     }
 
-    private fun setupOrder(itemTaxiArrayList: List<ItemTaxi>): List<ItemTaxi> {
+    private suspend fun setupOrder(itemTaxiArrayList: List<ItemTaxi>): List<ItemTaxi> {
         val result = mutableListOf<ItemTaxi>()
 
         for (taxi in itemTaxiArrayList) {
@@ -21,7 +21,7 @@ class TaxiInteractor(private val repository: Repository) {
         }
 
         for (taxi in itemTaxiArrayList) {
-            val position = this.repository.getItemPosition(taxi.id)
+            val position = getTaxiPosition(taxi.id)
 
             //fallback
             if (position >= itemTaxiArrayList.size) {
