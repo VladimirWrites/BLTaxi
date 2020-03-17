@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 /app/release/
+*/jacoco.exec
