@@ -13,7 +13,7 @@ import com.vlad1m1r.bltaxi.analytics.events.CallEvent
 import com.vlad1m1r.bltaxi.domain.Action
 import com.vlad1m1r.bltaxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.domain.usecase.ExecuteAction
-import com.vlad1m1r.bltaxi.domain.usecase.TaxiInteractor
+import com.vlad1m1r.bltaxi.domain.usecase.GetOrderedTaxiList
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.domain.usecase.SaveTaxiOrder
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
@@ -23,7 +23,7 @@ import kotlinx.coroutines.withContext
 class TaxiViewModel(
     private val saveTaxiOrder: SaveTaxiOrder,
     private val shortcutHandler: ShortcutHandler,
-    private val taxiInteractor: TaxiInteractor,
+    private val getOrderedTaxiList: GetOrderedTaxiList,
     private val executeAction: ExecuteAction,
     private val tracker: Tracker,
     private val dispatchers: CoroutineDispatcherProvider
@@ -38,7 +38,7 @@ class TaxiViewModel(
         isLoading.set(true)
         isErrorShown.set(false)
         viewModelScope.launch(dispatchers.io) {
-            val taxisResult = taxiInteractor()
+            val taxisResult = getOrderedTaxiList()
             withContext(dispatchers.main) {
                 when (taxisResult) {
                     is TaxisResult.Success -> {

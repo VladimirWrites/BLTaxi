@@ -7,7 +7,7 @@ private const val KEY_ITEM_POSITION = "item_position"
 internal class OrderProviderImpl(private val sharedPreferences: SharedPreferences) : OrderProvider {
 
     override fun getItemPosition(id: Long): Int {
-        return this.sharedPreferences.getInt(KEY_ITEM_POSITION + id.toString(), id.toInt() - 1)
+        return this.sharedPreferences.getInt(KEY_ITEM_POSITION + id.toString(), -1)
     }
 
     override fun setItemPosition(id: Long, position: Int) {
