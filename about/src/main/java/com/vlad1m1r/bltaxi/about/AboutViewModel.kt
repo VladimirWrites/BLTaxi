@@ -1,8 +1,7 @@
 package com.vlad1m1r.bltaxi.about
 
+import androidx.lifecycle.ViewModel
 import com.vlad1m1r.basedata.StringResolver
-import com.vlad1m1r.baseui.BaseViewModel
-import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.about.di.AppInfoProvider
 import com.vlad1m1r.bltaxi.domain.Action
 import com.vlad1m1r.bltaxi.domain.interactor.ActionInteractor
@@ -10,15 +9,14 @@ import com.vlad1m1r.bltaxi.domain.interactor.ActionInteractor
 class AboutViewModel(
     private val actionInteractor: ActionInteractor,
     private val appInfoProvider: AppInfoProvider,
-    private val stringResolver: StringResolver,
-    dispatchers: CoroutineDispatcherProvider
-) : BaseViewModel(dispatchers.main) {
+    private val stringResolver: StringResolver
+) : ViewModel() {
 
     val appVersionName = appInfoProvider.getVersionName()
 
     fun writeEmail() {
         actionInteractor.execute(
-            Action.SendEmailAction("write@vladimirj.dev")
+            Action.SendEmailAction(stringResolver.getString(R.string.about__email))
         )
     }
 
