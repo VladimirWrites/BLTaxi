@@ -13,12 +13,6 @@ class TaxiInteractor(private val repository: Repository) {
         }
     }
 
-    fun setOrder(list: List<ItemTaxi>) {
-        for (i in list.indices) {
-            this.repository.setItemPosition(list[i].id, i)
-        }
-    }
-
     private fun setupOrder(itemTaxiArrayList: List<ItemTaxi>): List<ItemTaxi> {
         val result = mutableListOf<ItemTaxi>()
 

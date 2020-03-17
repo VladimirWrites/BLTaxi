@@ -15,11 +15,13 @@ import com.vlad1m1r.bltaxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.domain.usecase.ExecuteAction
 import com.vlad1m1r.bltaxi.domain.usecase.TaxiInteractor
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.domain.usecase.SaveTaxiOrder
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class TaxiViewModel(
+    private val saveTaxiOrder: SaveTaxiOrder,
     private val shortcutHandler: ShortcutHandler,
     private val taxiInteractor: TaxiInteractor,
     private val executeAction: ExecuteAction,
@@ -54,7 +56,7 @@ class TaxiViewModel(
 
     fun setTaxiOrder(taxis: List<ItemTaxi>) {
         viewModelScope.launch(dispatchers.io) {
-            taxiInteractor.setOrder(taxis)
+            saveTaxiOrder(taxis)
         }
     }
 
