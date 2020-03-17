@@ -4,9 +4,9 @@ import android.os.Build
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vlad1m1r.basedata.exhaustive
-import com.vlad1m1r.baseui.BaseViewModel
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vlad1m1r.bltaxi.analytics.events.CallEvent
@@ -25,7 +25,8 @@ class TaxiViewModel(
     private val actionInteractor: ActionInteractor,
     private val tracker: Tracker,
     private val dispatchers: CoroutineDispatcherProvider
-) : BaseViewModel(dispatchers.main) {
+) : ViewModel() {
+
     private val mutableTaxis = MutableLiveData<List<ItemTaxi>>()
     val taxis: LiveData<List<ItemTaxi>> = mutableTaxis
     val isLoading = ObservableBoolean(false)
