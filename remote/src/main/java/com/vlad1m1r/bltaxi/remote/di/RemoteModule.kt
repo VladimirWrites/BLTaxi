@@ -6,16 +6,14 @@ import com.vlad1m1r.bltaxi.remote.TaxiService
 import com.vlad1m1r.bltaxi.remote.getTaxiService
 import com.vlad1m1r.bltaxi.remote.provideRetrofit
 import com.vlad1m1r.bltaxi.remote.TaxiProviderRemote
-import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
-import retrofit2.Retrofit
 
 val remoteModule = module {
 
-    single<HttpLoggingInterceptor> { HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY } }
-    single<OkHttpClient> { provideOkHttpClient(get()) }
-    single<Retrofit> { provideRetrofit(get()) }
+    single { HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY } }
+    single{ provideOkHttpClient(get()) }
+    single { provideRetrofit(get()) }
     single<TaxiService> { getTaxiService(get()) }
     single<TaxiProviderRemote> { TaxiProviderRemoteImpl(get()) }
 }

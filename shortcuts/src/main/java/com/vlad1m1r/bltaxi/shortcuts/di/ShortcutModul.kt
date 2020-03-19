@@ -8,7 +8,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 val shortcutsModule = module {
-    single<ShortcutManager> { androidContext().getSystemService(ShortcutManager::class.java)!! }
-    single<ShortcutInfoProvider> { ShortcutInfoProvider(androidContext()) }
+    single { androidContext().getSystemService(ShortcutManager::class.java)!! }
+    single { ShortcutInfoProvider(androidContext()) }
     single<ShortcutHandler> { ShortcutHandlerImpl(get(), get()) }
 }

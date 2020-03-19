@@ -5,7 +5,7 @@ import androidx.preference.PreferenceManager
 import com.vlad1m1r.bltaxi.local.language.LanguageProviderImpl
 import com.vlad1m1r.bltaxi.local.order.OrderProviderImpl
 import com.vlad1m1r.bltaxi.local.taxi.TaxiProviderLocalImpl
-import com.vlad1m1r.bltaxi.local.database.TaxiDatabase
+
 import com.vlad1m1r.bltaxi.local.database.provideTaxiDatabase
 import com.vlad1m1r.bltaxi.local.language.LanguageProvider
 import com.vlad1m1r.bltaxi.local.order.OrderProvider
@@ -22,7 +22,7 @@ val localModule = module {
             androidContext()
         )
     }
-    single<TaxiDatabase> {
+    single {
         provideTaxiDatabase(
             androidContext()
         )

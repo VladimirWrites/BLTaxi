@@ -51,7 +51,7 @@ dependencies {
     api Deps.navigation_fragment
     api Deps.navigation_ui
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation Deps.junit
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

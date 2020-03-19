@@ -3,7 +3,6 @@ package com.vlad1m1r.bltaxi.domain.usecase
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.*
 import com.vlad1m1r.bltaxi.domain.Repository
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 

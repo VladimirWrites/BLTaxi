@@ -1,6 +1,6 @@
 package com.vlad1m1r.bltaxi.domain
 
-enum class Language private constructor(val code: String) {
+enum class Language constructor(val code: String) {
     EN("en"),
     SR("sr"),
     HR("hr"),
