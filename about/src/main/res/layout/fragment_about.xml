@@ -34,7 +34,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:paddingLeft="@dimen/margin_small"
+                            android:paddingStart="@dimen/margin_small"
+                            android:paddingEnd="@dimen/margin_small"
                             android:text="@string/about__author"
                             android:textAppearance="?attr/textAppearanceSubtitle1" />
 
@@ -44,7 +45,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_mini"
                             android:gravity="center_vertical"
-                            android:paddingLeft="@dimen/margin_small"
+                            android:paddingStart="@dimen/margin_small"
+                            android:paddingEnd="@dimen/margin_small"
                             android:text="@{String.format(@string/about__version, viewModel.appVersionName)}"
                             android:textAppearance="?attr/textAppearanceBody1"
                             tools:text="Version: 1.2.3"/>
