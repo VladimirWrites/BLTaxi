@@ -13,8 +13,8 @@ import org.junit.Test
 class AboutViewModelShould {
 
     private val actionInteractor = mock<ExecuteAction>()
-    private val appInfoProvider = mock<AppInfoProvider>() {
-        on { getVersionName() }.thenReturn("verson_name")
+    private val appInfoProvider = mock<AppInfoProvider> {
+        on { getVersionName() }.thenReturn("version_name")
     }
     private val stringResolver = mock<StringResolver>()
 
@@ -22,7 +22,7 @@ class AboutViewModelShould {
 
     @Test
     fun returnVersionName() {
-        assertThat(aboutViewModel.appVersionName).isEqualTo("verson_name")
+        assertThat(aboutViewModel.appVersionName).isEqualTo("version_name")
     }
 
     @Test
