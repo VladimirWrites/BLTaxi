@@ -17,6 +17,7 @@ import com.vlad1m1r.bltaxi.domain.usecase.GetOrderedTaxiList
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.domain.usecase.SaveTaxiOrder
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
+import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -29,8 +30,8 @@ class TaxiViewModel(
     private val dispatchers: CoroutineDispatcherProvider
 ) : ViewModel() {
 
-    private val mutableTaxis = MutableLiveData<List<ItemTaxi>>()
-    val taxis: LiveData<List<ItemTaxi>> = mutableTaxis
+    private val mutableTaxis = MutableLiveData<List<ItemTaxiViewModel>>()
+    val taxis: LiveData<List<ItemTaxiViewModel>> = mutableTaxis
     val isLoading = ObservableBoolean(false)
     val isErrorShown = ObservableBoolean(false)
 
@@ -42,7 +43,10 @@ class TaxiViewModel(
             withContext(dispatchers.main) {
                 when (taxisResult) {
                     is TaxisResult.Success -> {
-                        mutableTaxis.postValue(taxisResult.list)
+                        val viewModelList = taxisResult.list.map {
+                            ItemTaxiViewModel(it, ::callTaxi, ::callTaxiOnViber)
+                        }
+                        mutableTaxis.postValue(viewModelList)
                         isLoading.set(false)
                     }
                     is TaxisResult.Error -> {
@@ -54,25 +58,23 @@ class TaxiViewModel(
         }
     }
 
-    fun setTaxiOrder(taxis: List<ItemTaxi>) {
+    fun setTaxiOrder(viewModelList: List<ItemTaxiViewModel>) {
+        val taxis = viewModelList.map { it.itemTaxi }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            shortcutHandler.addShortcutsForTaxis(taxis)
+        }
         viewModelScope.launch(dispatchers.io) {
             saveTaxiOrder(taxis)
         }
     }
 
-    fun callTaxi(itemTaxi: ItemTaxi) {
+    private fun callTaxi(itemTaxi: ItemTaxi) {
         tracker.track(CallEvent(itemTaxi.id, itemTaxi.name, CallEvent.CallVariant.CALL))
         executeAction(Action.CallNumberAction(itemTaxi.phoneNumber))
     }
 
-    fun callTaxiOnViber(itemTaxi: ItemTaxi) {
+    private fun callTaxiOnViber(itemTaxi: ItemTaxi) {
         tracker.track(CallEvent(itemTaxi.id, itemTaxi.name, CallEvent.CallVariant.VIBER))
         executeAction(Action.CallNumberOnViberAction(itemTaxi.viberNumber!!))
-    }
-
-    fun addShortcuts(taxis: List<ItemTaxi>) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            shortcutHandler.addShortcutsForTaxis(taxis)
-        }
     }
 }

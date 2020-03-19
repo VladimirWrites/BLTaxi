@@ -6,6 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewHolderTaxi(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TaxiViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val binding: ViewDataBinding = DataBindingUtil.bind(itemView)!!
 }

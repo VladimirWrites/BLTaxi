@@ -3,8 +3,9 @@ package com.vlad1m1r.bltaxi.taxi.adapter
 import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.abs
 
-class ItemMoveHelperCallback(private val adapter: AdapterTaxiRecycler) : ItemTouchHelper.Callback() {
+class ItemMoveHelperCallback(private val moveItem: MoveItem) : ItemTouchHelper.Callback() {
 
     override fun isLongPressDragEnabled(): Boolean {
         return true
@@ -19,7 +20,7 @@ class ItemMoveHelperCallback(private val adapter: AdapterTaxiRecycler) : ItemTou
         viewHolder: RecyclerView.ViewHolder
     ): Int {
         // Set movement flags based on the layout manager
-        return if (viewHolder is ViewHolderTaxi) {
+        return if (viewHolder is TaxiViewHolder) {
             val dragFlags =
                 ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
             makeMovementFlags(
@@ -39,7 +40,7 @@ class ItemMoveHelperCallback(private val adapter: AdapterTaxiRecycler) : ItemTou
         }
 
         // Notify the adapter of the move
-        adapter.onItemMove(source.adapterPosition, target.adapterPosition)
+        moveItem.onItemMove(source.adapterPosition, target.adapterPosition)
         return true
     }
 
@@ -63,7 +64,7 @@ class ItemMoveHelperCallback(private val adapter: AdapterTaxiRecycler) : ItemTou
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             // Fade out the view as it is swiped out of the parent's bounds
             val alpha =
-                ALPHA_FULL - Math.abs(dX) / viewHolder.itemView.width.toFloat()
+                ALPHA_FULL - abs(dX) / viewHolder.itemView.width.toFloat()
             viewHolder.itemView.alpha = alpha
             viewHolder.itemView.translationX = dX
         } else {
@@ -77,7 +78,7 @@ class ItemMoveHelperCallback(private val adapter: AdapterTaxiRecycler) : ItemTou
     ) {
         // We only want the active item to change
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-            if (viewHolder is ViewHolderTaxi) {
+            if (viewHolder is TaxiViewHolder) {
                 // Let the view holder know that this item is being moved or dragged
                 viewHolder.itemView.alpha = 0.8f
             }

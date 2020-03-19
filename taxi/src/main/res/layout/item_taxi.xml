@@ -6,11 +6,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.vlad1m1r.bltaxi.taxi.TaxiViewModel"/>
-
-        <variable
-                name="itemTaxi"
-                type="com.vlad1m1r.bltaxi.domain.model.ItemTaxi"/>
+                type="com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -31,8 +27,8 @@
                     android:id="@+id/textTaxiName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left|center_vertical"
-                    android:text="@{itemTaxi.name}"
+                    android:layout_gravity="start|center_vertical"
+                    android:text="@{viewModel.itemTaxi.name}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginStart="@dimen/margin_normal"
@@ -52,11 +48,10 @@
                     android:layout_marginEnd="@dimen/margin_normal"
                     android:drawableStart="@drawable/ic_stat_device_access_call"
                     android:drawablePadding="@dimen/margin_mini"
-                    android:text="@{itemTaxi.phoneNumber}"
+                    android:text="@{viewModel.itemTaxi.phoneNumber}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="1231"/>
-
 
             <ImageView
                     android:id="@+id/imageTaxiPattern"
@@ -89,7 +84,7 @@
                     android:layout_marginEnd="@dimen/margin_normal"
                     android:layout_marginStart="@dimen/margin_mini"
                     android:layout_toEndOf="@id/textTaxiPriceStart"
-                    android:text="@{itemTaxi.startPrice}"
+                    android:text="@{viewModel.itemTaxi.startPrice}"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body2"
                     tools:text="Text2"
                     app:layout_constraintStart_toEndOf="@id/textTaxiPriceStart"
@@ -99,7 +94,7 @@
                     android:id="@+id/textTaxiPriceKmValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{itemTaxi.pricePerKm}"
+                    android:text="@{viewModel.itemTaxi.pricePerKm}"
                     android:layout_marginTop="@dimen/margin_small"
                     android:layout_marginBottom="@dimen/margin_mini"
                     android:layout_marginEnd="@dimen/margin_normal"
@@ -125,7 +120,7 @@
                     android:id="@+id/textAdditionalInfo"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:text="@{itemTaxi.additionalInfo}"
+                    android:text="@{viewModel.itemTaxi.additionalInfo}"
                     android:layout_marginStart="@dimen/margin_normal"
                     android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginTop="@dimen/margin_mini"
@@ -139,7 +134,7 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> viewModel.callTaxi(itemTaxi)}"
+                    android:onClick="@{() -> viewModel.callTaxi()}"
                     android:text="@string/taxi__call"
                     android:layout_marginBottom="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_normal"
@@ -155,11 +150,11 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> viewModel.callTaxiOnViber(itemTaxi)}"
+                    android:onClick="@{() -> viewModel.callTaxiOnViber()}"
                     android:text="@string/taxi__viber"
                     android:layout_marginBottom="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_normal"
-                    app:goneUnless="@{itemTaxi.isViberVisible}"
+                    app:goneUnless="@{viewModel.isViberVisible}"
                     app:layout_constraintTop_toBottomOf="@id/textAdditionalInfo"
                     app:layout_constraintEnd_toStartOf="@id/buttonCall"
                     app:strokeWidth="@dimen/button_stroke_width"

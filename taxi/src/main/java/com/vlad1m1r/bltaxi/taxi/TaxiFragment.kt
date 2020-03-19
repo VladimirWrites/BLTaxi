@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.vlad1m1r.baseui.BaseFragment
 import com.vlad1m1r.baseui.observe
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.taxi.adapter.AdapterTaxiRecycler
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemMoveHelperCallback
 import org.koin.android.viewmodel.ext.android.viewModel
 import android.view.*
+import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding
 import org.koin.android.ext.android.inject
 
@@ -56,9 +56,8 @@ class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
         itemTouchHelper.startDrag(viewHolder)
     }
 
-    override fun saveChanges(taxis: List<ItemTaxi>) {
+    override fun saveChanges(taxis: List<ItemTaxiViewModel>) {
         viewModel.setTaxiOrder(taxis)
-        addShortcuts(taxis)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -98,13 +97,9 @@ class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
         } else if (::taxiAdapter.isInitialized) {
             binding.recyclerView.adapter = taxiAdapter
         } else {
-            binding.recyclerView.adapter = AdapterTaxiRecycler(this, viewModel)
+            binding.recyclerView.adapter = AdapterTaxiRecycler(this)
         }
         taxiAdapter = binding.recyclerView.adapter as AdapterTaxiRecycler
         return taxiAdapter
-    }
-
-    private fun addShortcuts(taxis: List<ItemTaxi>) {
-        viewModel.addShortcuts(taxis)
     }
 }
