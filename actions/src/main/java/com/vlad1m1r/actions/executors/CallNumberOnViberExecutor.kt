@@ -15,7 +15,7 @@ open class CallNumberOnViberExecutor(private val context: Context, private val o
 
     open operator fun invoke(action: Action.CallNumberOnViberAction) {
         if (Patterns.PHONE.matcher(action.phoneNumber).matches()) {
-            val uri = Uri.parse("tel:${action.phoneNumber}")
+            val uri = Uri.parse(context.getString(R.string.action__tel)+action.phoneNumber)
             var intent = Intent(Intent.ACTION_DIAL)
             intent.data = uri
             val resolveInfo = getViberResolveInfo(context.packageManager, intent)
