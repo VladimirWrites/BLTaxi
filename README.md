@@ -3,6 +3,8 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/VladimirWrites/BLTaxi/blob/master/LICENSE)
 [![Build Status](https://app.bitrise.io/app/b8b8722ee9645ad8/status.svg?token=7MWRGcMRCjH4Ivzp9xeBCw)](https://app.bitrise.io/app/b8b8722ee9645ad8)
 
+![](remote_data/assets/banner.png)
+
 Credits
 -------
 
