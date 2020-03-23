@@ -17,7 +17,6 @@ internal class SyncTaxisWorker(
         } catch (e: Exception) {
             Result.failure()
         }
-        syncTaxis()
         Result.success()
     }
 }
