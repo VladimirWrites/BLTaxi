@@ -7,7 +7,10 @@ import androidx.annotation.RequiresApi
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import kotlin.math.min
 
-internal class ShortcutHandlerImpl(private val shortcutManager: ShortcutManager, private val shortcutInfoProvider: ShortcutInfoProvider) : ShortcutHandler {
+internal class ShortcutHandlerImpl(
+    private val shortcutManager: ShortcutManager,
+    private val shortcutInfoProvider: ShortcutInfoProvider
+) : ShortcutHandler {
 
     @RequiresApi(Build.VERSION_CODES.N_MR1)
     override fun addShortcutsForTaxis(items: List<ItemTaxi>) {
