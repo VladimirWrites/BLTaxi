@@ -32,7 +32,7 @@ class TaxiShould {
         assertThat(itemTaxi.viberNumber).isEqualTo("viber_number")
 
     }
-    
+
     @Test
     fun toTaxi() {
         val itemTaxi = ItemTaxi(
