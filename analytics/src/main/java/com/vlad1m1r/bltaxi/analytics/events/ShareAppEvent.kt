@@ -7,7 +7,7 @@ import com.vlad1m1r.bltaxi.analytics.Event
 
 class ShareAppEvent : Event() {
     override val name: String = FirebaseAnalytics.Event.SHARE
-    override val dataMap = mapOf(
+    override val data = mapOf(
         CONTENT_TYPE to "App",
         METHOD to "About Screen"
     )

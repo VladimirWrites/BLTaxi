@@ -8,7 +8,7 @@ class CallEvent(id: Long, taxiName: String, callType: CallVariant) : Event() {
 
     override val name: String = FirebaseAnalytics.Event.SELECT_CONTENT
 
-    override val dataMap = mapOf(
+    override val data = mapOf(
         ITEM_ID to id.toString(),
         ITEM_NAME to taxiName,
         ITEM_VARIANT to callType.variantName

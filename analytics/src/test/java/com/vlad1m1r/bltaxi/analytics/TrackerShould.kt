@@ -34,5 +34,5 @@ class TrackerShould {
         verify(firebaseAnalytics).setAnalyticsCollectionEnabled(false)
     }
 
-    open class TestEvent(override val name: String, override val dataMap: Map<String, String>): Event()
+    open class TestEvent(override val name: String, override val data: Map<String, String>): Event()
 }

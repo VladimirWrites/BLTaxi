@@ -7,16 +7,16 @@ internal class TrackerImpl(private val firebaseAnalytics: FirebaseAnalytics) : T
 
     override fun track(event: Event) {
 
-        val data: Bundle? =
-            if (event.dataMap.isEmpty())
+        val dataBundle: Bundle? =
+            if (event.data.isEmpty())
                 null
             else
                 Bundle().apply {
-                    event.dataMap.forEach { (key, value) ->
+                    event.data.forEach { (key, value) ->
                         putString(key, value)
                     }
                 }
-        firebaseAnalytics.logEvent(event.name, data)
+        firebaseAnalytics.logEvent(event.name, dataBundle)
     }
 
     override fun enableTracking(enabled: Boolean) {

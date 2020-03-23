@@ -4,5 +4,5 @@ import android.os.Bundle
 
 abstract class Event {
     abstract val name: String
-    abstract val dataMap: Map<String, String>
+    abstract val data: Map<String, String>
 }
