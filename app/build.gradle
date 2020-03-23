@@ -81,5 +81,8 @@ dependencies {
     implementation project(Modules.settings)
     implementation project(Modules.sync)
     implementation project(Modules.shortcuts)
+
+    testImplementation Deps.truth
+    testImplementation Deps.mockito_kotlin
 }
 apply plugin: 'com.google.gms.google-services'
