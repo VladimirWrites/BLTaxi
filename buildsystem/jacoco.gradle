@@ -8,6 +8,7 @@ def fileFilter = [
         'androidx/**/*.*',
         '**/generated/**',
         '**/di/*.*',
+        '**/model/*.*',
 
         //DataBinding
         '**/BR.class',
