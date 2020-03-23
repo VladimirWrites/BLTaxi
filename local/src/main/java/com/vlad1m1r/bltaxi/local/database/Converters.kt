@@ -4,14 +4,14 @@ import androidx.room.TypeConverter
 import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.Language.Companion.fromCode
 
-class Converters {
+internal class Converters {
     @TypeConverter
-    fun fromLanguage(language: Language): String {
+    fun languageToLanguageCode(language: Language): String {
         return language.code
     }
 
     @TypeConverter
-    fun languageToString(languageCode: String): Language {
+    fun languageCodeToLanguage(languageCode: String): Language {
         return fromCode(languageCode)
     }
 }
