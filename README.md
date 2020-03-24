@@ -1,16 +1,22 @@
-# BLTaxi
+<div align="center">
+  <img alt="Icon" src="remote_data/assets/icon.png" width="200" />
+</div>
+<h3 align="center">
+  The fastest way to call a taxi in Banja Luka
+</h3>
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/VladimirWrites/BLTaxi/blob/master/LICENSE)
-[![Build Status](https://app.bitrise.io/app/b8b8722ee9645ad8/status.svg?token=7MWRGcMRCjH4Ivzp9xeBCw)](https://app.bitrise.io/app/b8b8722ee9645ad8)
-[![codecov](https://codecov.io/gh/VladimirWrites/BLTaxi/branch/master/graph/badge.svg)](https://codecov.io/gh/VladimirWrites/BLTaxi)
+<p align="center">
+<a target="_blank" href="https://github.com/VladimirWrites/BLTaxi/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
+<a target="_blank" href="https://app.bitrise.io/app/b8b8722ee9645ad8"><img src="https://app.bitrise.io/app/b8b8722ee9645ad8/status.svg?token=7MWRGcMRCjH4Ivzp9xeBCw"></a>
+<a target="_blank" href="https://codecov.io/gh/VladimirWrites/BLTaxi"><img src="https://codecov.io/gh/VladimirWrites/BLTaxi/branch/master/graph/badge.svg" ></a>
+</p>
 
-![](remote_data/assets/banner.png)
+-------
 
-The application is available on Google Play Store.
+<p align="center">
+  <img  alt="banner" src="remote_data/assets/banner.png">
+</p>
 
-<a href='https://play.google.com/store/apps/details?id=com.vlad1m1r.bltaxi'>
-    <img alt='Get it on Google Play' src='http://i.imgur.com/tka3Exw.png'/>
-</a>
 
 Built With 🛠
 -------
@@ -21,7 +27,7 @@ Built With 🛠
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes
   - [DataBinding](https://developer.android.com/topic/libraries/data-binding) - Allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically
   - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - Makes it easy to schedule deferrable, asynchronous tasks that are expected to run even if the app exits or device restarts
-  - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.
+  - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
 - [Navigation Component](https://developer.android.com/guide/navigation) - Helps you implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer
 - [Koin](https://github.com/InsertKoinIO/koin) - Dependency Injection Framework
@@ -35,6 +41,12 @@ Tested With 🔬
 - [mockito](https://github.com/mockito/mockito) - Most popular Mocking framework for unit tests
 - [mockito-kotlin](https://github.com/nhaarman/mockito-kotlin) - Provides helper functions to work with Mockito in Kotlin
 - [Truth](https://github.com/google/truth) - Makes your test assertions and failure messages more readable
+
+Download
+-------
+<a href='https://play.google.com/store/apps/details?id=com.vlad1m1r.bltaxi'>
+    <img alt='Get it on Google Play' src='http://i.imgur.com/tka3Exw.png'/>
+</a>
 
 License
 -------
