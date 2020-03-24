@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin = "1.3.70"
+    const val kotlin = "1.3.71"
     const val kotlin_coroutines = "1.2.1"
 
     const val android_x_legacy_v4 = "1.0.0"
