@@ -6,6 +6,12 @@
 
 ![](remote_data/assets/banner.png)
 
+The application is available on Google Play Store.
+
+<a href='https://play.google.com/store/apps/details?id=com.vlad1m1r.bltaxi'>
+    <img alt='Get it on Google Play' src='http://i.imgur.com/tka3Exw.png'/>
+</a>
+
 Credits
 -------
 
