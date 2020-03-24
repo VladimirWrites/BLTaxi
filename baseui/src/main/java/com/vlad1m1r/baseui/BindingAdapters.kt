@@ -7,15 +7,14 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 
-
 @BindingAdapter("goneUnless")
 fun View.goneUnless(visible: Boolean?) {
     this.visibility = if(visible != null && visible) View.VISIBLE else View.GONE
 }
 
 @BindingAdapter("srcTileMode")
-fun setImageViewTileMode(view: ImageView, drawable: Drawable) {
+fun ImageView.setImageViewTileMode(drawable: Drawable) {
     val bg = drawable as BitmapDrawable
     bg.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
-    view.background = bg
+    background = bg
 }

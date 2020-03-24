@@ -52,6 +52,6 @@ dependencies {
     api Deps.navigation_ui
 
     testImplementation Deps.junit
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation Deps.truth
+    testImplementation Deps.mockito_kotlin
 }
