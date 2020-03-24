@@ -10,6 +10,6 @@ import org.koin.dsl.module
 
 val analyticsModule = module {
     single { FirebaseAnalytics.getInstance(androidContext()) }
-    single<Tracker> { TrackerImpl(get()) }
-    single<CrashReport> { CrashReportImpl(androidContext()) }
+    single<Tracker> { TrackerImpl(get(), androidContext(), get()) }
+    single<CrashReport> { CrashReportImpl(androidContext(), get()) }
 }

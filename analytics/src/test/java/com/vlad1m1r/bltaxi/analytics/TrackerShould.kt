@@ -1,5 +1,7 @@
 package com.vlad1m1r.bltaxi.analytics
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -8,7 +10,9 @@ import org.junit.Test
 class TrackerShould {
 
     val firebaseAnalytics = mock<FirebaseAnalytics>()
-    val tracker: Tracker = TrackerImpl(firebaseAnalytics)
+    val context = mock<Context>()
+    val sharedPreferences = mock<SharedPreferences>()
+    val tracker: Tracker = TrackerImpl(firebaseAnalytics, context, sharedPreferences)
 
     @Test
     fun trackEventWithFirebaseAnalytics() {

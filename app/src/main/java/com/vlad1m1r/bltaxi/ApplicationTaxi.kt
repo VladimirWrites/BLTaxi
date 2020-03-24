@@ -48,29 +48,23 @@ class ApplicationTaxi : Application() {
             )
         }
 
+        val tracker: Tracker by inject()
+        tracker.initialize()
+
+        val crashReport: CrashReport by inject()
+        crashReport.initialize()
+
         val syncTaxisWorkManager: SyncTaxisWorkManager by inject()
         syncTaxisWorkManager.start()
 
         val sharedPreferences: SharedPreferences by inject()
-        val keyAnalytics = getString(R.string.pref_key_analytics)
-        val keyCrashReport = getString(R.string.pref_key_crash_reports)
         val keyThemePicker = getString(R.string.pref_key_theme_picker)
 
-        if (!sharedPreferences.contains(keyAnalytics) ||
-            !sharedPreferences.contains(keyCrashReport) ||
-            !sharedPreferences.contains(keyThemePicker)
-        ) {
-            val tracker: Tracker by inject()
-            val crashReport: CrashReport by inject()
-
+        if (!sharedPreferences.contains(keyThemePicker)) {
             sharedPreferences.edit()
-                .putBoolean(keyAnalytics, true)
-                .putBoolean(keyCrashReport, true)
                 .putString(keyThemePicker, getString(R.string.theme_value_default))
                 .apply()
             setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-            tracker.enableTracking(true)
-            crashReport.enableCrashReporting(true)
         } else {
             val theme = sharedPreferences.getString(keyThemePicker, "")
             val newMode = when (theme) {

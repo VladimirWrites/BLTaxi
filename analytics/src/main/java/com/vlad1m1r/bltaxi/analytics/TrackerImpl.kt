@@ -1,9 +1,24 @@
 package com.vlad1m1r.bltaxi.analytics
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 
-internal class TrackerImpl(private val firebaseAnalytics: FirebaseAnalytics) : Tracker {
+internal class TrackerImpl(
+    private val firebaseAnalytics: FirebaseAnalytics,
+    private val context: Context,
+    private val sharedPreferences: SharedPreferences
+) : Tracker {
+    override fun initialize() {
+        val keyAnalytics = context.getString(R.string.pref_key_analytics)
+        if (!sharedPreferences.contains(keyAnalytics)) {
+            sharedPreferences.edit()
+                .putBoolean(keyAnalytics, true)
+                .apply()
+            enableTracking(true)
+        }
+    }
 
     override fun track(event: Event) {
 

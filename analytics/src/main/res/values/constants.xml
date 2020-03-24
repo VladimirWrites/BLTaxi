@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_key_analytics" translatable="false">pref_analytics</string>
+    <string name="pref_key_crash_reports" translatable="false">pref_crash_reports</string>
+    <string name="pref_key_theme_picker" translatable="false">pref_theme_picker</string>
+</resources>
