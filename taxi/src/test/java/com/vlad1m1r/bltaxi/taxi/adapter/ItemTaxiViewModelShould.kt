@@ -1,6 +1,8 @@
 package com.vlad1m1r.bltaxi.taxi.adapter
 
 import com.google.common.truth.Truth.assertThat
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import org.junit.Test
 
@@ -37,5 +39,25 @@ class ItemTaxiViewModelShould {
         val itemTaxiViewModel = ItemTaxiViewModel(taxi, {}, {})
 
         assertThat(itemTaxiViewModel.isViberVisible).isFalse()
+    }
+
+    @Test
+    fun executeCallFun_whenCallTaxi() {
+        val call = mock<(itemTaxi: ItemTaxi) -> Unit>()
+        val itemTaxiViewModel = ItemTaxiViewModel(itemTaxi, call, {})
+
+        itemTaxiViewModel.callTaxi()
+
+        verify(call).invoke(itemTaxi)
+    }
+
+    @Test
+    fun executeCallViberFun_whenCallTaxiOnViber() {
+        val callViber = mock<(itemTaxi: ItemTaxi) -> Unit>()
+        val itemTaxiViewModel = ItemTaxiViewModel(itemTaxi, {}, callViber)
+
+        itemTaxiViewModel.callTaxiOnViber()
+
+        verify(callViber).invoke(itemTaxi)
     }
 }
