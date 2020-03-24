@@ -8,8 +8,8 @@ import android.graphics.drawable.Drawable
 import android.widget.ImageView
 
 @BindingAdapter("goneUnless")
-fun View.goneUnless(visible: Boolean?) {
-    this.visibility = if(visible != null && visible) View.VISIBLE else View.GONE
+fun View.goneUnless(visible: Boolean) {
+    this.visibility = if(visible) View.VISIBLE else View.GONE
 }
 
 @BindingAdapter("srcTileMode")
