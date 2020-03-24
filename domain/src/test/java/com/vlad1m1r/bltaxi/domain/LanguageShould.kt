@@ -25,4 +25,9 @@ class LanguageShould {
     fun getSerbianLanguage_fromSerbianCode() {
         assertThat(Language.fromCode("sr")).isEqualTo(Language.SR)
     }
+
+    @Test
+    fun getEnglishLanguage_fromUnsupportedLanguageCode() {
+        assertThat(Language.fromCode("de")).isEqualTo(Language.EN)
+    }
 }
