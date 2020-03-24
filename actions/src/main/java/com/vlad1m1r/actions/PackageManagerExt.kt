@@ -1,4 +1,4 @@
-package com.vlad1m1r.actions.executors
+package com.vlad1m1r.actions
 
 import android.content.Intent
 import android.content.pm.PackageManager

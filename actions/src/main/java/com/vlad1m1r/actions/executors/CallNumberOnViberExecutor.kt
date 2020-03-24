@@ -9,6 +9,7 @@ import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.util.Patterns
 import com.vlad1m1r.actions.R
+import com.vlad1m1r.actions.getListOfResolveInfo
 import com.vlad1m1r.bltaxi.domain.Action
 
 open class CallNumberOnViberExecutor(private val context: Context, private val openPlayStoreExecutor: OpenPlayStoreExecutor) {

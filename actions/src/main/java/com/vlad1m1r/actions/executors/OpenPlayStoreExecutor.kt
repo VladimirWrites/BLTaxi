@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
+import com.vlad1m1r.actions.getListOfResolveInfo
 import com.vlad1m1r.bltaxi.domain.Action
 
 open class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor) {
