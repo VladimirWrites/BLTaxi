@@ -12,10 +12,29 @@ The application is available on Google Play Store.
     <img alt='Get it on Google Play' src='http://i.imgur.com/tka3Exw.png'/>
 </a>
 
-Credits
+Built With 🛠
 -------
+- [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
+- [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Kotlin's way of way of writing asynchronous, non-blocking code
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust, testable, and maintainable apps
+  - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying data changes
+  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes
+  - [DataBinding](https://developer.android.com/topic/libraries/data-binding) - Allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically
+  - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - Makes it easy to schedule deferrable, asynchronous tasks that are expected to run even if the app exits or device restarts
+  - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.
+- [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
+- [Navigation Component](https://developer.android.com/guide/navigation) - Helps you implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer
+- [Koin](https://github.com/InsertKoinIO/koin) - Dependency Injection Framework
+- [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java
+- [Google Analytics](https://firebase.google.com/docs/analytics) - Free app measurement solution that provides insight on app usage and user engagement
+- [Firebase Crashlytics](https://firebase.google.com/docs/analytics) - Lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality
 
-+ [Vladimir Jovanovic](https://github.com/VladimirWrites)
+Tested With 🔬
+-------
+- [JUnit 4](https://junit.org/junit4/) - Simple framework to write repeatable tests
+- [mockito](https://github.com/mockito/mockito) - Most popular Mocking framework for unit tests
+- [mockito-kotlin](https://github.com/nhaarman/mockito-kotlin) - Provides helper functions to work with Mockito in Kotlin
+- [Truth](https://github.com/google/truth) - Makes your test assertions and failure messages more readable
 
 License
 -------
