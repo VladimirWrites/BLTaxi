@@ -1,22 +1,35 @@
 <div align="center">
-  <img alt="Icon" src="remote_data/assets/icon.png" width="200" />
+    <img alt="Icon" src="remote_data/assets/icon.png" width="200" />
 </div>
 <h3 align="center">
-  The fastest way to call a taxi in Banja Luka
+    The fastest way to call a taxi in Banja Luka
 </h3>
 
 <p align="center">
-<a target="_blank" href="https://github.com/VladimirWrites/BLTaxi/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
-<a target="_blank" href="https://app.bitrise.io/app/b8b8722ee9645ad8"><img src="https://app.bitrise.io/app/b8b8722ee9645ad8/status.svg?token=7MWRGcMRCjH4Ivzp9xeBCw"></a>
-<a target="_blank" href="https://codecov.io/gh/VladimirWrites/BLTaxi"><img src="https://codecov.io/gh/VladimirWrites/BLTaxi/branch/master/graph/badge.svg" ></a>
+    <a target="_blank" href="https://github.com/VladimirWrites/BLTaxi/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
+    <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
+    <a target="_blank" href="https://app.bitrise.io/app/b8b8722ee9645ad8"><img src="https://app.bitrise.io/app/b8b8722ee9645ad8/status.svg?token=7MWRGcMRCjH4Ivzp9xeBCw"></a>
+    <a target="_blank" href="https://codecov.io/gh/VladimirWrites/BLTaxi"><img src="https://codecov.io/gh/VladimirWrites/BLTaxi/branch/master/graph/badge.svg" ></a>
 </p>
 
 -------
 
 <p align="center">
-  <img  alt="banner" src="remote_data/assets/banner.png">
+    <img  alt="banner" src="remote_data/assets/banner.png">
 </p>
 
+Project characteristics 🚀
+-------
+This project brings to the table set of best practices, tools, and solutions:
+
+* 100% [Kotlin](https://kotlinlang.org/)
+* Modern architecture (Clean Architecture, Multi-Module setup, Model-View-ViewModel)
+* [Android Jetpack](https://developer.android.com/jetpack)
+* Single-activity architecture, using the [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
+* CI pipeline ([Bitrise](https://app.bitrise.io/app/b8b8722ee9645ad8#/builds))
+* Testing (Using [Jacoco](https://github.com/jacoco/jacoco) for test coverage)
+* Dependency Injection
+* Material Design (Dark theme)
 
 Built With 🛠
 -------
@@ -47,6 +60,11 @@ Download
 <a href='https://play.google.com/store/apps/details?id=com.vlad1m1r.bltaxi'>
     <img alt='Get it on Google Play' src='http://i.imgur.com/tka3Exw.png'/>
 </a>
+
+Find this repository useful? :heart:
+-------
+Support it by joining __[stargazers](https://github.com/VladimirWrites/BLTaxi/stargazers)__ for this repository. :star: <br>
+And __[follow](https://github.com/VladimirWrites)__ me for my next creations! 🤩
 
 License
 -------
