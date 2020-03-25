@@ -9,7 +9,7 @@ object Versions {
     const val android_x_recycler_view = "1.1.0"
     const val android_x_lifecycle = "2.2.0"
     const val android_x_constraint_layout = "1.1.3"
-    const val material_design = "1.1.0-rc02"
+    const val material_design = "1.1.0"
     const val android_x_preference = "1.1.0"
     const val android_x_work_manager = "2.3.3"
 
