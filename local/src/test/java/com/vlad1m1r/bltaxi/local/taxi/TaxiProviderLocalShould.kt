@@ -7,10 +7,7 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
-import com.vlad1m1r.bltaxi.local.database.Taxi
-import com.vlad1m1r.bltaxi.local.database.TaxiDao
-import com.vlad1m1r.bltaxi.local.database.TaxiDatabase
-import com.vlad1m1r.bltaxi.local.database.toItemTaxi
+import com.vlad1m1r.bltaxi.local.database.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
@@ -39,7 +36,6 @@ class TaxiProviderLocalShould {
         "price_per_km",
         "additional_info",
         "viber_number",
-        100L,
         Language.HR
     )
 
@@ -83,7 +79,7 @@ class TaxiProviderLocalShould {
 
             taxiProviderLocal.saveTaxis(taxis, Language.EN)
 
-            verify(taxiDao).replaceAll(taxis, Language.EN)
+            verify(taxiDao).replaceAll(taxis.map { it.toTaxi(Language.EN) }, Language.EN)
         }
     }
 }

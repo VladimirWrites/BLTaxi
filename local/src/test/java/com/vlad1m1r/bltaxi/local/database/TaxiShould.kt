@@ -17,7 +17,6 @@ class TaxiShould {
             "price_per_km",
             "additional_info",
             "viber_number",
-            100L,
             Language.HR
         )
 
@@ -47,7 +46,7 @@ class TaxiShould {
 
         val taxi = itemTaxi.toTaxi(Language.BS)
 
-        assertThat(taxi.id).isEqualTo(10)
+        assertThat(taxi.taxiId).isEqualTo(10)
         assertThat(taxi.name).isEqualTo("name")
         assertThat(taxi.phoneNumber).isEqualTo("phone_number")
         assertThat(taxi.startPrice).isEqualTo("start_price")

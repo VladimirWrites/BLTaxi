@@ -4,6 +4,7 @@ import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.local.database.TaxiDatabase
 import com.vlad1m1r.bltaxi.local.database.toItemTaxi
+import com.vlad1m1r.bltaxi.local.database.toTaxi
 
 internal class TaxiProviderLocalImpl(private val taxiDatabase: TaxiDatabase) :
     TaxiProviderLocal {
@@ -16,6 +17,6 @@ internal class TaxiProviderLocalImpl(private val taxiDatabase: TaxiDatabase) :
     }
 
     override suspend fun saveTaxis(taxis: List<ItemTaxi>, language: Language) {
-        taxiDatabase.taxiDao().replaceAll(taxis, language)
+        taxiDatabase.taxiDao().replaceAll(taxis.map { it.toTaxi(language) }, language)
     }
 }

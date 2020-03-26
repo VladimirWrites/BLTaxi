@@ -54,6 +54,7 @@ Tested With 🔬
 - [mockito](https://github.com/mockito/mockito) - Most popular Mocking framework for unit tests
 - [mockito-kotlin](https://github.com/nhaarman/mockito-kotlin) - Provides helper functions to work with Mockito in Kotlin
 - [Truth](https://github.com/google/truth) - Makes your test assertions and failure messages more readable
+- [Robolectric](https://github.com/robolectric/robolectric) - Runs tests in a simulated Android environment inside a JVM without the overhead of an emulator
 
 Download
 -------

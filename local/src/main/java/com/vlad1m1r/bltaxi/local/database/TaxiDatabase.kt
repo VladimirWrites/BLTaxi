@@ -15,6 +15,6 @@ abstract class TaxiDatabase : RoomDatabase() {
 internal fun provideTaxiDatabase(context: Context): TaxiDatabase {
     return Room.databaseBuilder(
         context.applicationContext,
-        TaxiDatabase::class.java, "taxi-database"
+        TaxiDatabase::class.java, "bltaxi-database"
     ).build()
 }

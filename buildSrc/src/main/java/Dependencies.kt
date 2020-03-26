@@ -31,6 +31,7 @@ object Versions {
     const val mockito_kotlin = "2.2.0"
     const val truth = "1.0.1"
     const val robolectric = "4.3.1"
+    const val archCoreTesting = "2.1.0"
 
     const val gradle_android = "3.6.1"
     const val google_services = "4.3.3"
@@ -92,6 +93,7 @@ object Deps {
     const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
     const val truth = "com.google.truth:truth:${Versions.truth}"
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val archCoreTesting = "androidx.arch.core:core-testing:${Versions.archCoreTesting}"
 
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.gradle_android}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
