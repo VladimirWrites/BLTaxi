@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testOptions.unitTests.includeAndroidResources = true
     }
 
     compileOptions {
@@ -31,6 +31,14 @@ android {
             minifyEnabled false
         }
     }
+    testOptions {
+        unitTests.all {
+            systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+    }
 
 }
 
@@ -45,7 +53,6 @@ dependencies {
     testImplementation Deps.truth
     testImplementation Deps.mockito_kotlin
     testImplementation Deps.mockito_inline
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation Deps.robolectric
+    testImplementation Deps.archCoreTesting
 }
