@@ -62,4 +62,9 @@ class SettingsViewModelShould {
         settingsViewModel.changeTheme("default")
         assertThat(settingsViewModel.mode.get()).isEqualTo(MODE_NIGHT_FOLLOW_SYSTEM)
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun changeTheme_toUnsupported() {
+        settingsViewModel.changeTheme("unsupported_value")
+    }
 }
