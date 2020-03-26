@@ -55,7 +55,7 @@ task report(type: JacocoReport) {
             fileTree(dir: "$project.rootDir/repository/build/tmp/kotlin-classes/debug", excludes: fileFilter),
             fileTree(dir: "$project.rootDir/settings/build/tmp/kotlin-classes/debug", excludes: fileFilter),
             fileTree(dir: "$project.rootDir/shortcuts/build/tmp/kotlin-classes/debug", excludes: fileFilter),
-            fileTree(dir: "$project.rootDir/sync/build/tmp/kotlin-classesv/debug", excludes: fileFilter),
+            fileTree(dir: "$project.rootDir/sync/build/tmp/kotlin-classes/debug", excludes: fileFilter),
             fileTree(dir: "$project.rootDir/taxi/build/tmp/kotlin-classes/debug", excludes: fileFilter)
     ]))
     def coverageSourceDirs = [
