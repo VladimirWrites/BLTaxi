@@ -64,5 +64,5 @@ dependencies {
     testImplementation Deps.mockito_kotlin
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
-    testImplementation Deps.archCoreTesting
+    testImplementation Deps.arch_core_testing
 }

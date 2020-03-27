@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.vlad1m1r.baseui.BaseFragment
 import com.vlad1m1r.bltaxi.about.databinding.FragmentAboutBinding
-
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AboutFragment : BaseFragment() {
     private lateinit var binding: FragmentAboutBinding
@@ -20,8 +19,11 @@ class AboutFragment : BaseFragment() {
         binding = FragmentAboutBinding.bind(view)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.about__name)
+        if(activity is AppCompatActivity) {
+            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.about__name)
+        }
+
         return view
     }
 }

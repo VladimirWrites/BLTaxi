@@ -9,7 +9,7 @@ import com.vlad1m1r.baseui.BaseFragment
 import com.vlad1m1r.baseui.observe
 import com.vlad1m1r.bltaxi.taxi.adapter.AdapterTaxiRecycler
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemMoveHelperCallback
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.view.*
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding

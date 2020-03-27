@@ -12,6 +12,7 @@ object Versions {
     const val material_design = "1.1.0"
     const val android_x_preference = "1.1.0"
     const val android_x_work_manager = "2.3.3"
+    const val android_x_databinding_compiler = "3.6.1"
 
     const val android_x_navigation = "2.2.1"
 
@@ -31,7 +32,9 @@ object Versions {
     const val mockito_kotlin = "2.2.0"
     const val truth = "1.0.1"
     const val robolectric = "4.3.1"
-    const val archCoreTesting = "2.1.0"
+    const val arch_core_testing = "2.1.0"
+    const val fragment_test = "1.2.3"
+    const val espresso_core = "3.2.0"
 
     const val gradle_android = "3.6.1"
     const val google_services = "4.3.3"
@@ -63,7 +66,7 @@ object Deps {
     const val preference = "androidx.preference:preference:${Versions.android_x_preference}"
     const val preference_ktx = "androidx.preference:preference-ktx:${Versions.android_x_preference}"
     const val work_manager = "androidx.work:work-runtime-ktx:${Versions.android_x_work_manager}"
-
+    const val databinding_compiler = "androidx.databinding:databinding-compiler:${Versions.android_x_databinding_compiler}"
 
     const val lifecycle = "androidx.lifecycle:lifecycle-viewmodel:${Versions.android_x_lifecycle}"
 
@@ -75,8 +78,9 @@ object Deps {
     const val firebase_crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.firebase_crashlytics}"
 
     const val koin = "org.koin:koin-android:${Versions.koin}"
-    const val koin_viewmodel = "org.koin:koin-android-viewmodel:${Versions.koin}"
+    const val koin_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
     const val koin_scope = "org.koin:koin-android-scope:${Versions.koin}"
+    const val koin_test = "org.koin:koin-test:${Versions.koin}"
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val ok_http_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.ok_http_interceptor}"
@@ -93,7 +97,9 @@ object Deps {
     const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
     const val truth = "com.google.truth:truth:${Versions.truth}"
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-    const val archCoreTesting = "androidx.arch.core:core-testing:${Versions.archCoreTesting}"
+    const val arch_core_testing = "androidx.arch.core:core-testing:${Versions.arch_core_testing}"
+    const val fragment_test = "androidx.fragment:fragment-testing:${Versions.fragment_test}"
+    const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core}"
 
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.gradle_android}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"

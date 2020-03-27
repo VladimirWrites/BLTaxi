@@ -22,7 +22,7 @@ class AboutViewModelShould {
 
     @Test
     fun returnVersionName() {
-        assertThat(aboutViewModel.appVersionName).isEqualTo("version_name")
+        assertThat(aboutViewModel.getAppVersionName()).isEqualTo("version_name")
     }
 
     @Test

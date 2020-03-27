@@ -2,7 +2,7 @@ package com.vlad1m1r.bltaxi.taxi.di
 
 import com.vlad1m1r.bltaxi.domain.usecase.*
 import com.vlad1m1r.bltaxi.taxi.TaxiViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val taxiModule = module {
