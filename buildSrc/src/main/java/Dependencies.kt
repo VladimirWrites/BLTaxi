@@ -100,6 +100,7 @@ object Deps {
     const val arch_core_testing = "androidx.arch.core:core-testing:${Versions.arch_core_testing}"
     const val fragment_test = "androidx.fragment:fragment-testing:${Versions.fragment_test}"
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core}"
+    const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso_core}"
 
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.gradle_android}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"

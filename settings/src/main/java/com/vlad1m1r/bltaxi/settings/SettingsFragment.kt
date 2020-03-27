@@ -21,8 +21,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.settings__name)
+        if(activity is AppCompatActivity) {
+            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+            (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.settings__name)
+        }
 
         viewModel.mode.addOnPropertyChanged {
             setDefaultNightMode(it.get())
