@@ -12,7 +12,7 @@ class NavigatorShould {
     val navigator: Navigator = Navigator()
 
     @Test
-    fun openAboutScreen() {
+    fun openAboutScreen_whenBind() {
         navigator.bind(navController)
 
         navigator.openAboutScreen()
@@ -36,5 +36,21 @@ class NavigatorShould {
         navigator.openSettingsScreen()
 
         verifyNoMoreInteractions(navController)
+    }
+
+    @Test
+    fun navigateUp() {
+        navigator.bind(navController)
+        
+        navigator.navigateUp()
+
+        verify(navController).navigateUp()
+    }
+
+    @Test
+    fun doNothing_whenBind() {
+        navigator.openAboutScreen()
+        navigator.openSettingsScreen()
+        navigator.navigateUp()
     }
 }
