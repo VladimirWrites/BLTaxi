@@ -20,8 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
     }
 
-    override fun onSupportNavigateUp() =
-        findNavController(this, R.id.nav_host_fragment).navigateUp()
+    override fun onSupportNavigateUp() = (navigator as Navigator).navigateUp()?:false
 
     override fun onResume() {
         super.onResume()

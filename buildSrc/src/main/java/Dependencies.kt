@@ -35,6 +35,7 @@ object Versions {
     const val arch_core_testing = "2.1.0"
     const val fragment_test = "1.2.3"
     const val espresso_core = "3.2.0"
+    const val test_core_ktx = "1.2.0"
 
     const val gradle_android = "3.6.1"
     const val google_services = "4.3.3"
@@ -101,6 +102,7 @@ object Deps {
     const val fragment_test = "androidx.fragment:fragment-testing:${Versions.fragment_test}"
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core}"
     const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso_core}"
+    const val test_core_ktx = "androidx.test:core-ktx:${Versions.test_core_ktx}"
 
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.gradle_android}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"

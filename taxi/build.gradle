@@ -54,6 +54,5 @@ dependencies {
     testImplementation Deps.truth
     testImplementation Deps.mockito_kotlin
 
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    kaptTest Deps.databinding_compiler
 }

@@ -21,8 +21,9 @@ android {
         targetSdkVersion Versions.target_sdk
         versionCode Versions.version_code
         versionName Versions.version_name
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "BL Taxi-$versionName")
+
+        testOptions.unitTests.includeAndroidResources = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -49,6 +50,19 @@ android {
     dataBinding {
         enabled = true
     }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.all {
+            systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 tasks.withType(Test) {
@@ -60,11 +74,6 @@ dependencies {
     implementation Deps.kotlin_coroutines_android
 
     implementation Deps.preference_ktx
-
-    testImplementation Deps.junit
-
-    testImplementation Deps.truth
-    testImplementation Deps.mockito_kotlin
 
     implementation Deps.koin
 
@@ -82,5 +91,18 @@ dependencies {
     implementation project(Modules.settings)
     implementation project(Modules.sync)
     implementation project(Modules.shortcuts)
+
+    testImplementation Deps.junit
+
+    testImplementation Deps.truth
+    testImplementation Deps.mockito_kotlin
+    testImplementation Deps.mockito_inline
+    testImplementation Deps.robolectric
+    testImplementation Deps.fragment_test
+    testImplementation Deps.koin_test
+    testImplementation Deps.espresso_core
+    testImplementation Deps.test_core_ktx
+
+    kaptTest Deps.databinding_compiler
 }
 apply plugin: 'com.google.gms.google-services'

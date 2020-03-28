@@ -3,7 +3,7 @@ package com.vlad1m1r.bltaxi
 import androidx.navigation.NavController
 import com.vlad1m1r.bltaxi.taxi.TaxiNavigator
 
-class Navigator : TaxiNavigator {
+open class Navigator : TaxiNavigator {
 
     private var navController: NavController? = null
 
@@ -15,11 +15,13 @@ class Navigator : TaxiNavigator {
         navController?.navigate(R.id.action_taxiFragment_to_settingsFragment)
     }
 
-    fun bind(navController: NavController) {
+    fun navigateUp() = navController?.navigateUp()
+
+    open fun bind(navController: NavController) {
         this.navController = navController
     }
 
-    fun unbind() {
+    open fun unbind() {
         navController = null
     }
 }
