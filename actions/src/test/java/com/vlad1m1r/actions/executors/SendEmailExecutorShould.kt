@@ -36,4 +36,18 @@ class SendEmailExecutorShould {
         assertThat(extrasIntent.type).isEqualTo("message/rfc822")
         assertThat(extrasIntent.extras!![EXTRA_EMAIL]).isEqualTo(arrayOf("write@vladimirj.dev"))
     }
+
+    @Test
+    fun sendEmail_whenItHasMailTo() {
+        val intent = sendEmailExecutor(Action.SendEmailAction("mailto:write@vladimirj.dev"))
+
+        val extrasIntent = intent.extras!![EXTRA_INTENT] as Intent
+        assertThat(intent.action).isEqualTo("android.intent.action.CHOOSER")
+        assertThat(intent.extras!![EXTRA_TITLE]).isEqualTo("")
+        assertThat(intent.flags).isEqualTo(FLAG_ACTIVITY_NEW_TASK)
+
+        assertThat(extrasIntent.action).isEqualTo(ACTION_SEND)
+        assertThat(extrasIntent.type).isEqualTo("message/rfc822")
+        assertThat(extrasIntent.extras!![EXTRA_EMAIL]).isEqualTo(arrayOf("mailto:write@vladimirj.dev"))
+    }
 }
