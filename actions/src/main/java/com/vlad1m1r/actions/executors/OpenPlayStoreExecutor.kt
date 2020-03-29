@@ -16,13 +16,8 @@ class OpenPlayStoreExecutor(private val context: Context, private val openUrlExe
         val action = action as Action.OpenPlayStoreAction
         val storeIntent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${action.applicationId}"))
         if (context.packageManager.getListOfResolveInfo(storeIntent).isNotEmpty()) {
-            try {
-                storeIntent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-                return storeIntent
-            } catch (e: Exception) {
-                return openPlayStoreOnWeb(action)
-            }
-
+            storeIntent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+            return storeIntent
         } else {
             return openPlayStoreOnWeb(action)
         }
