@@ -7,7 +7,7 @@ import com.vlad1m1r.basedata.StringResolver
 import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.Tracker
 
-open class SettingsViewModel(
+class SettingsViewModel(
     private val stringResolver: StringResolver,
     private val crashReport: CrashReport,
     private val tracker: Tracker
@@ -15,15 +15,15 @@ open class SettingsViewModel(
 
     val mode = ObservableInt(Int.MIN_VALUE)
 
-    open fun enableCrashReport(enabled: Boolean) {
+    fun enableCrashReport(enabled: Boolean) {
         crashReport.enableCrashReporting(enabled)
     }
 
-    open fun enableTracking(enabled: Boolean) {
+    fun enableTracking(enabled: Boolean) {
         tracker.enableTracking(enabled)
     }
 
-    open fun changeTheme(theme: String) {
+    fun changeTheme(theme: String) {
         val newMode = when (theme) {
             stringResolver.getString(R.string.theme_value_dark) -> MODE_NIGHT_YES
             stringResolver.getString(R.string.theme_value_light) -> MODE_NIGHT_NO

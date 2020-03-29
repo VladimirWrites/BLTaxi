@@ -64,6 +64,7 @@ dependencies {
     testImplementation Deps.junit
     testImplementation Deps.truth
     testImplementation Deps.mockito_kotlin
+    testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
     testImplementation Deps.fragment_test
     testImplementation Deps.koin_test

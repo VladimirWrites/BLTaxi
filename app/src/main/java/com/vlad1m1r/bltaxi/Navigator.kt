@@ -17,11 +17,11 @@ open class Navigator : TaxiNavigator {
 
     fun navigateUp() = navController?.navigateUp()
 
-    open fun bind(navController: NavController) {
+    fun bind(navController: NavController) {
         this.navController = navController
     }
 
-    open fun unbind() {
+    fun unbind() {
         navController = null
     }
 }

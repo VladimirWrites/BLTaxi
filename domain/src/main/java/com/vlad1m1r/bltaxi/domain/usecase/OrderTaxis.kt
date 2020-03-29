@@ -2,11 +2,11 @@ package com.vlad1m1r.bltaxi.domain.usecase
 
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 
-open class OrderTaxis(
+class OrderTaxis(
     private val getTaxiPosition: GetTaxiPosition,
     private val saveTaxiOrder: SaveTaxiOrder
 ) {
-    open suspend operator fun invoke(taxis: List<ItemTaxi>): List<ItemTaxi> {
+    suspend operator fun invoke(taxis: List<ItemTaxi>): List<ItemTaxi> {
 
         val orderedList: MutableList<ItemTaxi?> = taxis.map { null }.toMutableList()
         var shouldSaveTaxiOrder = false
