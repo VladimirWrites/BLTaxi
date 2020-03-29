@@ -1,9 +1,11 @@
 package com.vlad1m1r.bltaxi.settings
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.os.Build
 import androidx.databinding.ObservableInt
 import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -43,6 +45,11 @@ class SettingsFragmentShould {
 
     lateinit var testApplication: TestApplication
 
+    lateinit var sharedPreferences: SharedPreferences
+
+    lateinit var keyAnalytics: String
+    lateinit var keyCrashReport: String
+
     val modeStub = ObservableInt(Int.MIN_VALUE)
 
     val fragmentViewModel = mock<SettingsViewModel>() {
@@ -60,10 +67,28 @@ class SettingsFragmentShould {
                 }
             }
         )
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(testApplication.applicationContext)
+        keyAnalytics = testApplication.getString(com.vlad1m1r.bltaxi.analytics.R.string.pref_key_analytics)
+        keyCrashReport = testApplication.getString(com.vlad1m1r.bltaxi.analytics.R.string.pref_key_crash_reports)
     }
 
     @Test
-    fun enableAnalytics_whenClickedOnAnalyticSwitch() {
+    fun disableAnalytics_whenClickedOnAnalyticSwitchAndAnalyticsEnabled() {
+        sharedPreferences.edit()
+            .putBoolean(keyAnalytics, true)
+            .commit()
+        launchFragmentInContainer<SettingsFragment>()
+
+        settingsScreen { clickOnAnalyticsSwitch() }
+
+        verify(fragmentViewModel).enableTracking(false)
+    }
+
+    @Test
+    fun enableAnalytics_whenClickedOnAnalyticSwitchAndAnalyticsDisabled() {
+        sharedPreferences.edit()
+            .putBoolean(keyAnalytics, false)
+            .commit()
         launchFragmentInContainer<SettingsFragment>()
 
         settingsScreen { clickOnAnalyticsSwitch() }
@@ -72,7 +97,22 @@ class SettingsFragmentShould {
     }
 
     @Test
-    fun enableCrashReporting_whenClickedOnCrashReportingSwitch() {
+    fun disableCrashReporting_whenClickedOnCrashReportingSwitchAndCrashReportingEnabled() {
+        sharedPreferences.edit()
+            .putBoolean(keyCrashReport, true)
+            .commit()
+        launchFragmentInContainer<SettingsFragment>()
+
+        settingsScreen { clickOnCrashReportingSwitch() }
+
+        verify(fragmentViewModel).enableCrashReport(false)
+    }
+
+    @Test
+    fun enableCrashReporting_whenClickedOnCrashReportingSwitchAndCrashReportingDisabled() {
+        sharedPreferences.edit()
+            .putBoolean(keyCrashReport, false)
+            .commit()
         launchFragmentInContainer<SettingsFragment>()
 
         settingsScreen { clickOnCrashReportingSwitch() }

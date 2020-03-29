@@ -15,7 +15,7 @@ import org.koin.dsl.module
 
 val localModule = module {
 
-    single<SharedPreferences> { PreferenceManager.getDefaultSharedPreferences(androidContext()); }
+    single<SharedPreferences> { PreferenceManager.getDefaultSharedPreferences(androidContext()) }
     single<OrderProvider> { OrderProviderImpl(get()) }
     single<LanguageProvider> {
         LanguageProviderImpl(

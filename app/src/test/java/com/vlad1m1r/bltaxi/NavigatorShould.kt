@@ -41,7 +41,7 @@ class NavigatorShould {
     @Test
     fun navigateUp() {
         navigator.bind(navController)
-        
+
         navigator.navigateUp()
 
         verify(navController).navigateUp()
