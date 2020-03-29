@@ -12,9 +12,13 @@ import com.vlad1m1r.actions.R
 import com.vlad1m1r.actions.getListOfResolveInfo
 import com.vlad1m1r.bltaxi.domain.Action
 
-open class CallNumberOnViberExecutor(private val context: Context, private val openPlayStoreExecutor: OpenPlayStoreExecutor) {
+class CallNumberOnViberExecutor(private val context: Context, private val openPlayStoreExecutor: OpenPlayStoreExecutor): Executor {
+    override fun canHandleAction(action: Action): Boolean {
+        return action is Action.CallNumberOnViberAction
+    }
 
-    open operator fun invoke(action: Action.CallNumberOnViberAction) {
+    override operator fun invoke(action: Action): Intent {
+        val action = action as Action.CallNumberOnViberAction
         if (Patterns.PHONE.matcher(action.phoneNumber).matches()) {
             val uri = Uri.parse(context.getString(R.string.action__tel)+action.phoneNumber)
             var intent = Intent(Intent.ACTION_DIAL)
@@ -23,9 +27,9 @@ open class CallNumberOnViberExecutor(private val context: Context, private val o
             if (resolveInfo != null) {
                 intent = resolveInfo.getIntent()
                 intent.data = uri
-                context.startActivity(intent)
+                return intent
             } else {
-                openPlayStoreExecutor(Action.OpenPlayStoreAction("com.viber.voip"))
+                return openPlayStoreExecutor(Action.OpenPlayStoreAction("com.viber.voip"))
             }
         } else {
             throw IllegalArgumentException("Phone number ${action.phoneNumber} has a wrong format")

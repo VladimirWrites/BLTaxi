@@ -6,8 +6,13 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.util.Patterns
 import com.vlad1m1r.bltaxi.domain.Action
 
-open class SendEmailExecutor(private val context: Context) {
-    open operator fun invoke(action: Action.SendEmailAction) {
+class SendEmailExecutor(private val context: Context): Executor {
+    override fun canHandleAction(action: Action): Boolean {
+        return action is Action.SendEmailAction
+    }
+
+    override operator fun invoke(action: Action): Intent {
+        val action = action as Action.SendEmailAction
         val email =  action.email
         if (Patterns.EMAIL_ADDRESS.matcher(email).matches()
             || (email.startsWith("mailto:") && Patterns.EMAIL_ADDRESS.matcher(email.substring(7)).matches())
@@ -17,7 +22,7 @@ open class SendEmailExecutor(private val context: Context) {
             intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
             val chooser = Intent.createChooser(intent, "")
             chooser.addFlags(FLAG_ACTIVITY_NEW_TASK)
-            context.startActivity(chooser)
+            return chooser
         } else {
             throw IllegalArgumentException("Email ${action.email} has a wrong format")
         }

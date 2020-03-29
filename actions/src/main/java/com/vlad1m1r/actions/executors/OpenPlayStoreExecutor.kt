@@ -7,25 +7,28 @@ import android.net.Uri
 import com.vlad1m1r.actions.getListOfResolveInfo
 import com.vlad1m1r.bltaxi.domain.Action
 
-open class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor) {
+class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor): Executor {
+    override fun canHandleAction(action: Action): Boolean {
+        return action is Action.OpenPlayStoreAction
+    }
 
-    open operator fun invoke(action: Action.OpenPlayStoreAction) {
-
+    override operator fun invoke(action: Action): Intent {
+        val action = action as Action.OpenPlayStoreAction
         val storeIntent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${action.applicationId}"))
         if (context.packageManager.getListOfResolveInfo(storeIntent).isNotEmpty()) {
             try {
                 storeIntent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(storeIntent)
+                return storeIntent
             } catch (e: Exception) {
-                openPlayStoreOnWeb(action)
+                return openPlayStoreOnWeb(action)
             }
 
         } else {
-            openPlayStoreOnWeb(action)
+            return openPlayStoreOnWeb(action)
         }
-
     }
-    private fun openPlayStoreOnWeb(action: Action.OpenPlayStoreAction) {
-        openUrlExecutor(Action.OpenUrlAction("https://play.google.com/store/apps?id=${action.applicationId}"))
+
+    private fun openPlayStoreOnWeb(action: Action.OpenPlayStoreAction): Intent {
+        return openUrlExecutor(Action.OpenUrlAction("https://play.google.com/store/apps?id=${action.applicationId}"))
     }
 }

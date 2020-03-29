@@ -7,20 +7,36 @@ import org.junit.Test
 
 class ActionExecutorImplShould {
 
-    private val shareExecutor = mock<ShareExecutor>()
-    private val sendEmailExecutor = mock<SendEmailExecutor>()
-    private val openPlayStoreExecutor = mock<OpenPlayStoreExecutor>()
-    private val openUrlExecutor = mock<OpenUrlExecutor>()
-    private val callNumberExecutor = mock<CallNumberExecutor>()
-    private val callNumberOnViberExecutor = mock<CallNumberOnViberExecutor>()
+    private val startActivity = mock<StartActivity>()
+    private val shareExecutor = mock<ShareExecutor> {
+        on { canHandleAction(any()) }.thenCallRealMethod()
+    }
+    private val sendEmailExecutor = mock<SendEmailExecutor>{
+        on { canHandleAction(any()) }.thenCallRealMethod()
+    }
+    private val openPlayStoreExecutor = mock<OpenPlayStoreExecutor>{
+        on { canHandleAction(any()) }.thenCallRealMethod()
+    }
+    private val openUrlExecutor = mock<OpenUrlExecutor>{
+        on { canHandleAction(any()) }.thenCallRealMethod()
+    }
+    private val callNumberExecutor = mock<CallNumberExecutor>{
+        on { canHandleAction(any()) }.thenCallRealMethod()
+    }
+    private val callNumberOnViberExecutor = mock<CallNumberOnViberExecutor>{
+        on { canHandleAction(any()) }.thenCallRealMethod()
+    }
 
     val actionExecutorImpl = ActionExecutorImpl(
-        shareExecutor,
-        sendEmailExecutor,
-        openPlayStoreExecutor,
-        openUrlExecutor,
-        callNumberExecutor,
-        callNumberOnViberExecutor
+        startActivity,
+        listOf(
+            shareExecutor,
+            sendEmailExecutor,
+            openPlayStoreExecutor,
+            openUrlExecutor,
+            callNumberExecutor,
+            callNumberOnViberExecutor
+        )
     )
 
     @Test
