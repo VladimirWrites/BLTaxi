@@ -31,11 +31,11 @@ class TaxiViewModel(
 ) : ViewModel() {
 
     private val mutableTaxis = MutableLiveData<List<ItemTaxiViewModel>>()
-    open val taxis: LiveData<List<ItemTaxiViewModel>> = mutableTaxis
-    open val isLoading = ObservableBoolean(false)
-    open val isErrorShown = ObservableBoolean(false)
+    val taxis: LiveData<List<ItemTaxiViewModel>> = mutableTaxis
+    val isLoading = ObservableBoolean(false)
+    val isErrorShown = ObservableBoolean(false)
 
-    open fun loadTaxis() {
+    fun loadTaxis() {
         isLoading.set(true)
         isErrorShown.set(false)
         viewModelScope.launch(dispatchers.io) {

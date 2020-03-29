@@ -48,8 +48,10 @@ class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-        (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.app_name)
+        if(activity is AppCompatActivity) {
+            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.app_name)
+        }
     }
 
     override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
