@@ -47,7 +47,7 @@ dependencies {
     testImplementation Deps.junit
     testImplementation Deps.truth
     testImplementation Deps.mockito_kotlin
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation Deps.robolectric
+    testImplementation Deps.koin_test
+    testImplementation Deps.work_manager_test
 }

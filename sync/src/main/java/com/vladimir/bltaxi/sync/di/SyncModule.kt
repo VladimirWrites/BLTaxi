@@ -9,7 +9,6 @@ import org.koin.dsl.module
 
 val syncModule = module {
     single { SyncTaxis(get(), get(), get()) }
-    single { SyncTaxisWorker(androidContext(), get(), get()) }
     single { WorkManager.getInstance(androidContext()) }
     single { SyncTaxisWorkManager(get()) }
 }

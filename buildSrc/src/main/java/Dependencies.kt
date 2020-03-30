@@ -103,6 +103,7 @@ object Deps {
     const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core}"
     const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso_core}"
     const val test_core_ktx = "androidx.test:core-ktx:${Versions.test_core_ktx}"
+    const val work_manager_test = "androidx.work:work-testing:${Versions.android_x_work_manager}"
 
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.gradle_android}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
