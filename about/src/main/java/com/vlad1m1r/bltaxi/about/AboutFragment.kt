@@ -9,13 +9,14 @@ import com.vlad1m1r.baseui.BaseFragment
 import com.vlad1m1r.bltaxi.about.databinding.FragmentAboutBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AboutFragment : BaseFragment() {
+class AboutFragment : BaseFragment(R.layout.fragment_about) {
     private lateinit var binding: FragmentAboutBinding
 
     private val viewModel: AboutViewModel by viewModel()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(R.layout.fragment_about, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding = FragmentAboutBinding.bind(view)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -23,7 +24,5 @@ class AboutFragment : BaseFragment() {
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.about__name)
         }
-
-        return view
     }
 }

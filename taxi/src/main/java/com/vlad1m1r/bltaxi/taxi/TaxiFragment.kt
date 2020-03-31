@@ -15,7 +15,7 @@ import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding
 import org.koin.android.ext.android.inject
 
-class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
+class TaxiFragment: BaseFragment(R.layout.fragment_taxi), AdapterTaxiRecycler.PositionChanged {
     private lateinit var binding: FragmentTaxiBinding
 
     private val viewModel: TaxiViewModel by viewModel()
@@ -29,17 +29,12 @@ class TaxiFragment: BaseFragment(), AdapterTaxiRecycler.PositionChanged {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(R.layout.fragment_taxi, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding = FragmentTaxiBinding.bind(view)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         setupRecycleView()
-        return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         viewModel.loadTaxis()
         observe(viewModel.taxis) {
             getAdapter().setList(if(it.isNullOrEmpty()) emptyList() else it)
