@@ -5,17 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.vlad1m1r.baseui.BaseFragment
 import com.vlad1m1r.baseui.observe
 import com.vlad1m1r.bltaxi.taxi.adapter.AdapterTaxiRecycler
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemMoveHelperCallback
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.view.*
+import androidx.fragment.app.Fragment
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding
 import org.koin.android.ext.android.inject
 
-class TaxiFragment: BaseFragment(R.layout.fragment_taxi), AdapterTaxiRecycler.PositionChanged {
+class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.PositionChanged {
     private lateinit var binding: FragmentTaxiBinding
 
     private val viewModel: TaxiViewModel by viewModel()

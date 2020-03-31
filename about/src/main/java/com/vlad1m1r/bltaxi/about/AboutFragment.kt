@@ -1,15 +1,13 @@
 package com.vlad1m1r.bltaxi.about
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.vlad1m1r.baseui.BaseFragment
+import androidx.fragment.app.Fragment
 import com.vlad1m1r.bltaxi.about.databinding.FragmentAboutBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AboutFragment : BaseFragment(R.layout.fragment_about) {
+class AboutFragment : Fragment(R.layout.fragment_about) {
     private lateinit var binding: FragmentAboutBinding
 
     private val viewModel: AboutViewModel by viewModel()
