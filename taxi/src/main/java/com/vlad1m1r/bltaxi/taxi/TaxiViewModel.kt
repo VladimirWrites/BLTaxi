@@ -53,7 +53,7 @@ class TaxiViewModel(
                         isLoading.set(false)
                         isErrorShown.set(true)
                     }
-                }.exhaustive
+                }
             }
         }
     }
