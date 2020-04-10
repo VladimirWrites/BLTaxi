@@ -1,6 +1,6 @@
 object Versions {
     const val kotlin = "1.3.71"
-    const val kotlin_coroutines = "1.2.1"
+    const val kotlin_coroutines = "1.3.5"
 
     const val android_x_legacy_v4 = "1.0.0"
     const val android_x_v7 = "1.1.0"
@@ -11,21 +11,21 @@ object Versions {
     const val android_x_constraint_layout = "1.1.3"
     const val material_design = "1.1.0"
     const val android_x_preference = "1.1.0"
-    const val android_x_work_manager = "2.3.3"
-    const val android_x_databinding_compiler = "3.6.1"
+    const val android_x_work_manager = "2.3.4"
+    const val android_x_databinding_compiler = "3.6.2"
 
     const val android_x_navigation = "2.2.1"
 
     const val room = "2.1.0"
 
-    const val firebase_core = "17.2.3"
-    const val firebase_analytics = "17.2.3"
+    const val firebase_core = "17.3.0"
+    const val firebase_analytics = "17.3.0"
     const val firebase_crashlytics = "2.10.1"
 
-    const val koin = "2.1.3"
+    const val koin = "2.1.5"
 
-    const val retrofit = "2.7.2"
-    const val ok_http_interceptor = "4.4.0"
+    const val retrofit = "2.8.1"
+    const val ok_http_interceptor = "4.5.0"
 
     const val junit = "4.13"
     const val mockito = "3.3.3"
@@ -33,11 +33,11 @@ object Versions {
     const val truth = "1.0.1"
     const val robolectric = "4.3.1"
     const val arch_core_testing = "2.1.0"
-    const val fragment_test = "1.2.3"
+    const val fragment_test = "1.2.4"
     const val espresso_core = "3.2.0"
     const val test_core_ktx = "1.2.0"
 
-    const val gradle_android = "3.6.1"
+    const val gradle_android = "3.6.2"
     const val google_services = "4.3.3"
     const val fabric_plugin = "1.31.2"
     const val jacoco = "0.8.5"
@@ -53,8 +53,7 @@ object Versions {
 
 object Deps {
     const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-    const val kotlin_coroutines_android =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
+    const val kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
     const val kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
 
     const val support = "androidx.legacy:legacy-support-v4:${Versions.android_x_legacy_v4}"
