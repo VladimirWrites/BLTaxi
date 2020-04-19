@@ -9,7 +9,8 @@
     <a target="_blank" href="https://github.com/VladimirWrites/BLTaxi/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
     <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
     <a target="_blank" href="https://app.bitrise.io/app/b8b8722ee9645ad8"><img src="https://app.bitrise.io/app/b8b8722ee9645ad8/status.svg?token=7MWRGcMRCjH4Ivzp9xeBCw"></a>
-    <a target="_blank" href="https://codecov.io/gh/VladimirWrites/BLTaxi"><img src="https://codecov.io/gh/VladimirWrites/BLTaxi/branch/master/graph/badge.svg" ></a>
+    <a target="_blank" href="https://codecov.io/gh/VladimirWrites/BLTaxi"><img src="https://codecov.io/gh/VladimirWrites/BLTaxi/branch/master/graph/badge.svg"></a>
+    <a target="_blank" href="https://androidweekly.net/issues/issue-410"><img src="https://androidweekly.net/issues/issue-410/badge"></a>
 </p>
 
 -------
