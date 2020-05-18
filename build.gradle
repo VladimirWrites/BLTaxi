@@ -4,16 +4,12 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven {
-            url 'https://maven.fabric.io/public'
-            name 'Fabric'
-        }
     }
     dependencies {
         classpath Deps.android_gradle_plugin
         classpath Deps.kotlin_gradle_plugin
         classpath Deps.google_services_plugin
-        classpath Deps.fabric_plugin
+        classpath Deps.crashlytics_gradle_plugin
         classpath Deps.jacoco_plugin
     }
 }

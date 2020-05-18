@@ -1,6 +1,7 @@
 package com.vlad1m1r.bltaxi.analytics.di
 
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.CrashReportImpl
 import com.vlad1m1r.bltaxi.analytics.Tracker
@@ -10,6 +11,7 @@ import org.koin.dsl.module
 
 val analyticsModule = module {
     single { FirebaseAnalytics.getInstance(androidContext()) }
+    single { FirebaseCrashlytics.getInstance() }
     single<Tracker> { TrackerImpl(get(), androidContext(), get()) }
-    single<CrashReport> { CrashReportImpl(androidContext(), get()) }
+    single<CrashReport> { CrashReportImpl(androidContext(), get(), get()) }
 }

@@ -4,6 +4,8 @@ import android.app.Activity
 import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.nhaarman.mockitokotlin2.mock
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -14,9 +16,9 @@ import org.robolectric.annotation.Config
 class CrashReportShould {
 
     val context = InstrumentationRegistry.getInstrumentation().targetContext
-
+    val firebaseCrashlytics = mock<FirebaseCrashlytics>()
     val sharedPreferences = context.getSharedPreferences(context.packageName, Activity.MODE_PRIVATE);
-    val crashReport: CrashReport = CrashReportImpl(context, sharedPreferences)
+    val crashReport: CrashReport = CrashReportImpl(context, firebaseCrashlytics, sharedPreferences)
 
     @Test
     fun initialize_whenNotInitialized() {

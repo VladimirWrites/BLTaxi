@@ -2,12 +2,11 @@ package com.vlad1m1r.bltaxi.analytics
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.crashlytics.android.Crashlytics
-import com.crashlytics.android.core.CrashlyticsCore
-import io.fabric.sdk.android.Fabric
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 internal class CrashReportImpl(
     private val context: Context,
+    private val firebaseCrashlytics: FirebaseCrashlytics,
     private val sharedPreferences: SharedPreferences
 ): CrashReport {
     override fun initialize() {
@@ -21,13 +20,6 @@ internal class CrashReportImpl(
     }
 
     override fun enableCrashReporting(enabled: Boolean) {
-        val crashlytics = Crashlytics.Builder()
-            .core(
-                CrashlyticsCore.Builder()
-                .disabled(!enabled)
-                .build()
-            )
-            .build()
-        Fabric.with(context, crashlytics)
+        firebaseCrashlytics.setCrashlyticsCollectionEnabled(enabled)
     }
 }

@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vlad1m1r.basedata.exhaustive
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vlad1m1r.bltaxi.analytics.events.CallEvent
