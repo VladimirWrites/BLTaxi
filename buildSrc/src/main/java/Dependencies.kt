@@ -1,6 +1,6 @@
 object Versions {
-    const val kotlin = "1.3.71"
-    const val kotlin_coroutines = "1.3.5"
+    const val kotlin = "1.3.72"
+    const val kotlin_coroutines = "1.3.6"
 
     const val android_x_legacy_v4 = "1.0.0"
     const val android_x_v7 = "1.1.0"
@@ -10,22 +10,22 @@ object Versions {
     const val android_x_lifecycle = "2.2.0"
     const val android_x_constraint_layout = "1.1.3"
     const val material_design = "1.1.0"
-    const val android_x_preference = "1.1.0"
+    const val android_x_preference = "1.1.1"
     const val android_x_work_manager = "2.3.4"
-    const val android_x_databinding_compiler = "3.6.2"
+    const val android_x_databinding_compiler = "3.6.3"
 
-    const val android_x_navigation = "2.2.1"
+    const val android_x_navigation = "2.2.2"
 
-    const val room = "2.1.0"
+    const val room = "2.2.5"
 
-    const val firebase_core = "17.3.0"
-    const val firebase_analytics = "17.3.0"
+    const val firebase_core = "17.4.1"
+    const val firebase_analytics = "17.4.1"
     const val firebase_crashlytics = "2.10.1"
 
     const val koin = "2.1.5"
 
     const val retrofit = "2.8.1"
-    const val ok_http_interceptor = "4.5.0"
+    const val ok_http_interceptor = "4.6.0"
 
     const val junit = "4.13"
     const val mockito = "3.3.3"
@@ -63,7 +63,6 @@ object Deps {
     const val material_design = "com.google.android.material:material:${Versions.material_design}"
     const val cardview = "androidx.cardview:cardview:${Versions.android_x_card_view}"
     const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.android_x_constraint_layout}"
-    const val preference = "androidx.preference:preference:${Versions.android_x_preference}"
     const val preference_ktx = "androidx.preference:preference-ktx:${Versions.android_x_preference}"
     const val work_manager = "androidx.work:work-runtime-ktx:${Versions.android_x_work_manager}"
     const val databinding_compiler = "androidx.databinding:databinding-compiler:${Versions.android_x_databinding_compiler}"

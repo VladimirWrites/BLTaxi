@@ -49,7 +49,6 @@ dependencies {
     implementation Deps.koin
     implementation Deps.koin_viewmodel
 
-    implementation Deps.preference
     implementation Deps.preference_ktx
 
     implementation project(Modules.domain)
