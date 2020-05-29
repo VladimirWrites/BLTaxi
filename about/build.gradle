@@ -30,8 +30,8 @@ android {
             minifyEnabled false
         }
     }
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     testOptions {

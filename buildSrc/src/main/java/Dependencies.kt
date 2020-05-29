@@ -37,7 +37,7 @@ object Versions {
     const val espresso_core = "3.2.0"
     const val test_core_ktx = "1.2.0"
 
-    const val gradle_android = "3.6.2"
+    const val gradle_android = "4.0.0"
     const val google_services = "4.3.3"
     const val crashlytics_gradle_plugin = "2.1.0"
     const val jacoco = "0.8.5"
