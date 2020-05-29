@@ -38,7 +38,6 @@ class ConvertersShould {
 
     @Test
     fun convertNullDateToNullTimestamp() {
-        val calendar = Calendar.getInstance()
         assertThat(converters.toTimestamp(null)).isNull()
     }
 }

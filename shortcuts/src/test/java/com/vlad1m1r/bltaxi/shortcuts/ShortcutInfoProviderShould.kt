@@ -47,9 +47,9 @@ class ShortcutInfoProviderShould {
     @Test
     fun shortcutIntentDataHasPhoneNumber() {
         val shortcut = shortcutInfoProvider.getShortcutInfoFromItemTaxi(itemTaxi)
-        val data = shortcut.intent!!.data
+        val data = shortcut.intent!!.data!!
 
-        assertThat(data!!.scheme).isEqualTo("tel")
-        assertThat(data!!.schemeSpecificPart).isEqualTo(itemTaxi.phoneNumber)
+        assertThat(data.scheme).isEqualTo("tel")
+        assertThat(data.schemeSpecificPart).isEqualTo(itemTaxi.phoneNumber)
     }
 }
