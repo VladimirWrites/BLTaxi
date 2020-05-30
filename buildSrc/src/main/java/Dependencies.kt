@@ -21,6 +21,7 @@ object Versions {
     const val firebase_core = "17.4.1"
     const val firebase_analytics = "17.4.1"
     const val firebase_crashlytics = "17.0.0"
+    const val firebase_performance = "19.0.7"
 
     const val koin = "2.1.5"
 
@@ -41,6 +42,7 @@ object Versions {
     const val google_services = "4.3.3"
     const val crashlytics_gradle_plugin = "2.1.0"
     const val jacoco = "0.8.5"
+    const val firebase_performance_plugin = "1.3.1"
 
     const val min_sdk = 21
     const val target_sdk = 29
@@ -75,6 +77,7 @@ object Deps {
     const val firebase_core = "com.google.firebase:firebase-core:${Versions.firebase_core}"
     const val firebase_analytics = "com.google.firebase:firebase-analytics:${Versions.firebase_analytics}"
     const val firebase_crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.firebase_crashlytics}"
+    const val firebase_performance = "com.google.firebase:firebase-perf:${Versions.firebase_performance}"
 
     const val koin = "org.koin:koin-android:${Versions.koin}"
     const val koin_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
@@ -108,6 +111,7 @@ object Deps {
     const val google_services_plugin = "com.google.gms:google-services:${Versions.google_services}"
     const val crashlytics_gradle_plugin = "com.google.firebase:firebase-crashlytics-gradle:${Versions.crashlytics_gradle_plugin}"
     const val jacoco_plugin = "org.jacoco:org.jacoco.core:${Versions.jacoco}"
+    const val firebase_performance_plugin = "com.google.firebase:perf-plugin:${Versions.firebase_performance_plugin}"
 }
 
 object Modules {

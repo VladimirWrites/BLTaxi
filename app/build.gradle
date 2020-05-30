@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 jacoco {
     toolVersion = Versions.jacoco
@@ -75,6 +76,7 @@ dependencies {
     implementation Deps.kotlin_coroutines_android
 
     implementation Deps.preference_ktx
+    implementation Deps.firebase_performance
 
     implementation Deps.koin
 

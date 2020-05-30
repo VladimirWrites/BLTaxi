@@ -11,6 +11,7 @@ buildscript {
         classpath Deps.google_services_plugin
         classpath Deps.crashlytics_gradle_plugin
         classpath Deps.jacoco_plugin
+        classpath Deps.firebase_performance_plugin
     }
 }
 
