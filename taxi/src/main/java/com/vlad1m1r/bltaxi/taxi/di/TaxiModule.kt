@@ -13,5 +13,5 @@ val taxiModule = module {
     factory { GetTaxiPosition(get()) }
     factory { GetOrderedTaxiList(get(), get()) }
     factory { ExecuteAction(get()) }
-    viewModel { TaxiViewModel(get(), get(), get(), get(), get(), get()) }
+    viewModel { TaxiViewModel(get(), getOrNull(), get(), get(), get(), get()) }
 }

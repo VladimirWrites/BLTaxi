@@ -2,6 +2,7 @@ package com.vlad1m1r.bltaxi
 
 import android.app.Application
 import android.content.SharedPreferences
+import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate.*
 import com.vlad1m1r.actions.di.actionsModule
 import com.vlad1m1r.basedata.di.baseDataModule
@@ -31,7 +32,7 @@ class ApplicationTaxi : Application() {
             logger(Logger())
             androidContext(this@ApplicationTaxi)
             modules(
-                listOf(
+                mutableListOf(
                     appModule,
                     baseDataModule,
                     localModule,
@@ -42,9 +43,12 @@ class ApplicationTaxi : Application() {
                     aboutModule,
                     analyticsModule,
                     settingsModule,
-                    syncModule,
-                    shortcutsModule
-                )
+                    syncModule
+                ).apply {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                        add(shortcutsModule)
+                    }
+                }
             )
         }
 

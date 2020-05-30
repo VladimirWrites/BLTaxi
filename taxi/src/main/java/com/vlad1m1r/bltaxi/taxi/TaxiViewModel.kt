@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 class TaxiViewModel(
     private val saveTaxiOrder: SaveTaxiOrder,
-    private val shortcutHandler: ShortcutHandler,
+    private val shortcutHandler: ShortcutHandler?,
     private val getOrderedTaxiList: GetOrderedTaxiList,
     private val executeAction: ExecuteAction,
     private val tracker: Tracker,
@@ -60,7 +60,7 @@ class TaxiViewModel(
     fun setTaxiOrder(viewModelList: List<ItemTaxiViewModel>) {
         val taxis = viewModelList.map { it.itemTaxi }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            shortcutHandler.addShortcutsForTaxis(taxis)
+            shortcutHandler!!.addShortcutsForTaxis(taxis)
         }
         viewModelScope.launch(dispatchers.io) {
             saveTaxiOrder(taxis)

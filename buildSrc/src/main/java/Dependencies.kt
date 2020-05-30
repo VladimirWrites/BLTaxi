@@ -49,8 +49,8 @@ object Versions {
     const val compile_sdk = 29
     const val build_tools = "29.0.3"
 
-    const val version_code = 20111
-    const val version_name = "2.1.1"
+    const val version_code = 20121
+    const val version_name = "2.1.2"
 }
 
 object Deps {
