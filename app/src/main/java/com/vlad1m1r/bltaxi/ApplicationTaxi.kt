@@ -31,7 +31,11 @@ class ApplicationTaxi : Application() {
         startKoin {
             logger(Logger())
             androidContext(this@ApplicationTaxi)
-            modules(
+
+            // TODO Await fix for Koin and replace the explicit invocations
+            //  of loadModules() and createRootScope() with a single call to modules()
+            //  (https://github.com/InsertKoinIO/koin/issues/847)
+            koin.loadModules(
                 mutableListOf(
                     appModule,
                     baseDataModule,
@@ -50,6 +54,7 @@ class ApplicationTaxi : Application() {
                     }
                 }
             )
+            koin.createRootScope()
         }
 
         val tracker: Tracker by inject()

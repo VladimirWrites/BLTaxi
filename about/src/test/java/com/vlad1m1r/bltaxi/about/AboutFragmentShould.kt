@@ -15,6 +15,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
+import org.koin.core.logger.Level
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import org.robolectric.RobolectricTestRunner
@@ -28,7 +29,11 @@ class TestApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@TestApplication)
-            modules(emptyList())
+            // TODO Await fix for Koin and replace the explicit invocations
+            //  of loadModules() and createRootScope() with a single call to modules()
+            //  (https://github.com/InsertKoinIO/koin/issues/847)
+            koin.loadModules(emptyList())
+            koin.createRootScope()
         }
     }
 
