@@ -12,6 +12,7 @@ buildscript {
         classpath Deps.crashlytics_gradle_plugin
         classpath Deps.jacoco_plugin
         classpath Deps.firebase_performance_plugin
+        classpath Deps.hilt_android_plugin
     }
 }
 

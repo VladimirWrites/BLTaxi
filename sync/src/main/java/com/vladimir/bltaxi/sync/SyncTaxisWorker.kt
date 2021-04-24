@@ -1,19 +1,21 @@
 package com.vladimir.bltaxi.sync
 
 import android.content.Context
+import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.coroutineScope
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 import java.lang.Exception
 
-internal class SyncTaxisWorker(
-    context: Context,
-    workerParams: WorkerParameters
-): CoroutineWorker(context, workerParams), KoinComponent {
+@HiltWorker
+class SyncTaxisWorker @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted workerParams: WorkerParameters,
+    private val syncTaxis: SyncTaxis
+): CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
-        val syncTaxis: SyncTaxis by inject()
         try {
             syncTaxis()
         } catch (e: Exception) {

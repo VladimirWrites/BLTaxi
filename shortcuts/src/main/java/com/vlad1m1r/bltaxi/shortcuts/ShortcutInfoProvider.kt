@@ -8,8 +8,12 @@ import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-internal open class ShortcutInfoProvider(private val context: Context) {
+open class ShortcutInfoProvider @Inject constructor(
+    @ApplicationContext private val context: Context
+) {
     @RequiresApi(Build.VERSION_CODES.N_MR1)
     fun getShortcutInfoFromItemTaxi(itemTaxi: ItemTaxi): ShortcutInfo {
         val uri = "tel:${itemTaxi.phoneNumber}"

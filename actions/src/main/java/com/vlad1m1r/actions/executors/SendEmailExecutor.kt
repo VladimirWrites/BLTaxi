@@ -1,12 +1,12 @@
 package com.vlad1m1r.actions.executors
 
-import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.util.Patterns
 import com.vlad1m1r.bltaxi.domain.Action
+import javax.inject.Inject
 
-class SendEmailExecutor(private val context: Context): Executor {
+class SendEmailExecutor @Inject constructor(): Executor {
     override fun canHandleAction(action: Action): Boolean {
         return action is Action.SendEmailAction
     }

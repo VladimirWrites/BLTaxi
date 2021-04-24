@@ -2,10 +2,13 @@ package com.vladimir.bltaxi.sync
 
 import androidx.work.*
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 private const val SYNC_TAXIS_WORK_NAME = "sync_taxis"
 
-class SyncTaxisWorkManager(private val workManager: WorkManager) {
+class SyncTaxisWorkManager @Inject constructor(
+    private val workManager: WorkManager
+) {
     private val constraints = Constraints.Builder()
         .setRequiresDeviceIdle(true)
         .setRequiresCharging(true)

@@ -1,8 +1,9 @@
 package com.vlad1m1r.bltaxi
 
-import com.vlad1m1r.bltaxi.about.di.AppInfoProvider
+import com.vlad1m1r.bltaxi.about.AppInfoProvider
+import javax.inject.Inject
 
-class AppInfoProviderImpl: AppInfoProvider {
+class AppInfoProviderImpl @Inject constructor(): AppInfoProvider {
     override fun getVersionName() = BuildConfig.VERSION_NAME
     override fun getApplicationId() = BuildConfig.APPLICATION_ID
 }

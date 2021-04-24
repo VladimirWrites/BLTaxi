@@ -3,9 +3,11 @@ package com.vlad1m1r.bltaxi.analytics
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-internal class CrashReportImpl(
-    private val context: Context,
+class CrashReportImpl @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val firebaseCrashlytics: FirebaseCrashlytics,
     private val sharedPreferences: SharedPreferences
 ): CrashReport {

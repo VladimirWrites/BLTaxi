@@ -5,9 +5,10 @@ import android.content.pm.ShortcutManager
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import javax.inject.Inject
 import kotlin.math.min
 
-internal class ShortcutHandlerImpl(
+class ShortcutHandlerImpl @Inject constructor(
     private val shortcutManager: ShortcutManager,
     private val shortcutInfoProvider: ShortcutInfoProvider
 ) : ShortcutHandler {

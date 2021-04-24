@@ -11,8 +11,13 @@ import android.util.Patterns
 import com.vlad1m1r.actions.R
 import com.vlad1m1r.actions.getListOfResolveInfo
 import com.vlad1m1r.bltaxi.domain.Action
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class CallNumberOnViberExecutor(private val context: Context, private val openPlayStoreExecutor: OpenPlayStoreExecutor): Executor {
+class CallNumberOnViberExecutor @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val openPlayStoreExecutor: OpenPlayStoreExecutor
+) : Executor {
     override fun canHandleAction(action: Action): Boolean {
         return action is Action.CallNumberOnViberAction
     }
@@ -20,7 +25,7 @@ class CallNumberOnViberExecutor(private val context: Context, private val openPl
     override operator fun invoke(action: Action): Intent {
         val action = action as Action.CallNumberOnViberAction
         if (Patterns.PHONE.matcher(action.phoneNumber).matches()) {
-            val uri = Uri.parse(context.getString(R.string.action__tel)+action.phoneNumber)
+            val uri = Uri.parse(context.getString(R.string.action__tel) + action.phoneNumber)
             var intent = Intent(Intent.ACTION_DIAL)
             intent.data = uri
             val resolveInfo = getViberResolveInfo(context.packageManager, intent)

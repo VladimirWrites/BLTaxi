@@ -2,11 +2,13 @@ package com.vlad1m1r.bltaxi.about
 
 import androidx.lifecycle.ViewModel
 import com.vlad1m1r.basedata.StringResolver
-import com.vlad1m1r.bltaxi.about.di.AppInfoProvider
 import com.vlad1m1r.bltaxi.domain.Action
 import com.vlad1m1r.bltaxi.domain.usecase.ExecuteAction
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AboutViewModel(
+@HiltViewModel
+class AboutViewModel @Inject constructor(
     private val executeAction: ExecuteAction,
     private val appInfoProvider: AppInfoProvider,
     private val stringResolver: StringResolver

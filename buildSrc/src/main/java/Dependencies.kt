@@ -3,6 +3,7 @@ object Versions {
     const val kotlin_coroutines = "1.4.3"
 
     const val android_x_legacy_v4 = "1.0.0"
+    const val android_x_fragment = "1.3.3"
     const val android_x_v7 = "1.2.0"
     const val android_x_core_ktx = "1.3.2"
     const val android_x_card_view = "1.0.0"
@@ -24,6 +25,9 @@ object Versions {
     const val firebase_performance = "19.1.1"
 
     const val koin = "2.2.2"
+
+    const val hilt = "2.35"
+    const val hiltAndroid = "1.0.0-beta01"
 
     const val retrofit = "2.9.0"
     const val ok_http_interceptor = "4.9.1"
@@ -59,6 +63,7 @@ object Deps {
     const val kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
 
     const val support = "androidx.legacy:legacy-support-v4:${Versions.android_x_legacy_v4}"
+    const val fragment = "androidx.fragment:fragment:${Versions.android_x_fragment}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.android_x_v7}"
     const val core_ktx = "androidx.core:core-ktx:${Versions.android_x_core_ktx}"
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.android_x_recycler_view}"
@@ -84,6 +89,10 @@ object Deps {
     const val koin_scope = "org.koin:koin-android-scope:${Versions.koin}"
     const val koin_test = "org.koin:koin-test:${Versions.koin}"
 
+    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
+    const val hiltWork = "androidx.hilt:hilt-work:${Versions.hiltAndroid}"
+    const val hiltAndroidCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltAndroid}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val ok_http_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.ok_http_interceptor}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
@@ -112,6 +121,7 @@ object Deps {
     const val crashlytics_gradle_plugin = "com.google.firebase:firebase-crashlytics-gradle:${Versions.crashlytics_gradle_plugin}"
     const val jacoco_plugin = "org.jacoco:org.jacoco.core:${Versions.jacoco}"
     const val firebase_performance_plugin = "com.google.firebase:perf-plugin:${Versions.firebase_performance_plugin}"
+    const val hilt_android_plugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 }
 
 object Modules {

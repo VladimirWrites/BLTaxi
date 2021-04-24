@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-internal class TrackerImpl(
+class TrackerImpl @Inject constructor(
     private val firebaseAnalytics: FirebaseAnalytics,
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val sharedPreferences: SharedPreferences
 ) : Tracker {
     override fun initialize() {

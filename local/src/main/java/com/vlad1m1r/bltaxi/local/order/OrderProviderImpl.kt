@@ -1,10 +1,13 @@
 package com.vlad1m1r.bltaxi.local.order
 
 import android.content.SharedPreferences
+import javax.inject.Inject
 
 private const val KEY_ITEM_POSITION = "item_position"
 
-internal class OrderProviderImpl(private val sharedPreferences: SharedPreferences) : OrderProvider {
+class OrderProviderImpl @Inject constructor(
+    private val sharedPreferences: SharedPreferences
+) : OrderProvider {
 
     override fun getItemPosition(id: Long): Int {
         return this.sharedPreferences.getInt(KEY_ITEM_POSITION + id.toString(), -1)

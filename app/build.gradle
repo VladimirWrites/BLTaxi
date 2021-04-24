@@ -4,6 +4,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'dagger.hilt.android.plugin'
 
 jacoco {
     toolVersion = Versions.jacoco
@@ -73,11 +74,13 @@ tasks.withType(Test) {
 dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_android
+    implementation Deps.fragment
 
     implementation Deps.preference_ktx
     implementation Deps.firebase_performance
 
-    implementation Deps.koin
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
 
     implementation project(Modules.domain)
     implementation project(Modules.basedata)

@@ -45,16 +45,17 @@ dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_core
 
-    implementation Deps.room_runtime
+    api Deps.room_runtime
     kapt Deps.room_compiler
-    implementation Deps.room_ktx
-    implementation Deps.room_common
+    api Deps.room_ktx
+    api Deps.room_common
 
     implementation Deps.appcompat
     implementation Deps.core_ktx
     implementation Deps.preference_ktx
 
-    implementation Deps.koin
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
 
     implementation project(Modules.domain)
 

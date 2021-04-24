@@ -5,12 +5,14 @@ import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.local.database.TaxiDatabase
 import com.vlad1m1r.bltaxi.local.database.toItemTaxi
 import com.vlad1m1r.bltaxi.local.database.toTaxi
+import javax.inject.Inject
 
-internal class TaxiProviderLocalImpl(private val taxiDatabase: TaxiDatabase) :
-    TaxiProviderLocal {
+class TaxiProviderLocalImpl @Inject constructor(
+    private val taxiDatabase: TaxiDatabase
+) : TaxiProviderLocal {
     override suspend fun getTaxis(language: Language): List<ItemTaxi> {
         val taxis = taxiDatabase.taxiDao().getAll(language)
-        return if(taxis.isNullOrEmpty())
+        return if (taxis.isNullOrEmpty())
             emptyList()
         else
             taxiDatabase.taxiDao().getAll(language).map { it.toItemTaxi() }

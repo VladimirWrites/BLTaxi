@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -45,8 +46,8 @@ android {
 }
 
 dependencies {
-    implementation Deps.koin
-    implementation Deps.koin_viewmodel
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
 
     implementation Deps.preference_ktx
 

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -34,7 +35,8 @@ dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.appcompat
 
-    implementation Deps.koin
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
 
     testImplementation Deps.junit
     testImplementation Deps.truth

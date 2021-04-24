@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -34,20 +35,19 @@ dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_core
 
-    implementation Deps.retrofit
+    api Deps.retrofit
     implementation Deps.gson
     implementation Deps.ok_http_interceptor
 
-    implementation Deps.koin
     implementation Deps.appcompat
+
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
 
     implementation project(Modules.domain)
 
     testImplementation Deps.junit
     testImplementation Deps.truth
     testImplementation Deps.mockito_kotlin
-
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }

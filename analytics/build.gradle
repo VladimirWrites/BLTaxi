@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -29,7 +30,6 @@ android {
             minifyEnabled false
         }
     }
-
     testOptions {
         animationsDisabled = true
         unitTests.all {
@@ -47,11 +47,12 @@ android {
 dependencies {
     implementation Deps.kotlin_stdlib
 
-    implementation Deps.firebase_core
-    implementation Deps.firebase_crashlytics
-    implementation Deps.firebase_analytics
+    api Deps.firebase_core
+    api Deps.firebase_crashlytics
+    api Deps.firebase_analytics
 
-    implementation Deps.koin
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
 
     testImplementation Deps.junit
     testImplementation Deps.truth

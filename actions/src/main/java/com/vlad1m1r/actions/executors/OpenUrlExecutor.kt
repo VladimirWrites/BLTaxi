@@ -3,8 +3,9 @@ package com.vlad1m1r.actions.executors
 import android.content.Intent
 import android.net.Uri
 import com.vlad1m1r.bltaxi.domain.Action
+import javax.inject.Inject
 
-open class OpenUrlExecutor(): Executor {
+open class OpenUrlExecutor @Inject constructor(): Executor {
     override fun canHandleAction(action: Action): Boolean {
         return action is Action.OpenUrlAction
     }

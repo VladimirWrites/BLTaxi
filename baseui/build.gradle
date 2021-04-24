@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
 
+
 android {
     compileSdkVersion Versions.compile_sdk
     defaultConfig {
@@ -46,6 +47,9 @@ dependencies {
     api Deps.constraint_layout
     api Deps.appcompat
     api Deps.core_ktx
+
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
 
     api Deps.navigation_fragment
     api Deps.navigation_ui

@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi
 
 import com.google.common.truth.Truth.assertThat
-import com.vlad1m1r.bltaxi.about.di.AppInfoProvider
+import com.vlad1m1r.bltaxi.about.AppInfoProvider
 import org.junit.Test
 
 class AppInfoProviderTest {

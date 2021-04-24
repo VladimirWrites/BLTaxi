@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.vlad1m1r.basedata.StringResolver
 import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.Tracker
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SettingsViewModel(
+@HiltViewModel
+class SettingsViewModel @Inject constructor(
     private val stringResolver: StringResolver,
     private val crashReport: CrashReport,
     private val tracker: Tracker

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -36,8 +37,13 @@ android {
 
 dependencies {
     implementation Deps.kotlin_stdlib
-    implementation Deps.koin
     implementation Deps.work_manager
+
+    implementation Deps.hilt
+    kapt Deps.hiltCompiler
+
+    api Deps.hiltWork
+    kapt Deps.hiltAndroidCompiler
 
     implementation project(Modules.remote)
     implementation project(Modules.local)

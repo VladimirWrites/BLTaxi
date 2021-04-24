@@ -5,8 +5,12 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import com.vlad1m1r.actions.R
 import com.vlad1m1r.bltaxi.domain.Action
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class ShareExecutor(private val context: Context): Executor {
+class ShareExecutor @Inject constructor(
+    @ApplicationContext private val context: Context
+) : Executor {
     override fun canHandleAction(action: Action): Boolean {
         return action is Action.ShareAction
     }

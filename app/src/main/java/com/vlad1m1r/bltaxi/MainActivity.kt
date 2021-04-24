@@ -4,16 +4,18 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import com.vlad1m1r.bltaxi.taxi.TaxiNavigator
-import org.koin.android.ext.android.inject
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var binding: ViewDataBinding? = null
 
-    private val navigator: TaxiNavigator by inject()
+    @Inject
+    lateinit var navigator: TaxiNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
