@@ -1,69 +1,40 @@
 package com.vlad1m1r.bltaxi.about
 
-import android.app.Application
+import android.content.ComponentName
+import android.content.Intent
 import android.os.Build
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.test.core.app.ActivityScenario
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import org.junit.Before
+import dagger.hilt.android.testing.BindValue
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.loadKoinModules
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.core.logger.Level
-import org.koin.core.module.Module
-import org.koin.dsl.module
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-class TestApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        setTheme(R.style.Theme_App)
-        stopKoin()
-        startKoin {
-            androidLogger()
-            androidContext(this@TestApplication)
-            // TODO Await fix for Koin and replace the explicit invocations
-            //  of loadModules() and createRootScope() with a single call to modules()
-            //  (https://github.com/InsertKoinIO/koin/issues/847)
-            koin.loadModules(emptyList())
-            koin.createRootScope()
-        }
-    }
-
-    internal fun injectModule(module: Module) {
-        loadKoinModules(module)
-    }
-}
-
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [Build.VERSION_CODES.P], application = TestApplication::class)
+@HiltAndroidTest
+@Config(sdk = [Build.VERSION_CODES.P], application = HiltTestApplication::class)
 class AboutFragmentShould {
 
-    val fragmentViewModel = mock<AboutViewModel>()
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
-    @Before
-    fun before() {
-        val applicationContext =
-            InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as TestApplication
-        applicationContext.injectModule(
-            module {
-                single {
-                    fragmentViewModel
-                }
-            }
-        )
-    }
+    @BindValue
+    val fragmentViewModel = mock<AboutViewModel>()
 
     @Test
     fun sendEmail_whenButtonSendEmailIsClicked() {
-        launchFragmentInContainer<AboutFragment>()
+        launchFragmentInHiltContainer<AboutFragment>()
 
         aboutScreen { clickButtonSendEmail() }
 
@@ -72,7 +43,7 @@ class AboutFragmentShould {
 
     @Test
     fun rateApp_whenButtonRateAppIsClicked() {
-        launchFragmentInContainer<AboutFragment>()
+        launchFragmentInHiltContainer<AboutFragment>()
 
         aboutScreen { clickButtonRateApp() }
 
@@ -81,7 +52,7 @@ class AboutFragmentShould {
 
     @Test
     fun shareApp_whenButtonShareAppIsClicked() {
-        launchFragmentInContainer<AboutFragment>()
+        launchFragmentInHiltContainer<AboutFragment>()
 
         aboutScreen { clickButtonShareApp() }
 
@@ -90,7 +61,7 @@ class AboutFragmentShould {
 
     @Test
     fun openPrivacyPolicy_whenButtonPrivacyPolicyIsClicked() {
-        launchFragmentInContainer<AboutFragment>()
+        launchFragmentInHiltContainer<AboutFragment>()
 
         aboutScreen { clickButtonPrivacyPolicy() }
 
@@ -99,7 +70,7 @@ class AboutFragmentShould {
 
     @Test
     fun openTermsAndConditions_whenButtonTermsAndConditionsIsClicked() {
-        launchFragmentInContainer<AboutFragment>()
+        launchFragmentInHiltContainer<AboutFragment>()
 
         aboutScreen { clickButtonTermsAndConditions() }
 
@@ -110,7 +81,7 @@ class AboutFragmentShould {
     fun showVersionName() {
         whenever(fragmentViewModel.getAppVersionName()).thenReturn("version_name")
 
-        launchFragmentInContainer<AboutFragment>()
+        launchFragmentInHiltContainer<AboutFragment>()
 
         aboutScreen { textAppVersionIsEqualTo("Version: version_name") }
     }

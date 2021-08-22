@@ -7,7 +7,7 @@ import com.vlad1m1r.bltaxi.local.database.toItemTaxi
 import com.vlad1m1r.bltaxi.local.database.toTaxi
 import javax.inject.Inject
 
-class TaxiProviderLocalImpl @Inject constructor(
+class TaxiProviderLocalImpl(
     private val taxiDatabase: TaxiDatabase
 ) : TaxiProviderLocal {
     override suspend fun getTaxis(language: Language): List<ItemTaxi> {

@@ -30,32 +30,30 @@ object LocalModule {
     }
 
     @Provides
-    fun providesTaxiDatabase(
+    fun bindOrderProvider(
         @ApplicationContext context: Context
-    ): TaxiDatabase {
-        return Room.databaseBuilder(
-            context.applicationContext,
+    ): OrderProvider {
+        return OrderProviderImpl(
+            PreferenceManager.getDefaultSharedPreferences(context)
+        )
+    }
+
+    @Provides
+    fun bindLanguageProvider(
+        @ApplicationContext context: Context
+    ): LanguageProvider {
+        return LanguageProviderImpl(context)
+    }
+
+    @Provides
+    fun bindTaxiProviderLocal(
+        @ApplicationContext context: Context
+    ): TaxiProviderLocal {
+        val database = Room.databaseBuilder(
+            context,
             TaxiDatabase::class.java, "bltaxi-database"
         ).build()
+
+        return TaxiProviderLocalImpl(database)
     }
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class ProvidersModule {
-
-    @Binds
-    abstract fun bindOrderProvider(
-        orderProviderImpl: OrderProviderImpl
-    ): OrderProvider
-
-    @Binds
-    abstract fun bindLanguageProvider(
-        languageProviderImpl: LanguageProviderImpl
-    ): LanguageProvider
-
-    @Binds
-    abstract fun bindTaxiProviderLocal(
-        taxiProviderLocalImpl: TaxiProviderLocalImpl
-    ): TaxiProviderLocal
 }

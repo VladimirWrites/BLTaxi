@@ -4,7 +4,7 @@ import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import javax.inject.Inject
 
-class TaxiProviderRemoteImpl @Inject constructor(
+class TaxiProviderRemoteImpl(
     private val taxiService: TaxiService
 ) : TaxiProviderRemote {
     override suspend fun getTaxis(language: Language): List<ItemTaxi> =

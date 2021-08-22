@@ -10,4 +10,4 @@ interface TaxiService {
     suspend fun taxis(@Path("language") language: String): List<Taxi>
 }
 
-fun getTaxiService(retrofit: Retrofit) = retrofit.create(TaxiService::class.java)!!
+fun getTaxiService(retrofit: Retrofit) = retrofit.create(TaxiService::class.java)

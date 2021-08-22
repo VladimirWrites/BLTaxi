@@ -2,6 +2,7 @@ package com.vladimir.bltaxi.sync.di
 
 import android.content.Context
 import androidx.work.WorkManager
+import com.vladimir.bltaxi.sync.SyncTaxisWorkManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,7 @@ object SyncModule {
     @Provides
     fun provideWorkManager(
         @ApplicationContext context: Context
-    ): WorkManager {
-        return WorkManager.getInstance(context)
+    ): SyncTaxisWorkManager {
+        return SyncTaxisWorkManager(WorkManager.getInstance(context))
     }
 }

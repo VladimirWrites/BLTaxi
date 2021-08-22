@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'dagger.hilt.android.plugin'
 
 jacoco {
@@ -27,11 +26,11 @@ android {
         testOptions.unitTests.includeAndroidResources = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildTypes {
@@ -69,15 +68,13 @@ android {
 
 tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
 }
 
 dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_android
     implementation Deps.fragment
-
-    implementation Deps.preference_ktx
-    implementation Deps.firebase_performance
 
     implementation Deps.hilt
     kapt Deps.hiltCompiler
@@ -104,10 +101,17 @@ dependencies {
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
     testImplementation Deps.fragment_test
-    testImplementation Deps.koin_test
     testImplementation Deps.espresso_core
     testImplementation Deps.test_core_ktx
 
     kaptTest Deps.databinding_compiler
 }
 apply plugin: 'com.google.gms.google-services'
+
+kapt {
+    correctErrorTypes true
+}
+
+hilt {
+    enableAggregatingTask = true
+}

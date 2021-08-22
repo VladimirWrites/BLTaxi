@@ -3,6 +3,8 @@ package com.vlad1m1r.bltaxi
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
 import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vladimir.bltaxi.sync.SyncTaxisWorkManager
@@ -10,7 +12,7 @@ import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 @HiltAndroidApp
-class ApplicationTaxi : Application() {
+class ApplicationTaxi : Application(), Configuration.Provider {
 
     @Inject
     lateinit var tracker: Tracker
@@ -23,6 +25,8 @@ class ApplicationTaxi : Application() {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
+
+    @Inject lateinit var workerFactory: HiltWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
@@ -51,4 +55,8 @@ class ApplicationTaxi : Application() {
             setDefaultNightMode(newMode)
         }
     }
+
+    override fun getWorkManagerConfiguration() = Configuration.Builder()
+        .setWorkerFactory(workerFactory)
+        .build()
 }

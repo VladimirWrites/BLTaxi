@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 private const val KEY_ITEM_POSITION = "item_position"
 
-class OrderProviderImpl @Inject constructor(
+class OrderProviderImpl(
     private val sharedPreferences: SharedPreferences
 ) : OrderProvider {
 

@@ -11,14 +11,12 @@ buildscript {
         classpath Deps.google_services_plugin
         classpath Deps.crashlytics_gradle_plugin
         classpath Deps.jacoco_plugin
-        classpath Deps.firebase_performance_plugin
         classpath Deps.hilt_android_plugin
     }
 }
 
 allprojects {
     repositories {
-        jcenter()
         mavenCentral()
         maven { url 'https://jitpack.io' }
         google()

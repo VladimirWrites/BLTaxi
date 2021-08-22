@@ -15,11 +15,11 @@ android {
         testOptions.unitTests.includeAndroidResources = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildTypes {
@@ -62,7 +62,6 @@ dependencies {
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
     testImplementation Deps.fragment_test
-    testImplementation Deps.koin_test
     testImplementation Deps.espresso_core
     testImplementation Deps.espresso_contrib
 }

@@ -15,42 +15,24 @@ private const val BASE_URL = "https://raw.githubusercontent.com/VladimirWrites/B
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+object RemoteModule {
 
     @Provides
-    internal fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder().apply {
+    fun bindTaxiProviderRemote(): TaxiProviderRemote {
+        val okHttpClient = OkHttpClient.Builder().apply {
             if (BuildConfig.DEBUG) addInterceptor(
                 HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
             )
         }.build()
-    }
 
-    @Provides
-    internal fun provideRetrofit(
-        okHttpClient: OkHttpClient
-    ): Retrofit {
-        return Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
+        val taxiService = getTaxiService(retrofit)
+
+        return TaxiProviderRemoteImpl(taxiService)
     }
-
-    @Provides
-    fun provideTaxiService(
-        retrofit: Retrofit
-    ): TaxiService {
-        return getTaxiService(retrofit)
-    }
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RemoteModule {
-
-    @Binds
-    abstract fun bindTaxiProviderRemote(
-        taxiProviderRemoteImpl: TaxiProviderRemoteImpl
-    ): TaxiProviderRemote
 }

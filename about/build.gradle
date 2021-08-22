@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'jacoco'
 apply plugin: 'dagger.hilt.android.plugin'
 
 android {
@@ -15,11 +14,11 @@ android {
         testOptions.unitTests.includeAndroidResources = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildTypes {
@@ -38,14 +37,12 @@ android {
         animationsDisabled = true
         unitTests.all {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
-            jacoco {
-                includeNoLocationClasses = true
-            }
-        }
-        unitTests {
-            includeAndroidResources = true
         }
     }
+}
+
+hilt {
+    enableTransformForLocalTests = true
 }
 
 dependencies {
@@ -67,7 +64,9 @@ dependencies {
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
     testImplementation Deps.fragment_test
-    testImplementation Deps.koin_test
+    debugImplementation Deps.fragment_test
+    testImplementation Deps.hiltTest
+    kaptTest Deps.hiltCompiler
     testImplementation Deps.espresso_core
 
     kaptTest Deps.databinding_compiler
