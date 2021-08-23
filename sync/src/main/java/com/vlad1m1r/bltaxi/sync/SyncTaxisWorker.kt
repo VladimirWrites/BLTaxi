@@ -1,4 +1,4 @@
-package com.vladimir.bltaxi.sync
+package com.vlad1m1r.bltaxi.sync
 
 import android.content.Context
 import androidx.hilt.work.HiltWorker

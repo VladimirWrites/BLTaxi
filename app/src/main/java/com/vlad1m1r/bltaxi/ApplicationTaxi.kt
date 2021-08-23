@@ -7,7 +7,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.Tracker
-import com.vladimir.bltaxi.sync.SyncTaxisWorkManager
+import com.vlad1m1r.bltaxi.sync.SyncTaxisWorkManager
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 

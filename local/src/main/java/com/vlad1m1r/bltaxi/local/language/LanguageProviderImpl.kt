@@ -18,6 +18,7 @@ class LanguageProviderImpl(
     }
 }
 
+@Suppress("DEPRECATION")
 private fun Context.getLocale(): Locale {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         resources.configuration.locales.get(0)

@@ -1,9 +1,8 @@
-package com.vladimir.bltaxi.sync
+package com.vlad1m1r.bltaxi.sync
 
 import android.os.Build
 import androidx.work.*
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 private const val SYNC_TAXIS_WORK_NAME = "sync_taxis"
 

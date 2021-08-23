@@ -47,9 +47,9 @@ android {
 
 dependencies {
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
-    implementation Deps.preference_ktx
+    api Deps.preference_ktx
 
     implementation project(Modules.domain)
     implementation project(Modules.baseui)
@@ -61,7 +61,4 @@ dependencies {
     testImplementation Deps.mockito_kotlin
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
-    testImplementation Deps.fragment_test
-    testImplementation Deps.espresso_core
-    testImplementation Deps.espresso_contrib
 }

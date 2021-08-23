@@ -7,7 +7,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class TrackerImpl @Inject constructor(
+class TrackerImpl(
     private val firebaseAnalytics: FirebaseAnalytics,
     @ApplicationContext private val context: Context,
     private val sharedPreferences: SharedPreferences

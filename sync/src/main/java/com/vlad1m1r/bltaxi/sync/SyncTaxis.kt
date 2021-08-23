@@ -1,4 +1,4 @@
-package com.vladimir.bltaxi.sync
+package com.vlad1m1r.bltaxi.sync
 
 import com.vlad1m1r.bltaxi.local.language.LanguageProvider
 import com.vlad1m1r.bltaxi.local.taxi.TaxiProviderLocal

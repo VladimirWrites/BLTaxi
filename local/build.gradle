@@ -37,6 +37,7 @@ android {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
             jacoco {
                 includeNoLocationClasses = true
+                excludes = ['jdk.internal.*']
             }
         }
     }
@@ -46,17 +47,17 @@ dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_core
 
-    api Deps.room_runtime
+    implementation Deps.room_runtime
     kapt Deps.room_compiler
-    api Deps.room_ktx
-    api Deps.room_common
+    implementation Deps.room_ktx
+    implementation Deps.room_common
 
     implementation Deps.appcompat
     implementation Deps.core_ktx
     implementation Deps.preference_ktx
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
 

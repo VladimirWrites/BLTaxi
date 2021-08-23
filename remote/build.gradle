@@ -30,25 +30,33 @@ android {
             minifyEnabled false
         }
     }
+
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+                excludes = ['jdk.internal.*']
+            }
+        }
+    }
 }
 
 dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_core
 
-    api Deps.retrofit
+    implementation Deps.retrofit
     implementation Deps.gson
     implementation Deps.ok_http_interceptor
 
     implementation Deps.appcompat
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
 
     testImplementation Deps.junit
     testImplementation Deps.truth
     testImplementation Deps.mockito_kotlin
-
 }

@@ -32,6 +32,14 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+                excludes = ['jdk.internal.*']
+            }
+        }
+    }
 }
 
 dependencies {
@@ -39,12 +47,11 @@ dependencies {
     implementation Deps.kotlin_coroutines_android
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
     implementation project(Modules.local)
     implementation project(Modules.remote)
-
 
     testImplementation Deps.junit
     testImplementation Deps.truth

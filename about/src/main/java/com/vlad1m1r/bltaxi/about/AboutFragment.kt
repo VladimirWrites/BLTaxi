@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.vlad1m1r.bltaxi.about.databinding.FragmentAboutBinding
 import dagger.hilt.android.AndroidEntryPoint
+import org.jetbrains.annotations.TestOnly
 
 @AndroidEntryPoint
 class AboutFragment : Fragment(R.layout.fragment_about) {
@@ -24,5 +25,10 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.about__name)
         }
+    }
+
+    @TestOnly
+    fun setViewModel(viewModel: AboutViewModel) {
+        binding.viewModel = viewModel
     }
 }

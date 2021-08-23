@@ -58,6 +58,7 @@ android {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
             jacoco {
                 includeNoLocationClasses = true
+                excludes = ['jdk.internal.*']
             }
         }
         unitTests {
@@ -66,18 +67,13 @@ android {
     }
 }
 
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-    jacoco.excludes = ['jdk.internal.*']
-}
-
 dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_android
     implementation Deps.fragment
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
     implementation project(Modules.basedata)
@@ -102,7 +98,9 @@ dependencies {
     testImplementation Deps.robolectric
     testImplementation Deps.fragment_test
     testImplementation Deps.espresso_core
+    testImplementation Deps.espresso_contrib
     testImplementation Deps.test_core_ktx
+    testImplementation Deps.hilt_test
 
     kaptTest Deps.databinding_compiler
 }

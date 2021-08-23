@@ -13,3 +13,4 @@
 .externalNativeBuild
 /app/release/
 */jacoco.exec
+.idea/misc.xml

@@ -29,14 +29,12 @@ class ActionExecutorImplShould {
 
     val actionExecutorImpl = ActionExecutorImpl(
         startActivity,
-        listOf(
-            shareExecutor,
-            sendEmailExecutor,
-            openPlayStoreExecutor,
-            openUrlExecutor,
-            callNumberExecutor,
-            callNumberOnViberExecutor
-        )
+        shareExecutor,
+        sendEmailExecutor,
+        openPlayStoreExecutor,
+        openUrlExecutor,
+        callNumberExecutor,
+        callNumberOnViberExecutor
     )
 
     @Test

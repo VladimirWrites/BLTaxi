@@ -41,10 +41,10 @@ dependencies {
     implementation Deps.work_manager
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
-    api Deps.hiltWork
-    kapt Deps.hiltAndroidCompiler
+    api Deps.hilt_work
+    kapt Deps.hilt_android_compiler
 
     implementation project(Modules.remote)
     implementation project(Modules.local)

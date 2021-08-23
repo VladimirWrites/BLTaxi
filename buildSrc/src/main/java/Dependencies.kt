@@ -42,7 +42,7 @@ object Versions {
     const val gradle_android = "7.0.1"
     const val google_services = "4.3.5"
     const val crashlytics_gradle_plugin = "2.5.2"
-    const val jacoco = "0.8.6"
+    const val jacoco = "0.8.7"
 
     const val min_sdk = 21
     const val target_sdk = 30
@@ -80,10 +80,10 @@ object Deps {
     const val firebase_crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.firebase_crashlytics}"
 
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hiltTest = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
-    const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
-    const val hiltWork = "androidx.hilt:hilt-work:${Versions.hiltAndroid}"
-    const val hiltAndroidCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltAndroid}"
+    const val hilt_test = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
+    const val hilt_compiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
+    const val hilt_work = "androidx.hilt:hilt-work:${Versions.hiltAndroid}"
+    const val hilt_android_compiler = "androidx.hilt:hilt-compiler:${Versions.hiltAndroid}"
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val ok_http_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.ok_http_interceptor}"
@@ -118,6 +118,7 @@ object Deps {
 object Modules {
     const val about = ":about"
     const val actions = ":actions"
+    const val analytics = ":analytics"
     const val domain = ":domain"
     const val basedata = ":basedata"
     const val baseui = ":baseui"
@@ -126,7 +127,6 @@ object Modules {
     const val repository = ":repository"
     const val settings = ":settings"
     const val taxi = ":taxi"
-    const val analytics = ":analytics"
     const val sync = ":sync"
     const val shortcuts = ":shortcuts"
 }

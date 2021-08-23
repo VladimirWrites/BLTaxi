@@ -17,23 +17,24 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
+import javax.inject.Provider
 
 class TaxiViewModelShould {
 
-    val saveTaxiOrder = mock<SaveTaxiOrder>()
-    val shortcutHandler = mock<ShortcutHandler>()
-    val getOrderedTaxiList = mock<GetOrderedTaxiList>()
-    val executeAction = mock<ExecuteAction>()
-    val tracker = mock<Tracker>()
-    val dispatchers = CoroutineDispatcherProvider(
+    private val saveTaxiOrder = mock<SaveTaxiOrder>()
+    private val shortcutHandler = mock<ShortcutHandler>()
+    private val getOrderedTaxiList = mock<GetOrderedTaxiList>()
+    private val executeAction = mock<ExecuteAction>()
+    private val tracker = mock<Tracker>()
+    private val dispatchers = CoroutineDispatcherProvider(
         Dispatchers.Unconfined, Dispatchers.Unconfined
     )
 
-    val taxiViewModel = TaxiViewModel(
-        saveTaxiOrder, shortcutHandler, getOrderedTaxiList, executeAction, tracker, dispatchers
+    private val taxiViewModel = TaxiViewModel(
+        saveTaxiOrder, { shortcutHandler }, getOrderedTaxiList, executeAction, tracker, dispatchers
     )
 
-    val itemTaxi = ItemTaxi(
+    private val itemTaxi = ItemTaxi(
         10,
         "name",
         "phone_number",

@@ -8,42 +8,37 @@ import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.CrashReportImpl
 import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vlad1m1r.bltaxi.analytics.TrackerImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ActivityContext
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class AnalyticsModule {
-
-    @Binds
-    abstract fun bindTracker(
-        trackerImpl: TrackerImpl
-    ): Tracker
-
-    @Binds
-    abstract fun bindCrashReport(
-        crashReportImpl: CrashReportImpl
-    ): CrashReport
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-object FirebaseModule {
+object AnalyticsModule {
 
     @Provides
-    fun provideFirebaseAnalytics(
+    fun bindTracker(
         @ApplicationContext context: Context,
-    ): FirebaseAnalytics {
-        return FirebaseAnalytics.getInstance(context)
+        sharedPreferences: SharedPreferences
+    ): Tracker {
+        return TrackerImpl(
+            FirebaseAnalytics.getInstance(context),
+            context,
+            sharedPreferences
+        )
     }
 
     @Provides
-    fun provideFirebaseCrashlytics(): FirebaseCrashlytics {
-        return FirebaseCrashlytics.getInstance()
+    fun bindCrashReport(
+        @ApplicationContext context: Context,
+        sharedPreferences: SharedPreferences
+    ): CrashReport {
+        return CrashReportImpl(
+            context,
+            FirebaseCrashlytics.getInstance(),
+            sharedPreferences
+        )
     }
 }

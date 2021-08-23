@@ -37,7 +37,7 @@ dependencies {
     implementation Deps.appcompat
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     testImplementation Deps.junit
     testImplementation Deps.truth

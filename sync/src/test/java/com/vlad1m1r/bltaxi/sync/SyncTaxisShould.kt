@@ -1,4 +1,4 @@
-package com.vladimir.bltaxi.sync
+package com.vlad1m1r.bltaxi.sync
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify

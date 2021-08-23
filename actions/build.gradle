@@ -36,6 +36,7 @@ android {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
             jacoco {
                 includeNoLocationClasses = true
+                excludes = ['jdk.internal.*']
             }
         }
         unitTests {
@@ -46,7 +47,7 @@ android {
 
 dependencies {
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
 
@@ -55,6 +56,4 @@ dependencies {
     testImplementation Deps.mockito_kotlin
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
-    testImplementation Deps.fragment_test
-    testImplementation Deps.espresso_core
 }

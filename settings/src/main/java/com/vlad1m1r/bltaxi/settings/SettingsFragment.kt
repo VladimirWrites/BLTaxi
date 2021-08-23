@@ -10,6 +10,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.vlad1m1r.baseui.addOnPropertyChanged
 import dagger.hilt.android.AndroidEntryPoint
+import org.jetbrains.annotations.TestOnly
 
 @AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat() {

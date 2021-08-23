@@ -15,10 +15,10 @@ import org.robolectric.annotation.Config
 @Config(sdk = [Build.VERSION_CODES.P])
 class CrashReportShould {
 
-    val context = InstrumentationRegistry.getInstrumentation().targetContext
-    val firebaseCrashlytics = mock<FirebaseCrashlytics>()
-    val sharedPreferences = context.getSharedPreferences(context.packageName, Activity.MODE_PRIVATE);
-    val crashReport: CrashReport = CrashReportImpl(context, firebaseCrashlytics, sharedPreferences)
+    private val context = InstrumentationRegistry.getInstrumentation().targetContext
+    private val firebaseCrashlytics = mock<FirebaseCrashlytics>()
+    private val sharedPreferences = context.getSharedPreferences(context.packageName, Activity.MODE_PRIVATE);
+    private val crashReport: CrashReport = CrashReportImpl(context, firebaseCrashlytics, sharedPreferences)
 
     @Test
     fun initialize_whenNotInitialized() {

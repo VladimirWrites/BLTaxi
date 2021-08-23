@@ -1,8 +1,8 @@
-package com.vladimir.bltaxi.sync.di
+package com.vlad1m1r.bltaxi.sync.di
 
 import android.content.Context
 import androidx.work.WorkManager
-import com.vladimir.bltaxi.sync.SyncTaxisWorkManager
+import com.vlad1m1r.bltaxi.sync.SyncTaxisWorkManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

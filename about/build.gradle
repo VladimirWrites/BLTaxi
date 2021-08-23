@@ -41,16 +41,12 @@ android {
     }
 }
 
-hilt {
-    enableTransformForLocalTests = true
-}
-
 dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_android
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     implementation Deps.appcompat
 
@@ -63,11 +59,6 @@ dependencies {
     testImplementation Deps.mockito_kotlin
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
-    testImplementation Deps.fragment_test
-    debugImplementation Deps.fragment_test
-    testImplementation Deps.hiltTest
-    kaptTest Deps.hiltCompiler
-    testImplementation Deps.espresso_core
 
     kaptTest Deps.databinding_compiler
 }

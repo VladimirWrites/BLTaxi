@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding
 import dagger.hilt.android.AndroidEntryPoint
+import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -39,8 +40,8 @@ class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.Positi
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         setupRecycleView()
-        viewModel.loadTaxis()
-        observe(viewModel.taxis) {
+        binding.viewModel!!.loadTaxis()
+        observe(binding.viewModel!!.taxis) {
             getAdapter().setList(if(it.isNullOrEmpty()) emptyList() else it)
         }
     }
@@ -58,7 +59,7 @@ class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.Positi
     }
 
     override fun saveChanges(taxis: List<ItemTaxiViewModel>) {
-        viewModel.setTaxiOrder(taxis)
+        binding.viewModel!!.setTaxiOrder(taxis)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -102,5 +103,10 @@ class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.Positi
         }
         taxiAdapter = binding.recyclerView.adapter as AdapterTaxiRecycler
         return taxiAdapter
+    }
+
+    @TestOnly
+    fun setViewModel(viewModel: TaxiViewModel) {
+        binding.viewModel = viewModel
     }
 }

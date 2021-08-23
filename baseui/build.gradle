@@ -50,7 +50,7 @@ dependencies {
     api Deps.core_ktx
 
     implementation Deps.hilt
-    kapt Deps.hiltCompiler
+    kapt Deps.hilt_compiler
 
     api Deps.navigation_fragment
     api Deps.navigation_ui

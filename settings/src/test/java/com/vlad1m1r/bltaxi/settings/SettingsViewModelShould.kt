@@ -19,7 +19,7 @@ class SettingsViewModelShould {
     private val crashReport = mock<CrashReport>()
     private val tracker = mock<Tracker>()
 
-    val settingsViewModel = SettingsViewModel(stringResolver, crashReport, tracker)
+    private val settingsViewModel = SettingsViewModel(stringResolver, crashReport, tracker)
 
     @Test
     fun enableCrashReport() {

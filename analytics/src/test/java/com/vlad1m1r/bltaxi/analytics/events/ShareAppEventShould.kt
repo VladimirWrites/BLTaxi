@@ -7,7 +7,7 @@ import org.junit.Test
 
 class ShareAppEventShould {
 
-    val shareEvent = ShareAppEvent()
+    private val shareEvent = ShareAppEvent()
 
     @Test
     fun getName() {
