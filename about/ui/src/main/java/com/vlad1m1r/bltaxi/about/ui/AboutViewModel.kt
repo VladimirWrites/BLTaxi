@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-open class AboutViewModel @Inject constructor(
+class AboutViewModel @Inject constructor(
     private val executeAction: ExecuteAction,
     private val appInfoProvider: AppInfoProvider,
     private val stringResolver: StringResolver

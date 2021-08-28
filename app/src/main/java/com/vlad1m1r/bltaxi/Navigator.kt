@@ -4,7 +4,7 @@ import androidx.navigation.NavController
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiNavigator
 import javax.inject.Inject
 
-open class Navigator @Inject constructor() : TaxiNavigator {
+class Navigator @Inject constructor() : TaxiNavigator {
 
     private var navController: NavController? = null
 

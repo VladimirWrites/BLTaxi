@@ -5,7 +5,7 @@ import android.net.Uri
 import com.vlad1m1r.bltaxi.about.domain.Action
 import javax.inject.Inject
 
-open class OpenUrlExecutor @Inject constructor(): Executor {
+class OpenUrlExecutor @Inject constructor(): Executor {
     override fun canHandleAction(action: Action): Boolean {
         return action is Action.OpenUrlAction
     }

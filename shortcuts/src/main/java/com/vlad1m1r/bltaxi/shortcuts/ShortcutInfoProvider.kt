@@ -11,7 +11,7 @@ import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-open class ShortcutInfoProvider @Inject constructor(
+class ShortcutInfoProvider @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
     @RequiresApi(Build.VERSION_CODES.N_MR1)
