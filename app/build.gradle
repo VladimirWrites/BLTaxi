@@ -5,7 +5,6 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: '../buildsystem/java_version.gradle'
-apply from: '../buildsystem/jacoco.gradle'
 
 android {
     compileSdkVersion Versions.compile_sdk

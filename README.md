@@ -9,7 +9,6 @@
     <a target="_blank" href="https://github.com/VladimirWrites/BLTaxi/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
     <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
     <a target="_blank" href="https://app.bitrise.io/app/b8b8722ee9645ad8"><img src="https://app.bitrise.io/app/b8b8722ee9645ad8/status.svg?token=7MWRGcMRCjH4Ivzp9xeBCw"></a>
-    <a target="_blank" href="https://codecov.io/gh/VladimirWrites/BLTaxi"><img src="https://codecov.io/gh/VladimirWrites/BLTaxi/branch/master/graph/badge.svg"></a>
     <a target="_blank" href="https://androidweekly.net/issues/issue-410"><img src="https://androidweekly.net/issues/issue-410/badge"></a>
 </p>
 
@@ -28,7 +27,6 @@ This project brings to the table set of best practices, tools, and solutions:
 * [Android Jetpack](https://developer.android.com/jetpack)
 * Single-activity architecture, using the [Navigation component](https://developer.android.com/guide/navigation/navigation-getting-started)
 * CI pipeline ([Bitrise](https://app.bitrise.io/app/b8b8722ee9645ad8#/builds))
-* Testing (Using [Jacoco](https://github.com/jacoco/jacoco) for test coverage)
 * Dependency Injection
 * Material Design (Dark theme)
 
@@ -41,10 +39,10 @@ Built With 🛠
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes
   - [DataBinding](https://developer.android.com/topic/libraries/data-binding) - Allows you to bind UI components in your layouts to data sources in your app using a declarative format rather than programmatically
   - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - Makes it easy to schedule deferrable, asynchronous tasks that are expected to run even if the app exits or device restarts
+  - [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) - Dependency Injection library for Android that reduces the boilerplate of doing manual dependency injection in your project
   - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android
 - [Navigation Component](https://developer.android.com/guide/navigation) - Helps you implement navigation, from simple button clicks to more complex patterns, such as app bars and the navigation drawer
-- [Koin](https://github.com/InsertKoinIO/koin) - Dependency Injection Framework
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java
 - [Google Analytics](https://firebase.google.com/docs/analytics) - Free app measurement solution that provides insight on app usage and user engagement
 - [Firebase Crashlytics](https://firebase.google.com/docs/analytics) - Lightweight, realtime crash reporter that helps you track, prioritize, and fix stability issues that erode your app quality

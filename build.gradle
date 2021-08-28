@@ -10,7 +10,6 @@ buildscript {
         classpath Deps.kotlin_gradle_plugin
         classpath Deps.google_services_plugin
         classpath Deps.crashlytics_gradle_plugin
-        classpath Deps.jacoco_plugin
         classpath Deps.hilt_android_plugin
     }
 }

@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'jacoco'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
@@ -28,15 +27,6 @@ android {
         }
         release {
             minifyEnabled false
-        }
-    }
-
-    testOptions {
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-                excludes = ['jdk.internal.*']
-            }
         }
     }
 }

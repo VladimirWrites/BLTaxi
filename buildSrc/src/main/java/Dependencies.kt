@@ -42,7 +42,6 @@ object Versions {
     const val gradle_android = "7.0.1"
     const val google_services = "4.3.5"
     const val crashlytics_gradle_plugin = "2.5.2"
-    const val jacoco = "0.8.7"
 
     const val min_sdk = 21
     const val target_sdk = 30
@@ -111,7 +110,6 @@ object Deps {
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val google_services_plugin = "com.google.gms:google-services:${Versions.google_services}"
     const val crashlytics_gradle_plugin = "com.google.firebase:firebase-crashlytics-gradle:${Versions.crashlytics_gradle_plugin}"
-    const val jacoco_plugin = "org.jacoco:org.jacoco.core:${Versions.jacoco}"
     const val hilt_android_plugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 }
 
