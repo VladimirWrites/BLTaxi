@@ -8,7 +8,7 @@ import org.junit.Test
 
 class CallEventShould {
 
-    val callEvent = CallEvent(10, "name", CALL)
+    private val callEvent = CallEvent(10, "name", CALL)
 
     @Test
     fun getName() {

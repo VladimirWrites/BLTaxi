@@ -17,12 +17,16 @@ import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.domain.usecase.SaveTaxiOrder
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Provider
 
-class TaxiViewModel(
+@HiltViewModel
+class TaxiViewModel @Inject constructor(
     private val saveTaxiOrder: SaveTaxiOrder,
-    private val shortcutHandler: ShortcutHandler?,
+    private val shortcutHandler: Provider<ShortcutHandler>,
     private val getOrderedTaxiList: GetOrderedTaxiList,
     private val executeAction: ExecuteAction,
     private val tracker: Tracker,
@@ -60,7 +64,7 @@ class TaxiViewModel(
     fun setTaxiOrder(viewModelList: List<ItemTaxiViewModel>) {
         val taxis = viewModelList.map { it.itemTaxi }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            shortcutHandler!!.addShortcutsForTaxis(taxis)
+            shortcutHandler.get().addShortcutsForTaxis(taxis)
         }
         viewModelScope.launch(dispatchers.io) {
             saveTaxiOrder(taxis)

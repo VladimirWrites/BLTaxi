@@ -1,17 +1,44 @@
 package com.vlad1m1r.bltaxi.analytics.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.CrashReportImpl
 import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vlad1m1r.bltaxi.analytics.TrackerImpl
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 
-val analyticsModule = module {
-    single { FirebaseAnalytics.getInstance(androidContext()) }
-    single { FirebaseCrashlytics.getInstance() }
-    single<Tracker> { TrackerImpl(get(), androidContext(), get()) }
-    single<CrashReport> { CrashReportImpl(androidContext(), get(), get()) }
+@Module
+@InstallIn(SingletonComponent::class)
+object AnalyticsModule {
+
+    @Provides
+    fun bindTracker(
+        @ApplicationContext context: Context,
+        sharedPreferences: SharedPreferences
+    ): Tracker {
+        return TrackerImpl(
+            FirebaseAnalytics.getInstance(context),
+            context,
+            sharedPreferences
+        )
+    }
+
+    @Provides
+    fun bindCrashReport(
+        @ApplicationContext context: Context,
+        sharedPreferences: SharedPreferences
+    ): CrashReport {
+        return CrashReportImpl(
+            context,
+            FirebaseCrashlytics.getInstance(),
+            sharedPreferences
+        )
+    }
 }

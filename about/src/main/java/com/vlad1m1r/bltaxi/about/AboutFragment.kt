@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.vlad1m1r.bltaxi.about.databinding.FragmentAboutBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
+import org.jetbrains.annotations.TestOnly
 
+@AndroidEntryPoint
 class AboutFragment : Fragment(R.layout.fragment_about) {
     private lateinit var binding: FragmentAboutBinding
 
-    private val viewModel: AboutViewModel by viewModel()
+    private val viewModel: AboutViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,5 +25,10 @@ class AboutFragment : Fragment(R.layout.fragment_about) {
             (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
             (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.about__name)
         }
+    }
+
+    @TestOnly
+    fun setViewModel(viewModel: AboutViewModel) {
+        binding.viewModel = viewModel
     }
 }

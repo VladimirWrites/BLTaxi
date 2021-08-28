@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'jacoco'
+apply plugin: 'kotlin-kapt'
+
+apply from: '../buildsystem/java_version.gradle'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -10,23 +11,16 @@ android {
         targetSdkVersion Versions.target_sdk
         versionCode 1
         versionName "1.0"
-
-        testOptions.unitTests.includeAndroidResources = true
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     buildTypes {
         debug {
+            minifyEnabled false
             testCoverageEnabled true
         }
        release {
            minifyEnabled false
+           testCoverageEnabled false
        }
     }
 
@@ -34,9 +28,6 @@ android {
         animationsDisabled = true
         unitTests.all {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
-            jacoco {
-                includeNoLocationClasses = true
-            }
         }
         unitTests {
             includeAndroidResources = true
@@ -45,7 +36,8 @@ android {
 }
 
 dependencies {
-    implementation Deps.koin
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
 
@@ -54,7 +46,4 @@ dependencies {
     testImplementation Deps.mockito_kotlin
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
-    testImplementation Deps.fragment_test
-    testImplementation Deps.koin_test
-    testImplementation Deps.espresso_core
 }

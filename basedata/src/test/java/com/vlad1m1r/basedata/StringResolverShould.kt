@@ -8,10 +8,10 @@ import org.junit.Test
 
 class StringResolverShould {
 
-    val context = mock<Context>() {
+    private val context = mock<Context>() {
         on { getString(any()) }.thenReturn("")
     }
-    val stringResolver = StringResolver(context)
+    private val stringResolver = StringResolver(context)
 
     @Test
     fun getString() {

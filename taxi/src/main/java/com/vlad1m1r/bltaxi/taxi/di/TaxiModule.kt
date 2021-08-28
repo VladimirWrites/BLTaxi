@@ -1,17 +1,65 @@
 package com.vlad1m1r.bltaxi.taxi.di
 
+import com.vlad1m1r.bltaxi.domain.ActionExecutor
+import com.vlad1m1r.bltaxi.domain.Repository
 import com.vlad1m1r.bltaxi.domain.usecase.*
-import com.vlad1m1r.bltaxi.taxi.TaxiViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 
-val taxiModule = module {
-    factory { GetTaxis(get()) }
-    factory { SaveTaxiOrder(get()) }
-    factory { OrderTaxis(get(), get()) }
-    factory { SaveTaxiPosition(get()) }
-    factory { GetTaxiPosition(get()) }
-    factory { GetOrderedTaxiList(get(), get()) }
-    factory { ExecuteAction(get()) }
-    viewModel { TaxiViewModel(get(), getOrNull(), get(), get(), get(), get()) }
+@Module
+@InstallIn(ViewModelComponent::class)
+object TaxiModule {
+
+    @Provides
+    fun bindGetTaxis(
+        repository: Repository
+    ): GetTaxis {
+        return GetTaxis(repository)
+    }
+
+    @Provides
+    fun bindSaveTaxiOrder(
+        repository: Repository
+    ): SaveTaxiOrder {
+        return SaveTaxiOrder(repository)
+    }
+
+    @Provides
+    fun bindGetTaxiPosition(
+        repository: Repository
+    ): GetTaxiPosition {
+        return GetTaxiPosition(repository)
+    }
+
+    @Provides
+    fun bindSaveTaxiPosition(
+        repository: Repository
+    ): SaveTaxiPosition {
+        return SaveTaxiPosition(repository)
+    }
+
+    @Provides
+    fun bindOrderTaxis(
+        getTaxiPosition: GetTaxiPosition,
+        saveTaxiOrder: SaveTaxiOrder
+    ): OrderTaxis {
+        return OrderTaxis(getTaxiPosition, saveTaxiOrder)
+    }
+
+    @Provides
+    fun bindGetOrderedTaxiList(
+        getTaxis: GetTaxis,
+        orderTaxis: OrderTaxis
+    ): GetOrderedTaxiList {
+        return GetOrderedTaxiList(getTaxis, orderTaxis)
+    }
+
+    @Provides
+    fun bindExecuteAction(
+        actionExecutor: ActionExecutor
+    ): ExecuteAction {
+        return ExecuteAction(actionExecutor)
+    }
 }

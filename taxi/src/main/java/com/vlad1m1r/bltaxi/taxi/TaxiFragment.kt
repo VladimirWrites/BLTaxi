@@ -8,19 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vlad1m1r.baseui.observe
 import com.vlad1m1r.bltaxi.taxi.adapter.AdapterTaxiRecycler
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemMoveHelperCallback
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding
-import org.koin.android.ext.android.inject
+import dagger.hilt.android.AndroidEntryPoint
+import org.jetbrains.annotations.TestOnly
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.PositionChanged {
+
+    private val viewModel: TaxiViewModel by viewModels()
+
+    @Inject
+    lateinit var navigator: TaxiNavigator
+
     private lateinit var binding: FragmentTaxiBinding
-
-    private val viewModel: TaxiViewModel by viewModel()
-    private val navigator: TaxiNavigator by inject()
-
     private lateinit var itemTouchHelper: ItemTouchHelper
     private lateinit var taxiAdapter: AdapterTaxiRecycler
 
@@ -35,8 +40,8 @@ class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.Positi
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         setupRecycleView()
-        viewModel.loadTaxis()
-        observe(viewModel.taxis) {
+        binding.viewModel!!.loadTaxis()
+        observe(binding.viewModel!!.taxis) {
             getAdapter().setList(if(it.isNullOrEmpty()) emptyList() else it)
         }
     }
@@ -54,7 +59,7 @@ class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.Positi
     }
 
     override fun saveChanges(taxis: List<ItemTaxiViewModel>) {
-        viewModel.setTaxiOrder(taxis)
+        binding.viewModel!!.setTaxiOrder(taxis)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -65,7 +70,7 @@ class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.Positi
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                activity!!.onBackPressed()
+                requireActivity().onBackPressed()
                 return true
             }
             R.id.menu_item_settings -> {
@@ -98,5 +103,10 @@ class TaxiFragment: Fragment(R.layout.fragment_taxi), AdapterTaxiRecycler.Positi
         }
         taxiAdapter = binding.recyclerView.adapter as AdapterTaxiRecycler
         return taxiAdapter
+    }
+
+    @TestOnly
+    fun setViewModel(viewModel: TaxiViewModel) {
+        binding.viewModel = viewModel
     }
 }

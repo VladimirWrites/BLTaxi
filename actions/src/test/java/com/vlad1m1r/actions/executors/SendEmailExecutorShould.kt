@@ -16,7 +16,7 @@ import org.robolectric.annotation.Config
 class SendEmailExecutorShould {
 
     val applicationContext = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext
-    val sendEmailExecutor = SendEmailExecutor(applicationContext)
+    val sendEmailExecutor = SendEmailExecutor()
 
     @Test(expected = IllegalArgumentException::class)
     fun throwException_whenWrongEmailFormat() {

@@ -5,7 +5,6 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.vlad1m1r.basedata.StringResolver
-import com.vlad1m1r.bltaxi.about.di.AppInfoProvider
 import com.vlad1m1r.bltaxi.domain.Action
 import com.vlad1m1r.bltaxi.domain.usecase.ExecuteAction
 import org.junit.Test

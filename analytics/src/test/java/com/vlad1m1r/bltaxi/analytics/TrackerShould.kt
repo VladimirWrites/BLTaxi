@@ -9,10 +9,10 @@ import org.junit.Test
 
 class TrackerShould {
 
-    val firebaseAnalytics = mock<FirebaseAnalytics>()
-    val context = mock<Context>()
-    val sharedPreferences = mock<SharedPreferences>()
-    val tracker: Tracker = TrackerImpl(firebaseAnalytics, context, sharedPreferences)
+    private val firebaseAnalytics = mock<FirebaseAnalytics>()
+    private val context = mock<Context>()
+    private val sharedPreferences = mock<SharedPreferences>()
+    private val tracker: Tracker = TrackerImpl(firebaseAnalytics, context, sharedPreferences)
 
     @Test
     fun trackEventWithFirebaseAnalytics() {

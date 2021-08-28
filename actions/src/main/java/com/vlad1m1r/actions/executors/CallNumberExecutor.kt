@@ -7,8 +7,12 @@ import android.net.Uri
 import android.util.Patterns
 import com.vlad1m1r.actions.R
 import com.vlad1m1r.bltaxi.domain.Action
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class CallNumberExecutor(private val context: Context): Executor {
+class CallNumberExecutor @Inject constructor(
+    @ApplicationContext private val context: Context
+) : Executor {
     override fun canHandleAction(action: Action): Boolean {
         return action is Action.CallNumberAction
     }

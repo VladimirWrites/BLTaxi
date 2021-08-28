@@ -1,7 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'jacoco'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+apply from: '../buildsystem/java_version.gradle'
 
 android {
 
@@ -11,34 +13,29 @@ android {
         targetSdkVersion Versions.target_sdk
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     buildTypes {
         debug {
+            minifyEnabled false
             testCoverageEnabled true
         }
         release {
             minifyEnabled false
+            testCoverageEnabled false
         }
     }
-
 }
 
 dependencies {
     implementation Deps.kotlin_stdlib
-    implementation Deps.koin
     implementation Deps.work_manager
+
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
+
+    api Deps.hilt_work
+    kapt Deps.hilt_android_compiler
 
     implementation project(Modules.remote)
     implementation project(Modules.local)
@@ -48,6 +45,5 @@ dependencies {
     testImplementation Deps.truth
     testImplementation Deps.mockito_kotlin
     testImplementation Deps.robolectric
-    testImplementation Deps.koin_test
     testImplementation Deps.work_manager_test
 }

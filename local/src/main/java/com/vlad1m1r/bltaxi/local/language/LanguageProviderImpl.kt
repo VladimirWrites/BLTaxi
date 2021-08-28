@@ -4,9 +4,13 @@ import android.content.Context
 import android.os.Build
 import com.vlad1m1r.bltaxi.domain.Language
 import com.vlad1m1r.bltaxi.domain.Language.Companion.fromCode
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
+import javax.inject.Inject
 
-internal class LanguageProviderImpl(private val context: Context) : LanguageProvider {
+class LanguageProviderImpl(
+    @ApplicationContext private val context: Context
+) : LanguageProvider {
 
     override fun getLanguage(): Language {
         val defaultLanguage = context.getLocale().language
@@ -14,6 +18,7 @@ internal class LanguageProviderImpl(private val context: Context) : LanguageProv
     }
 }
 
+@Suppress("DEPRECATION")
 private fun Context.getLocale(): Locale {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         resources.configuration.locales.get(0)

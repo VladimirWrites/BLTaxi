@@ -6,8 +6,13 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import com.vlad1m1r.actions.getListOfResolveInfo
 import com.vlad1m1r.bltaxi.domain.Action
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class OpenPlayStoreExecutor(private val context: Context, private val openUrlExecutor: OpenUrlExecutor): Executor {
+class OpenPlayStoreExecutor @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val openUrlExecutor: OpenUrlExecutor
+) : Executor {
     override fun canHandleAction(action: Action): Boolean {
         return action is Action.OpenPlayStoreAction
     }

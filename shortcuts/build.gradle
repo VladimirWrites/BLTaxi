@@ -1,10 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'jacoco'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+apply from: '../buildsystem/java_version.gradle'
 
 android {
-
     compileSdkVersion Versions.compile_sdk
     defaultConfig {
         minSdkVersion Versions.min_sdk
@@ -15,28 +16,20 @@ android {
         testOptions.unitTests.includeAndroidResources = true
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-
     buildTypes {
         debug {
+            minifyEnabled false
             testCoverageEnabled true
         }
         release {
             minifyEnabled false
+            testCoverageEnabled false
         }
     }
+
     testOptions {
         unitTests.all {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
-            jacoco {
-                includeNoLocationClasses = true
-            }
         }
     }
 
@@ -44,8 +37,10 @@ android {
 
 dependencies {
     implementation Deps.kotlin_stdlib
-    implementation Deps.koin
     implementation Deps.appcompat
+
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
 

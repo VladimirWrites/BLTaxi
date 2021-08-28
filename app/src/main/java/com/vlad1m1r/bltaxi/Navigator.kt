@@ -2,8 +2,10 @@ package com.vlad1m1r.bltaxi
 
 import androidx.navigation.NavController
 import com.vlad1m1r.bltaxi.taxi.TaxiNavigator
+import javax.inject.Inject
+import javax.inject.Singleton
 
-open class Navigator : TaxiNavigator {
+open class Navigator @Inject constructor() : TaxiNavigator {
 
     private var navController: NavController? = null
 

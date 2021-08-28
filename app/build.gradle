@@ -1,17 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'jacoco'
 apply plugin: 'com.google.firebase.crashlytics'
-apply plugin: 'com.google.firebase.firebase-perf'
+apply plugin: 'dagger.hilt.android.plugin'
 
-jacoco {
-    toolVersion = Versions.jacoco
-    reportsDir = file("$buildDir/jacocoReport")
-}
-
-apply from: '../buildsystem/jacoco.gradle'
+apply from: '../buildsystem/java_version.gradle'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -26,22 +19,16 @@ android {
 
         testOptions.unitTests.includeAndroidResources = true
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
 
     buildTypes {
         debug {
-            testCoverageEnabled true
             minifyEnabled false
+            testCoverageEnabled true
         }
         release {
             minifyEnabled true
             shrinkResources true
+            testCoverageEnabled false
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
@@ -57,9 +44,6 @@ android {
         animationsDisabled = true
         unitTests.all {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
-            jacoco {
-                includeNoLocationClasses = true
-            }
         }
         unitTests {
             includeAndroidResources = true
@@ -67,18 +51,13 @@ android {
     }
 }
 
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
 dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_android
+    implementation Deps.fragment
 
-    implementation Deps.preference_ktx
-    implementation Deps.firebase_performance
-
-    implementation Deps.koin
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
 
     implementation project(Modules.domain)
     implementation project(Modules.basedata)
@@ -102,10 +81,19 @@ dependencies {
     testImplementation Deps.mockito_inline
     testImplementation Deps.robolectric
     testImplementation Deps.fragment_test
-    testImplementation Deps.koin_test
     testImplementation Deps.espresso_core
+    testImplementation Deps.espresso_contrib
     testImplementation Deps.test_core_ktx
+    testImplementation Deps.hilt_test
 
     kaptTest Deps.databinding_compiler
 }
 apply plugin: 'com.google.gms.google-services'
+
+kapt {
+    correctErrorTypes true
+}
+
+hilt {
+    enableAggregatingTask = true
+}
