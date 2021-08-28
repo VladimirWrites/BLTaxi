@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'jacoco'
 apply plugin: 'dagger.hilt.android.plugin'
 
+apply from: '../buildsystem/java_version.gradle'
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -12,25 +12,17 @@ android {
         targetSdkVersion Versions.target_sdk
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
         debug {
+            minifyEnabled false
             testCoverageEnabled true
         }
         release {
             minifyEnabled false
+            testCoverageEnabled false
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildFeatures {

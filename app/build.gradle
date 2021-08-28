@@ -1,15 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'jacoco'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'dagger.hilt.android.plugin'
 
-jacoco {
-    toolVersion = Versions.jacoco
-    reportsDir = file("$buildDir/jacocoReport")
-}
-
+apply from: '../buildsystem/java_version.gradle'
 apply from: '../buildsystem/jacoco.gradle'
 
 android {
@@ -25,22 +20,16 @@ android {
 
         testOptions.unitTests.includeAndroidResources = true
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
 
     buildTypes {
         debug {
-            testCoverageEnabled true
             minifyEnabled false
+            testCoverageEnabled true
         }
         release {
             minifyEnabled true
             shrinkResources true
+            testCoverageEnabled false
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
@@ -56,10 +45,6 @@ android {
         animationsDisabled = true
         unitTests.all {
             systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
-            jacoco {
-                includeNoLocationClasses = true
-                excludes = ['jdk.internal.*']
-            }
         }
         unitTests {
             includeAndroidResources = true
