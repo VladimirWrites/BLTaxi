@@ -6,7 +6,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.vlad1m1r.bltaxi.taxi.domain.Language
-import com.vlad1m1r.bltaxi.taxi.domain.Repository
+import com.vlad1m1r.bltaxi.taxi.domain.TaxiRepository
 import com.vlad1m1r.bltaxi.taxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.local.language.LanguageProvider
@@ -16,13 +16,13 @@ import com.vlad1m1r.bltaxi.remote.TaxiProviderRemote
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
-class RepositoryShould {
+class TaxiRepositoryShould {
     private val orderProvider = mock<OrderProvider>()
     private val taxiProviderLocal = mock<TaxiProviderLocal>()
     private val taxiProviderRemote = mock<TaxiProviderRemote>()
     private val languageProvider = mock<LanguageProvider>()
 
-    private val repository: Repository = RepositoryImpl(
+    private val taxiRepository: TaxiRepository = TaxiRepositoryImpl(
         orderProvider, taxiProviderLocal, taxiProviderRemote, languageProvider
     )
 
@@ -43,7 +43,7 @@ class RepositoryShould {
             whenever(taxiProviderLocal.getTaxis(any())).thenReturn(listOfTaxis)
             whenever(languageProvider.getLanguage()).thenReturn(Language.BS)
 
-            assertThat(repository.getTaxis()).isEqualTo(TaxisResult.Success(listOfTaxis))
+            assertThat(taxiRepository.getTaxis()).isEqualTo(TaxisResult.Success(listOfTaxis))
         }
     }
 
@@ -55,7 +55,7 @@ class RepositoryShould {
             whenever(taxiProviderRemote.getTaxis(any())).thenReturn(listOfTaxis)
             whenever(languageProvider.getLanguage()).thenReturn(Language.BS)
 
-            assertThat(repository.getTaxis()).isEqualTo(TaxisResult.Success(listOfTaxis))
+            assertThat(taxiRepository.getTaxis()).isEqualTo(TaxisResult.Success(listOfTaxis))
         }
     }
 
@@ -67,7 +67,7 @@ class RepositoryShould {
             whenever(taxiProviderRemote.getTaxis(any())).thenReturn(listOfTaxis)
             whenever(languageProvider.getLanguage()).thenReturn(Language.EN)
 
-            repository.getTaxis()
+            taxiRepository.getTaxis()
 
             verify(taxiProviderLocal).saveTaxis(listOfTaxis, Language.EN)
         }
@@ -80,7 +80,7 @@ class RepositoryShould {
             whenever(taxiProviderLocal.getTaxis(any())).thenReturn(listOfTaxis)
             whenever(languageProvider.getLanguage()).thenReturn(Language.HR)
 
-            repository.getTaxis()
+            taxiRepository.getTaxis()
 
             verify(taxiProviderLocal).getTaxis(Language.HR)
         }
@@ -94,7 +94,7 @@ class RepositoryShould {
             whenever(taxiProviderRemote.getTaxis(any())).thenReturn(listOfTaxis)
             whenever(languageProvider.getLanguage()).thenReturn(Language.SR)
 
-            repository.getTaxis()
+            taxiRepository.getTaxis()
 
             verify(taxiProviderRemote).getTaxis(Language.SR)
         }
@@ -104,12 +104,12 @@ class RepositoryShould {
     fun getItemPosition_fromOrderProvider() {
         whenever(orderProvider.getItemPosition(10)).thenReturn(20)
 
-        assertThat(repository.getItemPosition(10)).isEqualTo(20)
+        assertThat(taxiRepository.getItemPosition(10)).isEqualTo(20)
     }
 
     @Test
     fun setItemPosition_toOrderProvider() {
-        repository.setItemPosition(10, 20)
+        taxiRepository.setItemPosition(10, 20)
 
         verify(orderProvider).setItemPosition(10, 20)
     }

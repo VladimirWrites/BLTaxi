@@ -12,7 +12,7 @@ import org.junit.Test
 class GetOrderedTaxiListShould {
 
     private val getTaxis = mock<GetTaxis>()
-    private val orderTaxis = mock<OrderTaxis>()
+    private val orderTaxis = mock<SetOrderOfTaxis>()
 
     private val getOrderedTaxiList = GetOrderedTaxiList(
         getTaxis,

@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi.taxi.data
 
 import com.vlad1m1r.bltaxi.taxi.domain.Language
-import com.vlad1m1r.bltaxi.taxi.domain.Repository
+import com.vlad1m1r.bltaxi.taxi.domain.TaxiRepository
 import com.vlad1m1r.bltaxi.taxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.local.language.LanguageProvider
 import com.vlad1m1r.bltaxi.local.order.OrderProvider
@@ -9,12 +9,12 @@ import com.vlad1m1r.bltaxi.local.taxi.TaxiProviderLocal
 import com.vlad1m1r.bltaxi.remote.TaxiProviderRemote
 import java.lang.Exception
 
-internal class RepositoryImpl(
+internal class TaxiRepositoryImpl(
     private val orderProvider: OrderProvider,
     private val taxiProviderLocal: TaxiProviderLocal,
     private val taxiProviderRemote: TaxiProviderRemote,
     private val languageProvider: LanguageProvider
-) : Repository {
+) : TaxiRepository {
 
     override suspend fun getTaxis(): TaxisResult {
         val currentLanguage = languageProvider.getLanguage()

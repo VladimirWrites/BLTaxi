@@ -2,7 +2,7 @@ package com.vlad1m1r.bltaxi.taxi.domain.usecase
 
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 
-class OrderTaxis(
+class SetOrderOfTaxis(
     private val getTaxiPosition: GetTaxiPosition,
     private val saveTaxiOrder: SaveTaxiOrder
 ) {

@@ -17,7 +17,7 @@ private const val BASE_URL = "https://raw.githubusercontent.com/VladimirWrites/B
 object RemoteModule {
 
     @Provides
-    fun bindTaxiProviderRemote(): TaxiProviderRemote {
+    fun provideTaxiProviderRemote(): TaxiProviderRemote {
         val okHttpClient = OkHttpClient.Builder().apply {
             if (BuildConfig.DEBUG) addInterceptor(
                 HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }

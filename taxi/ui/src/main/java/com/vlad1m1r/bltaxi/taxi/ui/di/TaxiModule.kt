@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi.taxi.ui.di
 
 import com.vlad1m1r.bltaxi.about.domain.ActionExecutor
-import com.vlad1m1r.bltaxi.taxi.domain.Repository
+import com.vlad1m1r.bltaxi.taxi.domain.TaxiRepository
 import com.vlad1m1r.bltaxi.about.domain.usecase.*
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.*
 import dagger.Module
@@ -14,51 +14,51 @@ import dagger.hilt.android.components.ViewModelComponent
 object TaxiModule {
 
     @Provides
-    fun bindGetTaxis(
-        repository: Repository
+    fun provideGetTaxis(
+        taxiRepository: TaxiRepository
     ): GetTaxis {
-        return GetTaxis(repository)
+        return GetTaxis(taxiRepository)
     }
 
     @Provides
-    fun bindSaveTaxiOrder(
-        repository: Repository
+    fun provideSaveTaxiOrder(
+        taxiRepository: TaxiRepository
     ): SaveTaxiOrder {
-        return SaveTaxiOrder(repository)
+        return SaveTaxiOrder(taxiRepository)
     }
 
     @Provides
-    fun bindGetTaxiPosition(
-        repository: Repository
+    fun provideGetTaxiPosition(
+        taxiRepository: TaxiRepository
     ): GetTaxiPosition {
-        return GetTaxiPosition(repository)
+        return GetTaxiPosition(taxiRepository)
     }
 
     @Provides
-    fun bindSaveTaxiPosition(
-        repository: Repository
+    fun provideSaveTaxiPosition(
+        taxiRepository: TaxiRepository
     ): SaveTaxiPosition {
-        return SaveTaxiPosition(repository)
+        return SaveTaxiPosition(taxiRepository)
     }
 
     @Provides
-    fun bindOrderTaxis(
+    fun provideOrderTaxis(
         getTaxiPosition: GetTaxiPosition,
         saveTaxiOrder: SaveTaxiOrder
-    ): OrderTaxis {
-        return OrderTaxis(getTaxiPosition, saveTaxiOrder)
+    ): SetOrderOfTaxis {
+        return SetOrderOfTaxis(getTaxiPosition, saveTaxiOrder)
     }
 
     @Provides
-    fun bindGetOrderedTaxiList(
+    fun provideGetOrderedTaxiList(
         getTaxis: GetTaxis,
-        orderTaxis: OrderTaxis
+        setOrderOfTaxis: SetOrderOfTaxis
     ): GetOrderedTaxiList {
-        return GetOrderedTaxiList(getTaxis, orderTaxis)
+        return GetOrderedTaxiList(getTaxis, setOrderOfTaxis)
     }
 
     @Provides
-    fun bindExecuteAction(
+    fun provideExecuteAction(
         actionExecutor: ActionExecutor
     ): ExecuteAction {
         return ExecuteAction(actionExecutor)

@@ -1,13 +1,13 @@
 package com.vlad1m1r.bltaxi.taxi.domain.usecase
 
 import com.nhaarman.mockitokotlin2.*
-import com.vlad1m1r.bltaxi.taxi.domain.Repository
+import com.vlad1m1r.bltaxi.taxi.domain.TaxiRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 class SaveTaxiPositionShould {
 
-    private val repository = mock<Repository>()
+    private val repository = mock<TaxiRepository>()
     private val saveTaxiPosition = SaveTaxiPosition(repository)
 
     @Test

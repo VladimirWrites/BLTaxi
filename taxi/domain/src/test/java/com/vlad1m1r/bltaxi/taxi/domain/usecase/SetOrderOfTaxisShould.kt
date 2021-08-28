@@ -10,12 +10,12 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 
-class OrderTaxisShould {
+class SetOrderOfTaxisShould {
 
     private val getTaxiPosition = mock<GetTaxiPosition>()
     private val saveTaxiOrder = mock<SaveTaxiOrder>()
 
-    private val orderTaxis = OrderTaxis(
+    private val orderTaxis = SetOrderOfTaxis(
         getTaxiPosition,
         saveTaxiOrder
     )

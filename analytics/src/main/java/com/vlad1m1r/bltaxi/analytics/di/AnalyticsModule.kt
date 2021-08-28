@@ -19,7 +19,7 @@ import dagger.hilt.components.SingletonComponent
 object AnalyticsModule {
 
     @Provides
-    fun bindTracker(
+    fun provideTracker(
         @ApplicationContext context: Context,
         sharedPreferences: SharedPreferences
     ): Tracker {
@@ -31,7 +31,7 @@ object AnalyticsModule {
     }
 
     @Provides
-    fun bindCrashReport(
+    fun provideCrashReport(
         @ApplicationContext context: Context,
         sharedPreferences: SharedPreferences
     ): CrashReport {

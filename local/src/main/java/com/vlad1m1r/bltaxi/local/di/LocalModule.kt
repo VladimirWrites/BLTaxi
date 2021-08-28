@@ -22,14 +22,14 @@ import dagger.hilt.components.SingletonComponent
 object LocalModule {
 
     @Provides
-    fun bindSharedPreferences(
+    fun provideSharedPreferences(
         @ApplicationContext context: Context
     ): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context)
     }
 
     @Provides
-    fun bindOrderProvider(
+    fun provideOrderProvider(
         @ApplicationContext context: Context
     ): OrderProvider {
         return OrderProviderImpl(
@@ -38,14 +38,14 @@ object LocalModule {
     }
 
     @Provides
-    fun bindLanguageProvider(
+    fun provideLanguageProvider(
         @ApplicationContext context: Context
     ): LanguageProvider {
         return LanguageProviderImpl(context)
     }
 
     @Provides
-    fun bindTaxiProviderLocal(
+    fun provideTaxiProviderLocal(
         @ApplicationContext context: Context
     ): TaxiProviderLocal {
         val database = Room.databaseBuilder(
