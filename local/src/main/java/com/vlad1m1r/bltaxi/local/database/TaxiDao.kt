@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.Language
 
 @Dao
 interface TaxiDao {

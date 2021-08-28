@@ -5,16 +5,16 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.vlad1m1r.bltaxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.Language
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 class TaxiProviderRemoteShould {
 
     private val taxiService = mock<TaxiService>()
-    val taxiProviderRemote: TaxiProviderRemote = TaxiProviderRemoteImpl(taxiService)
+    private val taxiProviderRemote: TaxiProviderRemote = TaxiProviderRemoteImpl(taxiService)
 
-    val taxi = Taxi(
+    private val taxi = Taxi(
         10,
         "name",
         "number",

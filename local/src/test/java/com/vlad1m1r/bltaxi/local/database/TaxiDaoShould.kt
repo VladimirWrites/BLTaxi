@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import com.vlad1m1r.bltaxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.Language
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before

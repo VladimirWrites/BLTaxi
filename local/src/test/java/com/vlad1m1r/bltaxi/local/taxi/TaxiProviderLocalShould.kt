@@ -5,20 +5,20 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.local.database.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 class TaxiProviderLocalShould {
-    val taxiDao = mock<TaxiDao>()
-    val taxiDatabase = mock<TaxiDatabase>() {
+    private val taxiDao = mock<TaxiDao>()
+    private val taxiDatabase = mock<TaxiDatabase> {
         on { taxiDao() }.thenReturn(taxiDao)
     }
-    val taxiProviderLocal: TaxiProviderLocal = TaxiProviderLocalImpl(taxiDatabase)
+    private val taxiProviderLocal: TaxiProviderLocal = TaxiProviderLocalImpl(taxiDatabase)
 
-    val itemTaxi = ItemTaxi(
+    private val itemTaxi = ItemTaxi(
         10,
         "name",
         "phone_number",
@@ -28,7 +28,7 @@ class TaxiProviderLocalShould {
         "viber_number"
     )
 
-    val taxi = Taxi(
+    private val taxi = Taxi(
         10,
         "name",
         "phone_number",

@@ -8,8 +8,8 @@ import org.junit.Test
 
 class NavigatorShould {
 
-    var navController = mock<NavController>()
-    val navigator: Navigator = Navigator()
+    private var navController = mock<NavController>()
+    private val navigator: Navigator = Navigator()
 
     @Test
     fun openAboutScreen_whenBind() {

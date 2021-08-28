@@ -11,7 +11,6 @@ import com.vlad1m1r.bltaxi.local.taxi.TaxiProviderLocalImpl
 import com.vlad1m1r.bltaxi.local.language.LanguageProvider
 import com.vlad1m1r.bltaxi.local.order.OrderProvider
 import com.vlad1m1r.bltaxi.local.taxi.TaxiProviderLocal
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

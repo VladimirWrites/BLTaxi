@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 
 class TrackerImpl(
     private val firebaseAnalytics: FirebaseAnalytics,

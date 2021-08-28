@@ -1,8 +1,8 @@
 package com.vlad1m1r.bltaxi.local.database
 
 import androidx.room.TypeConverter
-import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.Language.Companion.fromCode
+import com.vlad1m1r.bltaxi.taxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.Language.Companion.fromCode
 import java.util.*
 
 internal class Converters {

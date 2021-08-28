@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+apply from: "$project.rootDir/buildsystem/java_version.gradle"
+
+android {
+    compileSdkVersion Versions.compile_sdk
+    defaultConfig {
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+            testCoverageEnabled false
+        }
+    }
+}
+
+dependencies {
+    implementation Deps.appcompat
+    implementation Deps.kotlin_coroutines_android
+
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
+
+    implementation project(Modules.taxi_domain)
+    implementation project(Modules.local)
+    implementation project(Modules.remote)
+
+    testImplementation Deps.junit
+    testImplementation Deps.truth
+    testImplementation Deps.mockito_kotlin
+}

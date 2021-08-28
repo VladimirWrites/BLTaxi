@@ -1,11 +1,10 @@
 package com.vlad1m1r.bltaxi.local.taxi
 
-import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.local.database.TaxiDatabase
 import com.vlad1m1r.bltaxi.local.database.toItemTaxi
 import com.vlad1m1r.bltaxi.local.database.toTaxi
-import javax.inject.Inject
 
 class TaxiProviderLocalImpl(
     private val taxiDatabase: TaxiDatabase

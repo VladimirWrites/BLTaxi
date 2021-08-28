@@ -4,7 +4,7 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'dagger.hilt.android.plugin'
 
-apply from: '../buildsystem/java_version.gradle'
+apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
     compileSdkVersion Versions.compile_sdk
@@ -59,18 +59,17 @@ dependencies {
     implementation Deps.hilt
     kapt Deps.hilt_compiler
 
-    implementation project(Modules.domain)
+    implementation project(Modules.taxi_domain)
     implementation project(Modules.basedata)
     implementation project(Modules.baseui)
-    implementation project(Modules.repository)
-    implementation project(Modules.settings)
-    implementation project(Modules.about)
+    implementation project(Modules.about_data)
+    implementation project(Modules.about_ui)
+    implementation project(Modules.taxi_data)
+    implementation project(Modules.taxi_ui)
+    implementation project(Modules.settings_ui)
     implementation project(Modules.remote)
     implementation project(Modules.local)
-    implementation project(Modules.actions)
-    implementation project(Modules.taxi)
     implementation project(Modules.analytics)
-    implementation project(Modules.settings)
     implementation project(Modules.sync)
     implementation project(Modules.shortcuts)
 

@@ -3,7 +3,6 @@ package com.vlad1m1r.bltaxi.settings
 import android.app.Application
 import android.content.SharedPreferences
 import android.os.Build
-import androidx.databinding.ObservableInt
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ApplicationProvider
 import com.nhaarman.mockitokotlin2.mock
@@ -13,6 +12,7 @@ import com.vlad1m1r.bltaxi.analytics.CrashReport
 import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vlad1m1r.bltaxi.analytics.di.AnalyticsModule
 import com.vlad1m1r.bltaxi.launchFragmentInHiltContainer
+import com.vlad1m1r.bltaxi.settings.ui.SettingsFragment
 import dagger.hilt.android.testing.*
 import org.junit.Before
 import org.junit.Rule

@@ -3,11 +3,11 @@ package com.vlad1m1r.bltaxi.shortcuts
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
 import com.nhaarman.mockitokotlin2.*
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import org.junit.Test
 
 class ShortcutHandlerShould {
-    val itemTaxi = ItemTaxi(
+    private val itemTaxi = ItemTaxi(
         0,
         "name",
         "phone_number",
@@ -19,11 +19,11 @@ class ShortcutHandlerShould {
 
     private val shortcutInfo = mock<ShortcutInfo>()
     private val shortcutManager = mock<ShortcutManager>()
-    private val shortcutInfoProvider = mock<ShortcutInfoProvider>() {
+    private val shortcutInfoProvider = mock<ShortcutInfoProvider> {
         on { getShortcutInfoFromItemTaxi(any()) }.thenReturn(shortcutInfo)
     }
 
-    val shortcutHandler: ShortcutHandler =
+    private val shortcutHandler: ShortcutHandler =
         ShortcutHandlerImpl(shortcutManager, shortcutInfoProvider)
 
     @Test

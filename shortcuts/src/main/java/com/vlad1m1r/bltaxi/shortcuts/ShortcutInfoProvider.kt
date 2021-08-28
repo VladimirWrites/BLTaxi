@@ -7,7 +7,7 @@ import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

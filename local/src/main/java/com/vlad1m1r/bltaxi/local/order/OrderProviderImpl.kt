@@ -1,7 +1,6 @@
 package com.vlad1m1r.bltaxi.local.order
 
 import android.content.SharedPreferences
-import javax.inject.Inject
 
 private const val KEY_ITEM_POSITION = "item_position"
 

@@ -3,8 +3,8 @@ package com.vlad1m1r.bltaxi.local.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import java.util.*
 
 @Entity(tableName = "taxis")

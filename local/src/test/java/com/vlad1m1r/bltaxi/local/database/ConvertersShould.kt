@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi.local.database
 
 import com.google.common.truth.Truth.assertThat
-import com.vlad1m1r.bltaxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.Language
 import org.junit.Test
 import java.util.*
 

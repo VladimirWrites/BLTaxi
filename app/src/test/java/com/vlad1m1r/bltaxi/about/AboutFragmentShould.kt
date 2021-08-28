@@ -4,6 +4,8 @@ import android.os.Build
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import com.vlad1m1r.bltaxi.about.ui.AboutFragment
+import com.vlad1m1r.bltaxi.about.ui.AboutViewModel
 import com.vlad1m1r.bltaxi.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.*
 import org.junit.Rule
@@ -81,7 +83,7 @@ class AboutFragmentShould {
     }
 
     private fun launchAboutFragmentWithViewModel() {
-        launchFragmentInHiltContainer<AboutFragment>() {
+        launchFragmentInHiltContainer<AboutFragment> {
             (this as AboutFragment).setViewModel(viewModel)
         }
     }

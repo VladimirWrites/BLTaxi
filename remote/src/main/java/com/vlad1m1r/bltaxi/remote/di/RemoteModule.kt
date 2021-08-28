@@ -1,7 +1,6 @@
 package com.vlad1m1r.bltaxi.remote.di
 
 import com.vlad1m1r.bltaxi.remote.*
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

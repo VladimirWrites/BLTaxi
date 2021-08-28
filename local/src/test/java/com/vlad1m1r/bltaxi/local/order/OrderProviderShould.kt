@@ -9,12 +9,12 @@ import org.junit.Test
 
 class OrderProviderShould {
 
-    val sharedPreferencesEditor = mock<SharedPreferences.Editor>()
-    val sharedPreferences = mock<SharedPreferences> {
+    private val sharedPreferencesEditor = mock<SharedPreferences.Editor>()
+    private val sharedPreferences = mock<SharedPreferences> {
         on { edit() }.thenReturn(sharedPreferencesEditor)
     }
 
-    val orderProvider: OrderProvider = OrderProviderImpl(sharedPreferences)
+    private val orderProvider: OrderProvider = OrderProviderImpl(sharedPreferences)
 
     @Test
     fun getItemPosition() {

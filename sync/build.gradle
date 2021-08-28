@@ -39,7 +39,7 @@ dependencies {
 
     implementation project(Modules.remote)
     implementation project(Modules.local)
-    implementation project(Modules.domain)
+    implementation project(Modules.taxi_domain)
 
     testImplementation Deps.junit
     testImplementation Deps.truth

@@ -50,7 +50,7 @@ dependencies {
     implementation Deps.hilt
     kapt Deps.hilt_compiler
 
-    implementation project(Modules.domain)
+    implementation project(Modules.taxi_domain)
 
     testImplementation Deps.junit
     testImplementation Deps.truth

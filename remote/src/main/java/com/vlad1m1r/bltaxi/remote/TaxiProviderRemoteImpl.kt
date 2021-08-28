@@ -1,8 +1,7 @@
 package com.vlad1m1r.bltaxi.remote
 
-import com.vlad1m1r.bltaxi.domain.Language
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
-import javax.inject.Inject
+import com.vlad1m1r.bltaxi.taxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 
 class TaxiProviderRemoteImpl(
     private val taxiService: TaxiService

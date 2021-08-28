@@ -11,10 +11,10 @@ import org.junit.Test
 
 class BindingAdaptersShould {
 
-    val view = mock<View>()
-    val imageView = mock<ImageView>()
+    private val view = mock<View>()
+    private val imageView = mock<ImageView>()
 
-    val bitmapDrawable = mock<BitmapDrawable>()
+    private val bitmapDrawable = mock<BitmapDrawable>()
 
     @Test
     fun makeViewVisible_whenNotGone() {

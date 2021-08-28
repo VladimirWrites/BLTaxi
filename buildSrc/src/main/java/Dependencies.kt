@@ -114,17 +114,18 @@ object Deps {
 }
 
 object Modules {
-    const val about = ":about"
-    const val actions = ":actions"
+    const val about_ui= ":about:ui"
+    const val about_domain = ":about:domain"
+    const val about_data = ":about:data"
     const val analytics = ":analytics"
-    const val domain = ":domain"
     const val basedata = ":basedata"
     const val baseui = ":baseui"
     const val remote = ":remote"
     const val local = ":local"
-    const val repository = ":repository"
-    const val settings = ":settings"
-    const val taxi = ":taxi"
+    const val taxi_data = ":taxi:data"
+    const val taxi_domain = ":taxi:domain"
+    const val taxi_ui = ":taxi:ui"
+    const val settings_ui = ":settings:ui"
     const val sync = ":sync"
     const val shortcuts = ":shortcuts"
 }

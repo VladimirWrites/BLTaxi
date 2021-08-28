@@ -10,7 +10,7 @@
             android:label="TaxiActivity" />
     <fragment
             android:id="@+id/taxiFragment"
-            android:name="com.vlad1m1r.bltaxi.taxi.TaxiFragment"
+            android:name="com.vlad1m1r.bltaxi.taxi.ui.TaxiFragment"
             android:label="TaxiFragment">
         <action
                 android:id="@+id/action_taxiFragment_to_settingsFragment"
@@ -31,10 +31,10 @@
     </fragment>
     <fragment
             android:id="@+id/settingsFragment"
-            android:name="com.vlad1m1r.bltaxi.settings.SettingsFragment"
+            android:name="com.vlad1m1r.bltaxi.settings.ui.SettingsFragment"
             android:label="SettingsFragment" />
     <fragment
             android:id="@+id/aboutFragment"
-            android:name="com.vlad1m1r.bltaxi.about.AboutFragment"
+            android:name="com.vlad1m1r.bltaxi.about.ui.AboutFragment"
             android:label="AboutFragment" />
 </navigation>

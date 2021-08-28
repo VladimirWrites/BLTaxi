@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.findNavController
-import com.vlad1m1r.bltaxi.taxi.TaxiNavigator
+import com.vlad1m1r.bltaxi.taxi.ui.TaxiNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

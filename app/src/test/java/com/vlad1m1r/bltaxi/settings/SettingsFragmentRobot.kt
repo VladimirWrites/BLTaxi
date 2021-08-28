@@ -23,6 +23,6 @@ class SettingsFragmentRobot {
     private fun clickPreferenceAtPosition(position: Int) {
         onView(withId(androidx.preference.R.id.recycler_view)).perform(
             actionOnItemAtPosition<RecyclerView.ViewHolder>(position, click())
-        );
+        )
     }
 }

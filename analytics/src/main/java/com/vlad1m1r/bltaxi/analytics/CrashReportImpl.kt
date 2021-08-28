@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 
 class CrashReportImpl(
     @ApplicationContext private val context: Context,

@@ -7,7 +7,9 @@ import androidx.lifecycle.MutableLiveData
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.vlad1m1r.bltaxi.launchFragmentInHiltContainer
-import com.vlad1m1r.bltaxi.taxi.adapter.ItemTaxiViewModel
+import com.vlad1m1r.bltaxi.taxi.ui.TaxiFragment
+import com.vlad1m1r.bltaxi.taxi.ui.TaxiViewModel
+import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
@@ -29,7 +31,7 @@ class TaxiFragmentShould {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
-    private val taxis: LiveData<List<ItemTaxiViewModel>> = MutableLiveData<List<ItemTaxiViewModel>>()
+    private val taxis: LiveData<List<ItemTaxiViewModel>> = MutableLiveData()
     private val isLoading = ObservableBoolean(false)
     private val isErrorShown = ObservableBoolean(false)
 
@@ -51,7 +53,7 @@ class TaxiFragmentShould {
     }
 
     private fun launchTaxiFragmentWithViewModel(onFragment: (TaxiFragment) -> Unit) {
-        launchFragmentInHiltContainer<TaxiFragment>() {
+        launchFragmentInHiltContainer<TaxiFragment> {
             (this as TaxiFragment).setViewModel(viewModel)
             onFragment(this)
         }

@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi.remote
 
 import androidx.annotation.Keep
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 
 @Keep
 data class Taxi(

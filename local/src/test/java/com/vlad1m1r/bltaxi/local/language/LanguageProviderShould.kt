@@ -7,7 +7,7 @@ import android.os.Build
 import android.os.LocaleList
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.mock
-import com.vlad1m1r.bltaxi.domain.Language
+import com.vlad1m1r.bltaxi.taxi.domain.Language
 import org.junit.Test
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
@@ -15,23 +15,23 @@ import java.lang.reflect.Modifier
 import java.util.*
 
 class LanguageProviderShould {
-    val locale = mock<Locale> {
+    private val locale = mock<Locale> {
         on { language }.thenReturn("en")
     }
-    val locales = mock<LocaleList> {
+    private val locales = mock<LocaleList> {
         on { get(0) }.thenReturn(locale)
     }
-    val configuration = mock<Configuration> {
+    private val configuration = mock<Configuration> {
         on { locales }.thenReturn(locales)
     }
-    val resources = mock<Resources> {
+    private val resources = mock<Resources> {
         on { configuration }.thenReturn(configuration)
     }
-    val context = mock<Context> {
+    private val context = mock<Context> {
         on { resources }.thenReturn(resources)
     }
 
-    val languageProvider: LanguageProvider = LanguageProviderImpl(context)
+    private val languageProvider: LanguageProvider = LanguageProviderImpl(context)
 
     @Test
     fun getLanguage() {

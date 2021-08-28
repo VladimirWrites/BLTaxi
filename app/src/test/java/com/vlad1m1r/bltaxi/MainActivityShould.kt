@@ -8,7 +8,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.di.AppModule
-import com.vlad1m1r.bltaxi.taxi.TaxiNavigator
+import com.vlad1m1r.bltaxi.taxi.ui.TaxiNavigator
 import dagger.hilt.android.testing.*
 import kotlinx.coroutines.Dispatchers
 import org.junit.Rule

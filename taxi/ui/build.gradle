@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+apply from: "$project.rootDir/buildsystem/java_version.gradle"
+
+android {
+    compileSdkVersion Versions.compile_sdk
+    defaultConfig {
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+
+        testOptions.unitTests.includeAndroidResources = true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+            testCoverageEnabled false
+        }
+    }
+
+    buildFeatures {
+        buildConfig = true
+        dataBinding = true
+    }
+
+    testOptions {
+        animationsDisabled = true
+        unitTests.all {
+            systemProperty 'robolectric.dependency.repo.url', 'https://repo1.maven.org/maven2'
+        }
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+    implementation Deps.kotlin_stdlib
+    implementation Deps.kotlin_coroutines_android
+
+    implementation Deps.hilt
+    kapt Deps.hilt_compiler
+
+    implementation project(Modules.taxi_data)
+    implementation project(Modules.basedata)
+    implementation project(Modules.baseui)
+    implementation project(Modules.taxi_domain)
+    implementation project(Modules.about_domain)
+    implementation project(Modules.analytics)
+    implementation project(Modules.shortcuts)
+
+    testImplementation Deps.junit
+    testImplementation Deps.truth
+    testImplementation Deps.mockito_kotlin
+    testImplementation Deps.mockito_inline
+    testImplementation Deps.robolectric
+
+    kaptTest Deps.databinding_compiler
+}

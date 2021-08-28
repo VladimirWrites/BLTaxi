@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import com.vlad1m1r.bltaxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -14,10 +14,10 @@ import org.robolectric.annotation.Config
 @Config(sdk = [Build.VERSION_CODES.P], manifest = Config.NONE)
 class ShortcutInfoProviderShould {
 
-    val context = InstrumentationRegistry.getInstrumentation().targetContext
+    private val context = InstrumentationRegistry.getInstrumentation().targetContext
     private val shortcutInfoProvider = ShortcutInfoProvider(context)
 
-    val itemTaxi = ItemTaxi(
+    private val itemTaxi = ItemTaxi(
         0,
         "name",
         "phone_number",
