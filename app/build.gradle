@@ -8,7 +8,6 @@ apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
     compileSdkVersion Versions.compile_sdk
-    buildToolsVersion Versions.build_tools
     defaultConfig {
         applicationId "com.vlad1m1r.bltaxi"
         minSdkVersion Versions.min_sdk

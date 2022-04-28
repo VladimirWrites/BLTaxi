@@ -1,65 +1,64 @@
 object Versions {
-    const val kotlin = "1.5.21"
-    const val kotlin_coroutines = "1.5.1"
+    const val kotlin = "1.6.21"
+    const val kotlin_coroutines = "1.6.1"
 
     const val android_x_legacy_v4 = "1.0.0"
-    const val android_x_fragment = "1.3.6"
-    const val android_x_v7 = "1.2.0"
-    const val android_x_core_ktx = "1.3.2"
+    const val android_x_fragment = "1.4.1"
+    const val android_x_app_compat = "1.4.1"
+    const val android_x_core_ktx = "1.7.0"
     const val android_x_card_view = "1.0.0"
     const val android_x_recycler_view = "1.2.0"
-    const val android_x_lifecycle = "2.3.1"
-    const val android_x_constraint_layout = "2.0.4"
-    const val material_design = "1.2.1"
-    const val android_x_preference = "1.1.1"
-    const val android_x_work_manager = "2.5.0"
-    const val android_x_databinding_compiler = "7.0.1"
+    const val android_x_lifecycle = "2.4.1"
+    const val android_x_constraint_layout = "2.1.3"
+    const val material_design = "1.5.0"
+    const val android_x_preference = "1.2.0"
+    const val android_x_work_manager = "2.7.1"
+    const val android_x_databinding_compiler = "7.1.3"
 
-    const val android_x_navigation = "2.3.5"
+    const val android_x_navigation = "2.4.2"
 
-    const val room = "2.3.0"
+    const val room = "2.4.2"
 
-    const val firebase_core = "19.0.0"
-    const val firebase_analytics = "19.0.0"
-    const val firebase_crashlytics = "18.2.1"
+    const val firebase_core = "20.1.2"
+    const val firebase_analytics = "20.1.2"
+    const val firebase_crashlytics = "18.2.9"
 
-    const val hilt = "2.38.1"
+    const val hilt = "2.41"
     const val hiltAndroid = "1.0.0"
 
     const val retrofit = "2.9.0"
-    const val ok_http_interceptor = "4.9.1"
+    const val ok_http_interceptor = "4.9.3"
 
     const val junit = "4.13.2"
-    const val mockito = "3.12.1"
+    const val mockito = "4.5.1"
     const val mockito_kotlin = "2.2.0"
     const val truth = "1.1.3"
-    const val robolectric = "4.6.1"
+    const val robolectric = "4.7.3"
     const val arch_core_testing = "2.1.0"
-    const val fragment_test = "1.3.6"
+    const val fragment_test = "1.4.1"
     const val espresso_core = "3.4.0"
     const val test_core_ktx = "1.4.0"
 
-    const val gradle_android = "7.0.1"
-    const val google_services = "4.3.5"
-    const val crashlytics_gradle_plugin = "2.5.2"
+    const val gradle_android = "7.1.3"
+    const val google_services = "4.3.10"
+    const val crashlytics_gradle_plugin = "2.8.1"
 
     const val min_sdk = 21
-    const val target_sdk = 30
-    const val compile_sdk = 30
-    const val build_tools = "30.0.3"
+    const val target_sdk = 32
+    const val compile_sdk = 32
 
-    const val version_code = 20121
-    const val version_name = "2.1.2"
+    const val version_code = 20201
+    const val version_name = "2.2.0"
 }
 
 object Deps {
-    const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     const val kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
     const val kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
 
     const val support = "androidx.legacy:legacy-support-v4:${Versions.android_x_legacy_v4}"
     const val fragment = "androidx.fragment:fragment:${Versions.android_x_fragment}"
-    const val appcompat = "androidx.appcompat:appcompat:${Versions.android_x_v7}"
+    const val appcompat = "androidx.appcompat:appcompat:${Versions.android_x_app_compat}"
     const val core_ktx = "androidx.core:core-ktx:${Versions.android_x_core_ktx}"
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.android_x_recycler_view}"
     const val material_design = "com.google.android.material:material:${Versions.material_design}"
