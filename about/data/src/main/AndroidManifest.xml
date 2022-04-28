@@ -1,1 +1,6 @@
-<manifest package="com.vlad1m1r.bltaxi.about.data"/>
+<manifest package="com.vlad1m1r.bltaxi.about.data"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <queries>
+        <package android:name="com.viber.voip" />
+    </queries>
+</manifest>

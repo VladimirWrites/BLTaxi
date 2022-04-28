@@ -23,13 +23,12 @@ class CallNumberOnViberExecutor @Inject constructor(
     override operator fun invoke(action: Action): Intent {
         val action = action as Action.CallNumberOnViberAction
         if (Patterns.PHONE.matcher(action.phoneNumber).matches()) {
-            val uri = Uri.parse(context.getString(R.string.action__tel) + action.phoneNumber)
-            var intent = Intent(Intent.ACTION_DIAL)
+            val uri = Uri.parse("viber://contact?number=${action.phoneNumber}")
+            val intent = Intent(Intent.ACTION_VIEW)
             intent.data = uri
+            intent.flags = FLAG_ACTIVITY_NEW_TASK
             val resolveInfo = getViberResolveInfo(context.packageManager, intent)
             if (resolveInfo != null) {
-                intent = resolveInfo.getIntent()
-                intent.data = uri
                 return intent
             } else {
                 return openPlayStoreExecutor(Action.OpenPlayStoreAction("com.viber.voip"))
@@ -51,16 +50,11 @@ class CallNumberOnViberExecutor @Inject constructor(
     }
 
     private fun ResolveInfo.getIntent(): Intent {
-        val activityInfo = this.activityInfo
-        val name = ComponentName(
-            activityInfo.applicationInfo.packageName,
-            activityInfo.name
-        )
-        val intent = Intent(Intent.ACTION_DIAL)
-        intent.addCategory(Intent.CATEGORY_LAUNCHER)
-        intent.flags = FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
-        intent.component = name
 
-        return intent
+        val i = Intent(Intent.ACTION_DIAL)
+        val chooser = Intent.createChooser(i, context.resources.getString(R.string.action__call_number))
+        chooser.flags = FLAG_ACTIVITY_NEW_TASK
+        return chooser
+
     }
 }
