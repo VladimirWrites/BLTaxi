@@ -16,6 +16,7 @@ import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.about.domain.usecase.ExecuteAction
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.SaveTaxiOrder
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
+import com.vlad1m1r.bltaxi.taxi.domain.usecase.IsViberInstalled
 import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -29,6 +30,7 @@ class TaxiViewModel @Inject constructor(
     private val shortcutHandler: Provider<ShortcutHandler>,
     private val getOrderedTaxiList: GetOrderedTaxiList,
     private val executeAction: ExecuteAction,
+    private val isViberInstalled: IsViberInstalled,
     private val tracker: Tracker,
     private val dispatchers: CoroutineDispatcherProvider
 ) : ViewModel() {
@@ -47,7 +49,7 @@ class TaxiViewModel @Inject constructor(
                 when (taxisResult) {
                     is TaxisResult.Success -> {
                         val viewModelList = taxisResult.list.map {
-                            ItemTaxiViewModel(it, ::callTaxi, ::callTaxiOnViber)
+                            ItemTaxiViewModel(it, isViberInstalled(), ::callTaxi, ::callTaxiOnViber)
                         }
                         mutableTaxis.postValue(viewModelList)
                         isLoading.set(false)

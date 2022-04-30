@@ -47,8 +47,8 @@ object Versions {
     const val target_sdk = 31
     const val compile_sdk = 31
 
-    const val version_code = 20201
-    const val version_name = "2.2.0"
+    const val version_code = 20211
+    const val version_name = "2.2.1"
 }
 
 object Deps {
