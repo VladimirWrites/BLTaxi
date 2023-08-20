@@ -1,33 +1,33 @@
 object Versions {
-    const val kotlin = "1.6.21"
-    const val kotlin_coroutines = "1.6.1"
+    const val kotlin = "1.9.0"
+    const val kotlin_coroutines = "1.7.3"
 
     const val android_x_legacy_v4 = "1.0.0"
-    const val android_x_fragment = "1.4.1"
-    const val android_x_app_compat = "1.4.1"
-    const val android_x_core_ktx = "1.7.0"
+    const val android_x_fragment = "1.6.1"
+    const val android_x_app_compat = "1.6.1"
+    const val android_x_core_ktx = "1.10.1"
     const val android_x_card_view = "1.0.0"
-    const val android_x_recycler_view = "1.2.0"
-    const val android_x_lifecycle = "2.4.1"
-    const val android_x_constraint_layout = "2.1.3"
-    const val material_design = "1.5.0"
+    const val android_x_recycler_view = "1.3.1"
+    const val android_x_lifecycle = "2.6.1"
+    const val android_x_constraint_layout = "2.1.4"
+    const val material_design = "1.9.0"
     const val android_x_preference = "1.2.0"
-    const val android_x_work_manager = "2.7.1"
-    const val android_x_databinding_compiler = "7.1.3"
+    const val android_x_work_manager = "2.8.1"
+    const val android_x_databinding_compiler = "8.1.0"
 
-    const val android_x_navigation = "2.4.2"
+    const val android_x_navigation = "2.6.0"
 
     const val room = "2.4.2"
 
-    const val firebase_core = "20.1.2"
-    const val firebase_analytics = "20.1.2"
-    const val firebase_crashlytics = "18.2.9"
+    const val firebase_core = "21.1.1"
+    const val firebase_analytics = "21.3.0"
+    const val firebase_crashlytics = "18.4.0"
 
-    const val hilt = "2.41"
+    const val hilt = "2.47"
     const val hiltAndroid = "1.0.0"
 
     const val retrofit = "2.9.0"
-    const val ok_http_interceptor = "4.9.3"
+    const val ok_http_interceptor = "4.11.0"
 
     const val junit = "4.13.2"
     const val mockito = "4.5.1"
@@ -39,16 +39,16 @@ object Versions {
     const val espresso_core = "3.4.0"
     const val test_core_ktx = "1.4.0"
 
-    const val gradle_android = "7.1.3"
-    const val google_services = "4.3.10"
+    const val gradle_android = "8.1.0"
+    const val google_services = "4.3.15"
     const val crashlytics_gradle_plugin = "2.8.1"
 
     const val min_sdk = 21
-    const val target_sdk = 31
-    const val compile_sdk = 31
+    const val target_sdk = 33
+    const val compile_sdk = 33
 
-    const val version_code = 20211
-    const val version_name = "2.2.1"
+    const val version_code = 20311
+    const val version_name = "2.3.1"
 }
 
 object Deps {

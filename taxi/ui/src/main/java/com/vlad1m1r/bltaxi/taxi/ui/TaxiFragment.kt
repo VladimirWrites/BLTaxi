@@ -11,9 +11,8 @@ import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemMoveHelperCallback
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.vlad1m1r.bltaxi.taxi.R
 import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
-import com.vlad1m1r.bltaxi.taxi.databinding.FragmentTaxiBinding
+import com.vlad1m1r.bltaxi.taxi.ui.databinding.FragmentTaxiBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.jetbrains.annotations.TestOnly
 import javax.inject.Inject

@@ -6,10 +6,11 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
-    compileSdkVersion Versions.compile_sdk
+    namespace "com.vlad1m1r.bltaxi.settings.ui"
     defaultConfig {
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
+        compileSdk Versions.compile_sdk
         versionCode 1
         versionName "1.0"
 

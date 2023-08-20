@@ -3,8 +3,8 @@ package com.vlad1m1r.bltaxi.taxi.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.vlad1m1r.bltaxi.taxi.BR
-import com.vlad1m1r.bltaxi.taxi.R
+import com.vlad1m1r.bltaxi.taxi.ui.BR
+import com.vlad1m1r.bltaxi.taxi.ui.R
 import java.lang.IllegalArgumentException
 
 import java.util.Collections

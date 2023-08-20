@@ -5,9 +5,10 @@ apply plugin: 'kotlin-kapt'
 apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
-    compileSdkVersion Versions.compile_sdk
+    namespace "com.vlad1m1r.bltaxi.about.data"
     defaultConfig {
         minSdkVersion Versions.min_sdk
+        compileSdk Versions.compile_sdk
         targetSdkVersion Versions.target_sdk
         versionCode 1
         versionName "1.0"

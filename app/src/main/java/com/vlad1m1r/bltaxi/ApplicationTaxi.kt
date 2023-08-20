@@ -10,6 +10,8 @@ import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vlad1m1r.bltaxi.sync.SyncTaxisWorkManager
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
+import com.vlad1m1r.bltaxi.settings.ui.R as settingsR
+import com.vlad1m1r.bltaxi.analytics.R as analyticsR
 
 @HiltAndroidApp
 class ApplicationTaxi : Application(), Configuration.Provider {
@@ -37,19 +39,19 @@ class ApplicationTaxi : Application(), Configuration.Provider {
 
         syncTaxisWorkManager.start()
 
-        val keyThemePicker = getString(R.string.pref_key_theme_picker)
+        val keyThemePicker = getString(analyticsR.string.pref_key_theme_picker)
 
         if (!sharedPreferences.contains(keyThemePicker)) {
             sharedPreferences.edit()
-                .putString(keyThemePicker, getString(R.string.theme_value_default))
+                .putString(keyThemePicker, getString(settingsR.string.theme_value_default))
                 .apply()
             setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         } else {
             val theme = sharedPreferences.getString(keyThemePicker, "")
             val newMode = when (theme) {
-                getString(R.string.theme_value_dark) -> MODE_NIGHT_YES
-                getString(R.string.theme_value_light) -> MODE_NIGHT_NO
-                getString(R.string.theme_value_default) -> MODE_NIGHT_FOLLOW_SYSTEM
+                getString(settingsR.string.theme_value_dark) -> MODE_NIGHT_YES
+                getString(settingsR.string.theme_value_light) -> MODE_NIGHT_NO
+                getString(settingsR.string.theme_value_default) -> MODE_NIGHT_FOLLOW_SYSTEM
                 else -> throw IllegalArgumentException("Mode with value: $theme is not supported")
             }
             setDefaultNightMode(newMode)

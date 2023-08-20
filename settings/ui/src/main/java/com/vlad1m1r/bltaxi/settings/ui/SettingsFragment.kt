@@ -10,6 +10,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.vlad1m1r.baseui.addOnPropertyChanged
 import dagger.hilt.android.AndroidEntryPoint
+import com.vlad1m1r.bltaxi.analytics.R as analyticsR
 
 @AndroidEntryPoint
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -32,20 +33,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
             setDefaultNightMode(it.get())
         }
 
-        val theme = findPreference<ListPreference>(getString(R.string.pref_key_theme_picker))!!
+        val theme = findPreference<ListPreference>(getString(analyticsR.string.pref_key_theme_picker))!!
         theme.setOnPreferenceChangeListener { _, newValue ->
             viewModel.changeTheme(newValue as String)
             true
         }
 
-        findPreference<SwitchPreference>(getString(R.string.pref_key_analytics))!!.apply {
+        findPreference<SwitchPreference>(getString(analyticsR.string.pref_key_analytics))!!.apply {
             onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
                 viewModel.enableTracking(newValue as Boolean)
                 true
             }
         }
 
-        findPreference<SwitchPreference>(getString(R.string.pref_key_crash_reports))!!.apply {
+        findPreference<SwitchPreference>(getString(analyticsR.string.pref_key_crash_reports))!!.apply {
             onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
                 viewModel.enableCrashReport(newValue as Boolean)
                 true
