@@ -10,11 +10,8 @@ android {
     namespace "com.vlad1m1r.bltaxi"
     defaultConfig {
         applicationId "com.vlad1m1r.bltaxi"
-        minSdkVersion Versions.min_sdk
-        targetSdkVersion Versions.target_sdk
-        compileSdk Versions.compile_sdk
-        versionCode Versions.version_code
-        versionName Versions.version_name
+        versionCode libs.versions.versionCode.get().toInteger()
+        versionName libs.versions.versionName.get()
         setProperty("archivesBaseName", "BL Taxi-$versionName")
 
         testOptions.unitTests.includeAndroidResources = true
@@ -52,12 +49,11 @@ android {
 }
 
 dependencies {
-    implementation Deps.kotlin_stdlib
-    implementation Deps.kotlin_coroutines_android
-    implementation Deps.fragment
+    implementation libs.kotlin.coroutines.android
+    implementation libs.fragment
 
-    implementation Deps.hilt
-    kapt Deps.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     implementation project(Modules.taxi_domain)
     implementation project(Modules.basedata)
@@ -73,19 +69,19 @@ dependencies {
     implementation project(Modules.sync)
     implementation project(Modules.shortcuts)
 
-    testImplementation Deps.junit
+    testImplementation libs.junit
 
-    testImplementation Deps.truth
-    testImplementation Deps.mockito_kotlin
-    testImplementation Deps.mockito_inline
-    testImplementation Deps.robolectric
-    testImplementation Deps.fragment_test
-    testImplementation Deps.espresso_core
-    testImplementation Deps.espresso_contrib
-    testImplementation Deps.test_core_ktx
-    testImplementation Deps.hilt_test
+    testImplementation libs.truth
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.mockito.inline
+    testImplementation libs.robolectric
+    testImplementation libs.fragment.test
+    testImplementation libs.espresso.core
+    testImplementation libs.espresso.contrib
+    testImplementation libs.test.core.ktx
+    testImplementation libs.hilt.test
 
-    kaptTest Deps.databinding_compiler
+    kaptTest libs.databinding.compiler
 }
 apply plugin: 'com.google.gms.google-services'
 

@@ -8,9 +8,6 @@ apply from: "$project.rootDir/buildsystem/java_version.gradle"
 android {
     namespace "com.vlad1m1r.bltaxi.settings.ui"
     defaultConfig {
-        minSdkVersion Versions.min_sdk
-        targetSdkVersion Versions.target_sdk
-        compileSdk Versions.compile_sdk
         versionCode 1
         versionName "1.0"
 
@@ -40,18 +37,18 @@ android {
 }
 
 dependencies {
-    implementation Deps.hilt
-    kapt Deps.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
-    api Deps.preference_ktx
+    api libs.preference.ktx
 
     implementation project(Modules.baseui)
     implementation project(Modules.analytics)
     implementation project(Modules.basedata)
 
-    testImplementation Deps.junit
-    testImplementation Deps.truth
-    testImplementation Deps.mockito_kotlin
-    testImplementation Deps.mockito_inline
-    testImplementation Deps.robolectric
+    testImplementation libs.junit
+    testImplementation libs.truth
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.mockito.inline
+    testImplementation libs.robolectric
 }

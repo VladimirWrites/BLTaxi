@@ -1,8 +1,11 @@
 package com.vlad1m1r.bltaxi.settings.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import androidx.preference.ListPreference
 import androidx.preference.Preference

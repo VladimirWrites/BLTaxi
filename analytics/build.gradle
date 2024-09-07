@@ -7,9 +7,6 @@ apply from: '../buildsystem/java_version.gradle'
 android {
     namespace "com.vlad1m1r.bltaxi.analytics"
     defaultConfig {
-        minSdkVersion Versions.min_sdk
-        targetSdkVersion Versions.target_sdk
-        compileSdk Versions.compile_sdk
         versionCode 1
         versionName "1.0"
     }
@@ -37,18 +34,17 @@ android {
 }
 
 dependencies {
-    implementation Deps.kotlin_stdlib
 
-    implementation Deps.firebase_core
-    implementation Deps.firebase_crashlytics
-    implementation Deps.firebase_analytics
+    implementation libs.firebase.core
+    implementation libs.firebase.crashlytics
+    implementation libs.firebase.analytics
 
-    implementation Deps.hilt
-    kapt Deps.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
-    testImplementation Deps.junit
-    testImplementation Deps.truth
-    testImplementation Deps.mockito_kotlin
-    testImplementation Deps.mockito_inline
-    testImplementation Deps.robolectric
+    testImplementation libs.junit
+    testImplementation libs.truth
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.mockito.inline
+    testImplementation libs.robolectric
 }

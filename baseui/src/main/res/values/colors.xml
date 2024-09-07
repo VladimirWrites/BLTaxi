@@ -12,10 +12,10 @@
     <color name="on_secondary">#ffffff</color>
     <color name="scrim_color">#52000000</color>
 
-    <color name="surface">#EEEEEE</color>
+    <color name="surface">#eeeeee</color>
     <color name="on_surface">#000000</color>
 
-    <color name="background">#FFFFFFFF</color>
+    <color name="background">#ffffffff</color>
     <color name="on_background">#000000</color>
 
     <color name="error">#D34F28</color>

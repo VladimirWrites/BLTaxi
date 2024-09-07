@@ -8,9 +8,6 @@ apply from: '../buildsystem/java_version.gradle'
 android {
     namespace "com.vlad1m1r.bltaxi.local"
     defaultConfig {
-        minSdkVersion Versions.min_sdk
-        targetSdkVersion Versions.target_sdk
-        compileSdk Versions.compile_sdk
         versionCode 1
         versionName "1.0"
 
@@ -36,27 +33,26 @@ android {
 }
 
 dependencies {
-    implementation Deps.kotlin_stdlib
-    implementation Deps.kotlin_coroutines_core
+    implementation libs.kotlin.coroutines.core
 
-    implementation Deps.room_runtime
-    kapt Deps.room_compiler
-    implementation Deps.room_ktx
-    implementation Deps.room_common
+    implementation libs.room.runtime
+    kapt libs.room.compiler
+    implementation libs.room.ktx
+    implementation libs.room.common
 
-    implementation Deps.appcompat
-    implementation Deps.core_ktx
-    implementation Deps.preference_ktx
+    implementation libs.appcompat
+    implementation libs.core.ktx
+    implementation libs.preference.ktx
 
-    implementation Deps.hilt
-    kapt Deps.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     implementation project(Modules.taxi_domain)
 
-    testImplementation Deps.junit
-    testImplementation Deps.truth
-    testImplementation Deps.mockito_kotlin
-    testImplementation Deps.mockito_inline
-    testImplementation Deps.robolectric
-    testImplementation Deps.arch_core_testing
+    testImplementation libs.junit
+    testImplementation libs.truth
+    testImplementation libs.mockito.kotlin
+    testImplementation libs.mockito.inline
+    testImplementation libs.robolectric
+    testImplementation libs.arch.core.testing
 }

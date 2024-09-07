@@ -2,6 +2,8 @@ package com.vlad1m1r.bltaxi
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.findNavController
@@ -20,6 +22,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding!!.root) { view, insets ->
+            val systemInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(0, systemInsets.top, 0, systemInsets.bottom)
+            insets
+        }
     }
 
     override fun onSupportNavigateUp() = (navigator as Navigator).navigateUp()?:false

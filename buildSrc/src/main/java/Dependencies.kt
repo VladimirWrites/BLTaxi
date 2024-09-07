@@ -1,5 +1,5 @@
 object Versions {
-    const val kotlin = "1.9.0"
+    const val kotlin = "1.9.20"
     const val kotlin_coroutines = "1.7.3"
 
     const val android_x_legacy_v4 = "1.0.0"
@@ -39,7 +39,7 @@ object Versions {
     const val espresso_core = "3.4.0"
     const val test_core_ktx = "1.4.0"
 
-    const val gradle_android = "8.1.0"
+    const val gradle_android = "8.2.1"
     const val google_services = "4.3.15"
     const val crashlytics_gradle_plugin = "2.8.1"
 
@@ -52,58 +52,6 @@ object Versions {
 }
 
 object Deps {
-    const val kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-    const val kotlin_coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlin_coroutines}"
-    const val kotlin_coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlin_coroutines}"
-
-    const val support = "androidx.legacy:legacy-support-v4:${Versions.android_x_legacy_v4}"
-    const val fragment = "androidx.fragment:fragment:${Versions.android_x_fragment}"
-    const val appcompat = "androidx.appcompat:appcompat:${Versions.android_x_app_compat}"
-    const val core_ktx = "androidx.core:core-ktx:${Versions.android_x_core_ktx}"
-    const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.android_x_recycler_view}"
-    const val material_design = "com.google.android.material:material:${Versions.material_design}"
-    const val cardview = "androidx.cardview:cardview:${Versions.android_x_card_view}"
-    const val constraint_layout = "androidx.constraintlayout:constraintlayout:${Versions.android_x_constraint_layout}"
-    const val preference_ktx = "androidx.preference:preference-ktx:${Versions.android_x_preference}"
-    const val work_manager = "androidx.work:work-runtime-ktx:${Versions.android_x_work_manager}"
-    const val databinding_compiler = "androidx.databinding:databinding-compiler:${Versions.android_x_databinding_compiler}"
-
-    const val lifecycle = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.android_x_lifecycle}"
-
-    const val navigation_fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.android_x_navigation}"
-    const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.android_x_navigation}"
-
-    const val firebase_core = "com.google.firebase:firebase-core:${Versions.firebase_core}"
-    const val firebase_analytics = "com.google.firebase:firebase-analytics:${Versions.firebase_analytics}"
-    const val firebase_crashlytics = "com.google.firebase:firebase-crashlytics:${Versions.firebase_crashlytics}"
-
-    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val hilt_test = "com.google.dagger:hilt-android-testing:${Versions.hilt}"
-    const val hilt_compiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
-    const val hilt_work = "androidx.hilt:hilt-work:${Versions.hiltAndroid}"
-    const val hilt_android_compiler = "androidx.hilt:hilt-compiler:${Versions.hiltAndroid}"
-
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val ok_http_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.ok_http_interceptor}"
-    const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-
-    const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
-    const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
-    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
-    const val room_common = "androidx.room:room-common:${Versions.room}"
-
-    const val junit = "junit:junit:${Versions.junit}"
-    const val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
-    const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito}"
-    const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
-    const val truth = "com.google.truth:truth:${Versions.truth}"
-    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-    const val arch_core_testing = "androidx.arch.core:core-testing:${Versions.arch_core_testing}"
-    const val fragment_test = "androidx.fragment:fragment-testing:${Versions.fragment_test}"
-    const val espresso_core = "androidx.test.espresso:espresso-core:${Versions.espresso_core}"
-    const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso_core}"
-    const val test_core_ktx = "androidx.test:core-ktx:${Versions.test_core_ktx}"
-    const val work_manager_test = "androidx.work:work-testing:${Versions.android_x_work_manager}"
 
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.gradle_android}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"

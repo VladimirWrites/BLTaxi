@@ -3,23 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
+apply from: '../buildsystem/java_version.gradle'
+
 android {
     namespace "com.vlad1m1r.bltaxi.remote"
     defaultConfig {
-        minSdkVersion Versions.min_sdk
-        targetSdkVersion Versions.target_sdk
-        compileSdk Versions.compile_sdk
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     buildFeatures {
@@ -37,21 +29,20 @@ android {
 }
 
 dependencies {
-    implementation Deps.kotlin_stdlib
-    implementation Deps.kotlin_coroutines_core
+    implementation libs.kotlin.coroutines.core
 
-    implementation Deps.retrofit
-    implementation Deps.gson
-    implementation Deps.ok_http_interceptor
+    implementation libs.retrofit
+    implementation libs.gson
+    implementation libs.ok.http.interceptor
 
-    implementation Deps.appcompat
+    implementation libs.appcompat
 
-    implementation Deps.hilt
-    kapt Deps.hilt_compiler
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
     implementation project(Modules.taxi_domain)
 
-    testImplementation Deps.junit
-    testImplementation Deps.truth
-    testImplementation Deps.mockito_kotlin
+    testImplementation libs.junit
+    testImplementation libs.truth
+    testImplementation libs.mockito.kotlin
 }

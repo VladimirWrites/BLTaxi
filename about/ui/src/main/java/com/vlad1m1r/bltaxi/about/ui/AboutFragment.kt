@@ -3,6 +3,8 @@ package com.vlad1m1r.bltaxi.about.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.vlad1m1r.bltaxi.about.ui.databinding.FragmentAboutBinding
