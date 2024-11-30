@@ -6,19 +6,17 @@ apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
     namespace "com.vlad1m1r.bltaxi.about.data"
-    defaultConfig {
-        versionCode 1
-        versionName "1.0"
-    }
 
     buildTypes {
         debug {
             minifyEnabled false
-            testCoverageEnabled true
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
         }
        release {
            minifyEnabled false
-           testCoverageEnabled false
+           enableUnitTestCoverage false
+           enableAndroidTestCoverage false
        }
     }
 

@@ -8,8 +8,6 @@ apply from: '../buildsystem/java_version.gradle'
 android {
     namespace "com.vlad1m1r.bltaxi.remote"
     defaultConfig {
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -19,11 +17,12 @@ android {
     }
 
     buildTypes {
-        debug {
-            testCoverageEnabled true
-        }
         release {
             minifyEnabled false
+        }
+        debug {
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
         }
     }
 }

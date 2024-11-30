@@ -8,8 +8,6 @@ apply from: '../buildsystem/java_version.gradle'
 android {
     namespace "com.vlad1m1r.bltaxi.shortcuts"
     defaultConfig {
-        versionCode 1
-        versionName "1.0"
 
         testOptions.unitTests.includeAndroidResources = true
     }
@@ -17,11 +15,13 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            testCoverageEnabled true
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
         }
         release {
             minifyEnabled false
-            testCoverageEnabled false
+            enableUnitTestCoverage false
+            enableAndroidTestCoverage false
         }
     }
 

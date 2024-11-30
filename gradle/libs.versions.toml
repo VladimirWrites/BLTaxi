@@ -50,10 +50,10 @@ fragment_test = "1.8.3"
 espresso_core = "3.6.1"
 test_core_ktx = "1.6.1"
 
-compose = "2024.09.0"
+compose = "2024.09.03"
 compose-compiler = "1.5.4"
 
-gradle-android = "8.2.2"
+gradle-android = "8.7.1"
 google_services = "4.4.0"
 crashlytics_gradle_plugin = "2.8.1"
 detekt = "1.23.1"
