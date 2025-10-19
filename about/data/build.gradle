@@ -35,7 +35,7 @@ dependencies {
     implementation libs.hilt.android
     kapt libs.hilt.compiler
 
-    implementation project(Modules.about_domain)
+    implementation project(":about:domain")
 
     testImplementation libs.junit
     testImplementation libs.truth

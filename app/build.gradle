@@ -57,19 +57,19 @@ dependencies {
     implementation libs.hilt.android
     kapt libs.hilt.compiler
 
-    implementation project(Modules.taxi_domain)
-    implementation project(Modules.basedata)
-    implementation project(Modules.baseui)
-    implementation project(Modules.about_data)
-    implementation project(Modules.about_ui)
-    implementation project(Modules.taxi_data)
-    implementation project(Modules.taxi_ui)
-    implementation project(Modules.settings_ui)
-    implementation project(Modules.remote)
-    implementation project(Modules.local)
-    implementation project(Modules.analytics)
-    implementation project(Modules.sync)
-    implementation project(Modules.shortcuts)
+    implementation project(":taxi:domain")
+    implementation project(":basedata")
+    implementation project(":baseui")
+    implementation project(":about:data")
+    implementation project(":about:ui")
+    implementation project(":taxi:data")
+    implementation project(":taxi:ui")
+    implementation project(":settings:ui")
+    implementation project(":remote")
+    implementation project(":local")
+    implementation project(":analytics")
+    implementation project(":sync")
+    implementation project(":shortcuts")
 
     testImplementation libs.junit
 

@@ -4,15 +4,19 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
-        classpath Deps.android_gradle_plugin
-        classpath Deps.kotlin_gradle_plugin
-        classpath Deps.google_services_plugin
-        classpath Deps.crashlytics_gradle_plugin
-        classpath Deps.hilt_android_plugin
+        classpath "com.android.tools.build:gradle:8.7.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.20"
+        classpath "com.google.gms:google-services:4.4.0"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:2.8.1"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.49"
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.51.0'
     }
 }
+
+apply plugin: 'com.github.ben-manes.versions'
 
 allprojects {
     repositories {
@@ -24,4 +28,19 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+// Configure Gradle Versions Plugin to reject unstable versions
+tasks.named("dependencyUpdates").configure {
+    rejectVersionIf {
+        def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { keyword -> candidate.version.toUpperCase().contains(keyword) }
+        def unstableKeyword = ['ALPHA', 'BETA', 'RC', 'DEV', 'SNAPSHOT'].any { keyword -> candidate.version.toUpperCase().contains(keyword) }
+        return !stableKeyword && unstableKeyword
+    }
+
+    // Check for updates from release versions only
+    checkForGradleUpdate = true
+    outputFormatter = "plain,html"
+    outputDir = "build/dependencyUpdates"
+    reportfileName = "report"
 }

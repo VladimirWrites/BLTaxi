@@ -42,9 +42,9 @@ dependencies {
 
     api libs.preference.ktx
 
-    implementation project(Modules.baseui)
-    implementation project(Modules.analytics)
-    implementation project(Modules.basedata)
+    implementation project(":baseui")
+    implementation project(":analytics")
+    implementation project(":basedata")
 
     testImplementation libs.junit
     testImplementation libs.truth

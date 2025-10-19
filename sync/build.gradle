@@ -31,9 +31,9 @@ dependencies {
     api libs.hilt.work
     kapt libs.hilt.android.compiler
 
-    implementation project(Modules.remote)
-    implementation project(Modules.local)
-    implementation project(Modules.taxi_domain)
+    implementation project(":remote")
+    implementation project(":local")
+    implementation project(":taxi:domain")
 
     testImplementation libs.junit
     testImplementation libs.truth

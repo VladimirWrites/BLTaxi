@@ -41,9 +41,9 @@ dependencies {
 
     implementation libs.appcompat
 
-    implementation project(Modules.baseui)
-    implementation project(Modules.about_domain)
-    implementation project(Modules.basedata)
+    implementation project(":baseui")
+    implementation project(":about:domain")
+    implementation project(":basedata")
 
     testImplementation libs.junit
     testImplementation libs.truth

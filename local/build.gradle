@@ -47,7 +47,7 @@ dependencies {
     implementation libs.hilt.android
     kapt libs.hilt.compiler
 
-    implementation project(Modules.taxi_domain)
+    implementation project(":taxi:domain")
 
     testImplementation libs.junit
     testImplementation libs.truth
