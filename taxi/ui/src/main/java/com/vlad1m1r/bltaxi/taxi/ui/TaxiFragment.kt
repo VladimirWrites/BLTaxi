@@ -3,10 +3,10 @@ package com.vlad1m1r.bltaxi.taxi.ui
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.vlad1m1r.baseui.theme.BLTaxiTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -30,7 +30,7 @@ class TaxiFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                MaterialTheme {
+                BLTaxiTheme {
                     TaxiScreen(viewModel = viewModel)
                 }
             }

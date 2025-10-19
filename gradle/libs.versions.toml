@@ -53,6 +53,7 @@ test_core_ktx = "1.6.1"
 
 compose = "2024.09.03"
 compose-compiler = "1.5.4"
+reorderable = "2.4.0"
 
 gradle-android = "8.13.0"
 google_services = "4.4.0"
@@ -103,6 +104,8 @@ compose-runtime-rxjava2 = { group = "androidx.compose.runtime", name = "runtime-
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity"}
 compose-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle"}
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+
+reorderable = { group = "sh.calvin.reorderable", name = "reorderable", version.ref = "reorderable" }
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }

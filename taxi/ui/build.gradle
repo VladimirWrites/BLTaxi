@@ -65,6 +65,9 @@ dependencies {
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-compose:2.8.7"
 
+    // Reorderable
+    implementation libs.reorderable
+
     implementation project(":taxi:data")
     implementation project(":basedata")
     implementation project(":baseui")

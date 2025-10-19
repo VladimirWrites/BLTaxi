@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'dagger.hilt.android.plugin'
 
@@ -23,6 +24,7 @@ android {
 
     buildFeatures {
         dataBinding = true
+        compose = true
     }
 }
 
@@ -35,6 +37,12 @@ dependencies {
     api libs.constraint.layout
     api libs.appcompat
     api libs.core.ktx
+
+    // Compose
+    implementation platform(libs.compose.bom)
+    api libs.compose.material
+    api libs.compose.ui.tooling.preview
+    api libs.compose.runtime
 
     implementation libs.hilt.android
     ksp libs.hilt.compiler

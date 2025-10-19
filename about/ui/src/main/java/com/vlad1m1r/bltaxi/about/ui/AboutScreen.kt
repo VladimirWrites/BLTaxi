@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.material.icons.filled.Description
+import com.vlad1m1r.baseui.theme.BLTaxiTheme
 
 @Composable
 fun AboutScreen(
@@ -148,7 +149,7 @@ private fun AboutActionButton(
 @Preview(showBackground = true)
 @Composable
 private fun AboutScreenPreview() {
-    MaterialTheme {
+    BLTaxiTheme {
         AboutContent(
             state = AboutState(appVersion = "1.2.3"),
             onAction = {}
