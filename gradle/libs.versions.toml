@@ -146,4 +146,4 @@ crashlytics-gradle-plugin = { id = "com.google.firebase:firebase-crashlytics-gra
 
 [bundles]
 
-compose-ui = ["compose.runtime", "compose.material", "compose.ui.tooling.preview", "compose.ui.tooling", "compose.lifecycle.viewmodel", "compose.runtime.livedata", "compose.navigation"]
+compose-ui = ["compose-runtime", "compose-material", "compose-ui-tooling-preview", "compose-ui-tooling", "compose-lifecycle-viewmodel", "compose-runtime-livedata", "compose-navigation"]
