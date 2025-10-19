@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -126,8 +127,9 @@ private fun SettingsContent(
 private fun CategoryHeader(text: String) {
     Text(
         text = text,
-        style = MaterialTheme.typography.overline,
-        color = MaterialTheme.colors.primary,
+        style = MaterialTheme.typography.subtitle1,
+        color = MaterialTheme.colors.secondary,
+        fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(start = 72.dp, top = 16.dp, bottom = 8.dp, end = 16.dp)
     )
 }
@@ -150,7 +152,7 @@ private fun SwitchPreference(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+            tint = MaterialTheme.colors.onSurface,
             modifier = Modifier.padding(end = 32.dp)
         )
 
@@ -159,7 +161,8 @@ private fun SwitchPreference(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onSurface
             )
             Text(
                 text = summary,
@@ -171,7 +174,11 @@ private fun SwitchPreference(
 
         Switch(
             checked = checked,
-            onCheckedChange = onCheckedChange
+            onCheckedChange = onCheckedChange,
+            colors = androidx.compose.material.SwitchDefaults.colors(
+                checkedThumbColor = MaterialTheme.colors.secondary,
+                checkedTrackColor = MaterialTheme.colors.secondary.copy(alpha = 0.5f)
+            )
         )
     }
 }
@@ -193,14 +200,15 @@ private fun ListPreference(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+            tint = MaterialTheme.colors.onSurface,
             modifier = Modifier.padding(end = 32.dp)
         )
 
         Column {
             Text(
                 text = title,
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onSurface
             )
             Text(
                 text = summary,

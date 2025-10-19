@@ -130,8 +130,19 @@ private fun TaxiList(
 private fun CheckerPattern(
     modifier: Modifier = Modifier
 ) {
-    val lightGray = Color(0xFFEEEEEE)
-    val white = Color.White
+    // Use theme-aware colors for proper contrast in both light and dark themes
+    val darkSquare = if (MaterialTheme.colors.isLight) {
+        Color(0xFFEEEEEE)  // Light gray in light theme
+    } else {
+        Color(0xFF333333)  // Darker gray in dark theme
+    }
+
+    val lightSquare = if (MaterialTheme.colors.isLight) {
+        Color.White  // White in light theme
+    } else {
+        MaterialTheme.colors.onSurface.copy(alpha = 0.6f)  // Same as phone icon in dark theme
+    }
+
     val squareSize = 4.dp  // Size of each checker square
 
     Canvas(modifier = modifier) {
@@ -152,7 +163,7 @@ private fun CheckerPattern(
                     col % 2 != 0  // Odd row: grey on odd columns
                 }
 
-                val color = if (isGrey) lightGray else white
+                val color = if (isGrey) darkSquare else lightSquare
 
                 drawRect(
                     color = color,
