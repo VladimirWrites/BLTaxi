@@ -1,8 +1,8 @@
 package com.vlad1m1r.bltaxi.taxi.domain.usecase
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.verifyNoMoreInteractions
 import com.vlad1m1r.bltaxi.taxi.domain.TaxiRepository
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import kotlinx.coroutines.runBlocking

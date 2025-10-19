@@ -1,6 +1,6 @@
 package com.vlad1m1r.bltaxi.about.data
 
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import com.vlad1m1r.bltaxi.about.domain.Action
 import org.junit.Test
 

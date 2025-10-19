@@ -1,8 +1,8 @@
 package com.vlad1m1r.bltaxi.taxi.domain.usecase
 
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 import com.vlad1m1r.bltaxi.taxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import kotlinx.coroutines.runBlocking

@@ -6,7 +6,7 @@ import android.content.res.Resources
 import android.os.Build
 import android.os.LocaleList
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.mock
 import com.vlad1m1r.bltaxi.taxi.domain.Language
 import org.junit.Test
 import java.lang.reflect.Field

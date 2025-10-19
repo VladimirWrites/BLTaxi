@@ -2,7 +2,7 @@ package com.vlad1m1r.bltaxi.shortcuts
 
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import org.junit.Test
 

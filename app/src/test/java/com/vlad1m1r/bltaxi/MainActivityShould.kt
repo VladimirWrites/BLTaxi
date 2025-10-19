@@ -4,8 +4,8 @@ import android.os.Build
 import androidx.lifecycle.Lifecycle.State
 import androidx.navigation.findNavController
 import androidx.test.core.app.launchActivity
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.di.AppModule
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiNavigator

@@ -1,9 +1,9 @@
 package com.vlad1m1r.bltaxi.about
 
 import android.os.Build
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import com.vlad1m1r.bltaxi.about.ui.AboutFragment
 import com.vlad1m1r.bltaxi.about.ui.AboutViewModel
 import com.vlad1m1r.bltaxi.launchFragmentInHiltContainer

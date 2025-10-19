@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi.taxi.domain.usecase
 
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import com.vlad1m1r.bltaxi.taxi.domain.TaxiRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Test

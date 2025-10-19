@@ -1,10 +1,10 @@
 package com.vlad1m1r.bltaxi.remote
 
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.any
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import com.vlad1m1r.bltaxi.taxi.domain.Language
 import kotlinx.coroutines.runBlocking
 import org.junit.Test

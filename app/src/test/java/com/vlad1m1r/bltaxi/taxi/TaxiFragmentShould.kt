@@ -4,8 +4,8 @@ import android.os.Build
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import com.vlad1m1r.bltaxi.launchFragmentInHiltContainer
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiFragment
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiViewModel

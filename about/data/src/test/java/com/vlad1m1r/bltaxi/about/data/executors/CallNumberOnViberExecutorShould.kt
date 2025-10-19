@@ -2,7 +2,7 @@ package com.vlad1m1r.bltaxi.about.data.executors
 
 import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
-import com.nhaarman.mockitokotlin2.mock
+import org.mockito.kotlin.mock
 import com.vlad1m1r.bltaxi.about.data.CallNumberOnViberExecutor
 import com.vlad1m1r.bltaxi.about.data.OpenPlayStoreExecutor
 import com.vlad1m1r.bltaxi.about.domain.Action

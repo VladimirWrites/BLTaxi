@@ -1,9 +1,9 @@
 package com.vlad1m1r.bltaxi.taxi
 
 import android.os.Build
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.verifyNoMoreInteractions
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.about.domain.usecase.ExecuteAction
 import com.vlad1m1r.bltaxi.analytics.Tracker

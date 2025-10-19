@@ -1,8 +1,8 @@
 package com.vlad1m1r.bltaxi.taxi.ui.adapter
 
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import org.junit.Test
 
