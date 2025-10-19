@@ -7,10 +7,22 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+
+// Extended colors for custom use cases
+data class ExtendedColors(
+    val checkerDarkSquare: Color
+)
+
+val LocalExtendedColors = staticCompositionLocalOf {
+    ExtendedColors(checkerDarkSquare = Color.Unspecified)
+}
 
 private val LightColorScheme = lightColors(
     primary = PrimaryLight,
@@ -48,6 +60,9 @@ fun BLTaxiTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    val extendedColors = ExtendedColors(
+        checkerDarkSquare = if (darkTheme) CheckerDarkSquareNight else CheckerDarkSquareLight
+    )
 
     val view = LocalView.current
     if (!view.isInEditMode) {
@@ -66,8 +81,10 @@ fun BLTaxiTheme(
         }
     }
 
-    MaterialTheme(
-        colors = colorScheme,
-        content = content
-    )
+    CompositionLocalProvider(LocalExtendedColors provides extendedColors) {
+        MaterialTheme(
+            colors = colorScheme,
+            content = content
+        )
+    }
 }

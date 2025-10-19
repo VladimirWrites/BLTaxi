@@ -35,3 +35,10 @@ val OnBackgroundNight = Color(0xFFFFFFFF)
 // Common colors
 val ErrorColor = Color(0xFFD34F28)
 val OnErrorColor = Color(0xFFFFFFFF)
+
+// Checker pattern colors
+val CheckerDarkSquareLight = Color(0xFF888888)  // Darker gray for light theme
+val CheckerDarkSquareNight = Color(0xFF333333)  // Darker gray for dark theme
+
+// Transparent color for buttons
+val TransparentColor = Color(0x00000000)
