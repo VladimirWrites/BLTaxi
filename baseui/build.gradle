@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: '../buildsystem/java_version.gradle'
@@ -37,7 +37,7 @@ dependencies {
     api libs.core.ktx
 
     implementation libs.hilt.android
-    kapt libs.hilt.compiler
+    ksp libs.hilt.compiler
 
     api libs.navigation.fragment
     api libs.navigation.ui

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'dagger.hilt.android.plugin'
 
@@ -55,7 +55,7 @@ dependencies {
     implementation libs.fragment
 
     implementation libs.hilt.android
-    kapt libs.hilt.compiler
+    ksp libs.hilt.compiler
 
     implementation project(":taxi:domain")
     implementation project(":basedata")
@@ -83,13 +83,9 @@ dependencies {
     testImplementation libs.test.core.ktx
     testImplementation libs.hilt.test
 
-    kaptTest libs.databinding.compiler
+    kspTest libs.databinding.compiler
 }
 apply plugin: 'com.google.gms.google-services'
-
-kapt {
-    correctErrorTypes true
-}
 
 hilt {
     enableAggregatingTask = true

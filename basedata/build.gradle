@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: '../buildsystem/java_version.gradle'
@@ -26,7 +26,7 @@ dependencies {
     implementation libs.appcompat
 
     implementation libs.hilt.android
-    kapt libs.hilt.compiler
+    ksp libs.hilt.compiler
 
     testImplementation libs.junit
     testImplementation libs.truth

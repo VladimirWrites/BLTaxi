@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: '../buildsystem/java_version.gradle'
@@ -36,7 +36,7 @@ dependencies {
     implementation libs.kotlin.coroutines.core
 
     implementation libs.room.runtime
-    kapt libs.room.compiler
+    ksp libs.room.compiler
     implementation libs.room.ktx
     implementation libs.room.common
 
@@ -45,7 +45,7 @@ dependencies {
     implementation libs.preference.ktx
 
     implementation libs.hilt.android
-    kapt libs.hilt.compiler
+    ksp libs.hilt.compiler
 
     implementation project(":taxi:domain")
 

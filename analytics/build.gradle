@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.devtools.ksp'
 
 apply from: '../buildsystem/java_version.gradle'
 
@@ -38,7 +38,7 @@ dependencies {
     implementation libs.firebase.analytics
 
     implementation libs.hilt.android
-    kapt libs.hilt.compiler
+    ksp libs.hilt.compiler
 
     testImplementation libs.junit
     testImplementation libs.truth
