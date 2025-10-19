@@ -1,6 +1,6 @@
 package com.vlad1m1r.bltaxi.taxi.ui
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,9 +12,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -127,6 +127,44 @@ private fun TaxiList(
 }
 
 @Composable
+private fun CheckerPattern(
+    modifier: Modifier = Modifier
+) {
+    val lightGray = Color(0xFFEEEEEE)
+    val white = Color.White
+    val squareSize = 4.dp  // Size of each checker square
+
+    Canvas(modifier = modifier) {
+        val squareSizePx = squareSize.toPx()
+        val width = size.width
+        val height = size.height
+
+        // Calculate number of squares needed
+        val numRows = 3  // Three rows as specified
+        val numCols = (width / squareSizePx).toInt() + 1
+
+        for (row in 0 until numRows) {
+            for (col in 0 until numCols) {
+                // Alternate pattern: for even rows, start with grey; for odd rows, start with white
+                val isGrey = if (row % 2 == 0) {
+                    col % 2 == 0  // Even row: grey on even columns
+                } else {
+                    col % 2 != 0  // Odd row: grey on odd columns
+                }
+
+                val color = if (isGrey) lightGray else white
+
+                drawRect(
+                    color = color,
+                    topLeft = Offset(col * squareSizePx, row * squareSizePx),
+                    size = Size(squareSizePx, squareSizePx)
+                )
+            }
+        }
+    }
+}
+
+@Composable
 private fun TaxiCard(
     taxi: ItemTaxiViewModel,
     onCallClick: () -> Unit,
@@ -141,53 +179,63 @@ private fun TaxiCard(
         elevation = if (isDragging) 8.dp else 4.dp
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
+            modifier = Modifier.fillMaxWidth()
         ) {
-            // Taxi name and phone number row
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+            // Top section with padding
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 16.dp)
             ) {
-                Text(
-                    text = taxi.itemTaxi.name,
-                    style = MaterialTheme.typography.h6,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp
-                )
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = Icons.Default.Phone,
-                        contentDescription = "Phone",
-                        modifier = Modifier.size(20.dp),
-                        tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
+                // Taxi name and phone number row
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
-                        text = taxi.itemTaxi.phoneNumber,
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 18.sp,
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f)
+                        text = taxi.itemTaxi.name,
+                        style = MaterialTheme.typography.h6,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp
                     )
+
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Default.Phone,
+                            contentDescription = "Phone",
+                            modifier = Modifier.size(20.dp),
+                            tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = taxi.itemTaxi.phoneNumber,
+                            style = MaterialTheme.typography.body1,
+                            fontSize = 18.sp,
+                            color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f)
+                        )
+                    }
                 }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Checker pattern divider
-            Image(
-                painter = painterResource(id = R.drawable.taxi_pattern),
-                contentDescription = null,
+            // Checker pattern divider - full width, edge to edge
+            CheckerPattern(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(8.dp),
-                contentScale = ContentScale.FillBounds
+                    .height(12.dp)
             )
 
             Spacer(modifier = Modifier.height(12.dp))
+
+            // Bottom section with padding
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+            ) {
 
             // Start price and kilometer price row
             Row(
@@ -270,8 +318,11 @@ private fun TaxiCard(
                     )
                 }
             }
-        }
-    }
+
+            Spacer(modifier = Modifier.height(16.dp))
+            }  // Close bottom padding column
+        }  // Close outer column
+    }  // Close card
 }
 
 // Preview functions
