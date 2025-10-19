@@ -1,9 +1,6 @@
 package com.vlad1m1r.bltaxi.taxi.ui
 
 import android.os.Build
-import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
@@ -19,6 +16,13 @@ import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.IsViberInstalled
 import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -35,14 +39,48 @@ class TaxiViewModel @Inject constructor(
     private val dispatchers: CoroutineDispatcherProvider
 ) : ViewModel() {
 
-    private val mutableTaxis = MutableLiveData<List<ItemTaxiViewModel>>()
-    val taxis: LiveData<List<ItemTaxiViewModel>> = mutableTaxis
-    val isLoading = ObservableBoolean(false)
-    val isErrorShown = ObservableBoolean(false)
+    // Actions flow - UI sends actions to ViewModel
+    private val _actions = MutableSharedFlow<TaxiAction>()
+    private val actions: SharedFlow<TaxiAction> = _actions.asSharedFlow()
 
-    fun loadTaxis() {
-        isLoading.set(true)
-        isErrorShown.set(false)
+    // State flow - ViewModel exposes state to UI
+    private val _state = MutableStateFlow(TaxiState())
+    val state: StateFlow<TaxiState> = _state.asStateFlow()
+
+    // Effects flow - One-time events
+    private val _effects = MutableSharedFlow<TaxiEffect>()
+    val effects: SharedFlow<TaxiEffect> = _effects.asSharedFlow()
+
+    init {
+        observeActions()
+    }
+
+    private fun observeActions() {
+        viewModelScope.launch {
+            actions.collect { action ->
+                handleAction(action)
+            }
+        }
+    }
+
+    fun sendAction(action: TaxiAction) {
+        viewModelScope.launch {
+            _actions.emit(action)
+        }
+    }
+
+    private fun handleAction(action: TaxiAction) {
+        when (action) {
+            TaxiAction.LoadTaxis -> loadTaxis()
+            is TaxiAction.CallTaxi -> callTaxi(action.taxiViewModel.itemTaxi)
+            is TaxiAction.CallTaxiOnViber -> callTaxiOnViber(action.taxiViewModel.itemTaxi)
+            is TaxiAction.ReorderTaxis -> setTaxiOrder(action.taxis)
+        }
+    }
+
+    private fun loadTaxis() {
+        _state.update { it.copy(isLoading = true, isError = false) }
+
         viewModelScope.launch(dispatchers.io) {
             val taxisResult = getOrderedTaxiList()
             withContext(dispatchers.main) {
@@ -51,19 +89,17 @@ class TaxiViewModel @Inject constructor(
                         val viewModelList = taxisResult.list.map {
                             ItemTaxiViewModel(it, isViberInstalled(), ::callTaxi, ::callTaxiOnViber)
                         }
-                        mutableTaxis.postValue(viewModelList)
-                        isLoading.set(false)
+                        _state.update { it.copy(taxis = viewModelList, isLoading = false, isError = false) }
                     }
                     is TaxisResult.Error -> {
-                        isLoading.set(false)
-                        isErrorShown.set(true)
+                        _state.update { it.copy(isLoading = false, isError = true) }
                     }
                 }
             }
         }
     }
 
-    fun setTaxiOrder(viewModelList: List<ItemTaxiViewModel>) {
+    private fun setTaxiOrder(viewModelList: List<ItemTaxiViewModel>) {
         val taxis = viewModelList.map { it.itemTaxi }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             shortcutHandler.get().addShortcutsForTaxis(taxis)
@@ -71,6 +107,7 @@ class TaxiViewModel @Inject constructor(
         viewModelScope.launch(dispatchers.io) {
             saveTaxiOrder(taxis)
         }
+        _state.update { it.copy(taxis = viewModelList) }
     }
 
     private fun callTaxi(itemTaxi: ItemTaxi) {

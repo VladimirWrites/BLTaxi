@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'dagger.hilt.android.plugin'
 
@@ -25,6 +26,10 @@ android {
         }
     }
 
+    buildFeatures {
+        compose = true
+    }
+
     testOptions {
         animationsDisabled = true
         unitTests.all {
@@ -40,7 +45,25 @@ dependencies {
     implementation libs.hilt.android
     ksp libs.hilt.compiler
 
-    api libs.preference.ktx
+    // Compose
+    implementation platform(libs.compose.bom)
+    implementation libs.compose.material
+    implementation libs.compose.ui.tooling.preview
+    implementation libs.compose.runtime
+    implementation "androidx.compose.material:material-icons-core"
+    implementation "androidx.compose.material:material-icons-extended"
+    debugImplementation libs.compose.ui.tooling
+
+    // Compose integration
+    implementation libs.compose.activity
+    implementation libs.compose.lifecycle.viewmodel
+    implementation libs.hilt.navigation.compose
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.8.7"
+
+    // For PreferenceManager (SharedPreferences helper)
+    implementation libs.preference.ktx
 
     implementation project(":baseui")
     implementation project(":analytics")
@@ -51,4 +74,6 @@ dependencies {
     testImplementation libs.mockito.kotlin
     testImplementation libs.mockito.inline
     testImplementation libs.robolectric
+    testImplementation libs.arch.core.testing
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2"
 }
