@@ -132,13 +132,13 @@ private fun CheckerPattern(
 ) {
     // Use theme-aware colors for proper contrast in both light and dark themes
     val darkSquare = if (MaterialTheme.colors.isLight) {
-        Color(0xFFEEEEEE)  // Light gray in light theme
+        Color(0xFF888888)  // Darker gray in light theme
     } else {
         Color(0xFF333333)  // Darker gray in dark theme
     }
 
     val lightSquare = if (MaterialTheme.colors.isLight) {
-        Color.White  // White in light theme
+        MaterialTheme.colors.surface  // Card surface color (light gray #EEEEEE) in light theme
     } else {
         MaterialTheme.colors.onSurface.copy(alpha = 0.6f)  // Same as phone icon in dark theme
     }
