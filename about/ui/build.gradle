@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 
 apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
@@ -22,7 +23,7 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        compose = true
     }
 
     testOptions {
@@ -41,6 +42,23 @@ dependencies {
 
     implementation libs.appcompat
 
+    // Compose
+    implementation platform(libs.compose.bom)
+    implementation libs.compose.material
+    implementation libs.compose.ui.tooling.preview
+    implementation libs.compose.runtime
+    implementation "androidx.compose.material:material-icons-core"
+    implementation "androidx.compose.material:material-icons-extended"
+    debugImplementation libs.compose.ui.tooling
+
+    // Compose integration
+    implementation libs.compose.activity
+    implementation libs.compose.lifecycle.viewmodel
+    implementation libs.hilt.navigation.compose
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.8.7"
+
     implementation project(":baseui")
     implementation project(":about:domain")
     implementation project(":basedata")
@@ -50,6 +68,6 @@ dependencies {
     testImplementation libs.mockito.kotlin
     testImplementation libs.mockito.inline
     testImplementation libs.robolectric
-
-    kspTest libs.databinding.compiler
+    testImplementation libs.arch.core.testing
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2"
 }

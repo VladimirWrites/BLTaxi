@@ -1,36 +1,42 @@
 package com.vlad1m1r.bltaxi.about.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.vlad1m1r.bltaxi.about.ui.databinding.FragmentAboutBinding
 import dagger.hilt.android.AndroidEntryPoint
-import org.jetbrains.annotations.TestOnly
 
 @AndroidEntryPoint
-class AboutFragment : Fragment(R.layout.fragment_about) {
-    private lateinit var binding: FragmentAboutBinding
+class AboutFragment : Fragment() {
 
     private val viewModel: AboutViewModel by viewModels()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding = FragmentAboutBinding.bind(view)
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
-        if(activity is AppCompatActivity) {
-            (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.about__name)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                MaterialTheme {
+                    AboutScreen(viewModel = viewModel)
+                }
+            }
         }
     }
 
-    @TestOnly
-    fun setViewModel(viewModel: AboutViewModel) {
-        binding.viewModel = viewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (activity is AppCompatActivity) {
+            (activity as AppCompatActivity).supportActionBar?.apply {
+                setDisplayHomeAsUpEnabled(true)
+                setTitle(R.string.about__name)
+            }
+        }
     }
 }

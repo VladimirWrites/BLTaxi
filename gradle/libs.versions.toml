@@ -25,7 +25,7 @@ android_x_databinding_compiler = "8.6.0"
 
 activity = "1.9.2"
 navigation = "2.8.0"
-lifecycle = "2.67.0"
+lifecycle = "2.8.7"
 
 hilt = "2.56"
 hilt-navigation-compose = "1.2.0"
@@ -141,6 +141,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 google-services-plugin = { id = "com.google.gms:google-services", version.ref = "google_services" }
