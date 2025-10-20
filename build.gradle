@@ -7,15 +7,15 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:8.13.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.20"
-        classpath "org.jetbrains.kotlin:compose-compiler-gradle-plugin:2.2.20"
-        classpath "org.jetbrains.kotlin:kotlin-serialization:2.2.20"
-        classpath "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.2.20-2.0.3"
-        classpath "com.google.gms:google-services:4.4.0"
-        classpath "com.google.firebase:firebase-crashlytics-gradle:2.8.1"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.56"
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.51.0'
+        classpath libs.gradle.plugin
+        classpath libs.kotlin.gradle.plugin
+        classpath libs.kotlin.compose.compiler.plugin
+        classpath libs.kotlin.serialization.plugin
+        classpath libs.ksp.gradle.plugin
+        classpath libs.google.services.plugin
+        classpath libs.firebase.crashlytics.plugin
+        classpath libs.hilt.gradle.plugin
+        classpath libs.gradle.versions.plugin
     }
 }
 

@@ -63,7 +63,7 @@ dependencies {
     implementation libs.hilt.navigation.compose
 
     // Lifecycle
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.8.7"
+    implementation libs.lifecycle.runtime.compose
 
     // Reorderable
     implementation libs.reorderable
@@ -82,5 +82,5 @@ dependencies {
     testImplementation libs.mockito.inline
     testImplementation libs.robolectric
     testImplementation libs.arch.core.testing
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2"
+    testImplementation libs.kotlinx.coroutines.test
 }

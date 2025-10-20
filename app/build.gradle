@@ -53,7 +53,6 @@ android {
 
 dependencies {
     implementation libs.kotlin.coroutines.android
-    implementation libs.fragment
     implementation libs.preference.ktx
 
     implementation libs.hilt.android
@@ -89,7 +88,6 @@ dependencies {
     testImplementation libs.mockito.kotlin
     testImplementation libs.mockito.inline
     testImplementation libs.robolectric
-    testImplementation libs.fragment.test
     testImplementation libs.espresso.core
     testImplementation libs.espresso.contrib
     testImplementation libs.test.core.ktx
