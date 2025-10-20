@@ -26,6 +26,7 @@ import com.vlad1m1r.bltaxi.R
  * @param title The title to display in the app bar
  * @param showBackButton Whether to show the back navigation button
  * @param onBackClick Callback when back button is clicked
+ * @param showMenu Whether to show the overflow menu (only on home screen)
  * @param onSettingsClick Callback when Settings menu item is clicked
  * @param onAboutClick Callback when About menu item is clicked
  * @param modifier Modifier for styling
@@ -35,11 +36,12 @@ fun BLTaxiTopAppBar(
     title: String,
     showBackButton: Boolean,
     onBackClick: () -> Unit,
+    showMenu: Boolean = true,
     onSettingsClick: () -> Unit,
     onAboutClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var showMenu by remember { mutableStateOf(false) }
+    var menuExpanded by remember { mutableStateOf(false) }
 
     TopAppBar(
         title = { Text(text = title) },
@@ -56,33 +58,35 @@ fun BLTaxiTopAppBar(
             null
         },
         actions = {
-            IconButton(onClick = { showMenu = true }) {
-                Icon(
-                    imageVector = Icons.Default.MoreVert,
-                    contentDescription = stringResource(R.string.content_description_more_options)
-                )
-            }
-
-            DropdownMenu(
-                expanded = showMenu,
-                onDismissRequest = { showMenu = false }
-            ) {
-                DropdownMenuItem(
-                    onClick = {
-                        showMenu = false
-                        onSettingsClick()
-                    }
-                ) {
-                    Text(stringResource(R.string.menu_settings))
+            if (showMenu) {
+                IconButton(onClick = { menuExpanded = true }) {
+                    Icon(
+                        imageVector = Icons.Default.MoreVert,
+                        contentDescription = stringResource(R.string.content_description_more_options)
+                    )
                 }
 
-                DropdownMenuItem(
-                    onClick = {
-                        showMenu = false
-                        onAboutClick()
-                    }
+                DropdownMenu(
+                    expanded = menuExpanded,
+                    onDismissRequest = { menuExpanded = false }
                 ) {
-                    Text(stringResource(R.string.menu_about))
+                    DropdownMenuItem(
+                        onClick = {
+                            menuExpanded = false
+                            onSettingsClick()
+                        }
+                    ) {
+                        Text(stringResource(R.string.menu_settings))
+                    }
+
+                    DropdownMenuItem(
+                        onClick = {
+                            menuExpanded = false
+                            onAboutClick()
+                        }
+                    ) {
+                        Text(stringResource(R.string.menu_about))
+                    }
                 }
             }
         },

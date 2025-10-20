@@ -58,6 +58,9 @@ fun BLTaxiScaffold(
     // Show back button for all screens except Taxi (home)
     val showBackButton = currentRoute != Screen.Taxi.route
 
+    // Show overflow menu only on Taxi (home) screen
+    val showMenu = currentRoute == Screen.Taxi.route
+
     Scaffold(
         topBar = {
             BLTaxiTopAppBar(
@@ -66,6 +69,7 @@ fun BLTaxiScaffold(
                 onBackClick = {
                     navController.popBackStack()
                 },
+                showMenu = showMenu,
                 onSettingsClick = {
                     navController.navigate(Screen.Settings.route) {
                         launchSingleTop = true
