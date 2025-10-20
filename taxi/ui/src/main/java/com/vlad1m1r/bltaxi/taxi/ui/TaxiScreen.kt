@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
@@ -99,10 +100,20 @@ private fun TaxiList(
         }
     )
 
+    // Get navigation bar insets for bottom padding
+    val navigationBarInsets = WindowInsets.navigationBars
+    val density = LocalDensity.current
+    val navigationBarBottomPadding = with(density) { navigationBarInsets.getBottom(density).toDp() }
+
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 300.dp),
         state = gridState,
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
+        contentPadding = PaddingValues(
+            start = 16.dp,
+            end = 16.dp,
+            top = 16.dp,
+            bottom = 16.dp + navigationBarBottomPadding
+        ),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = Modifier.fillMaxSize()

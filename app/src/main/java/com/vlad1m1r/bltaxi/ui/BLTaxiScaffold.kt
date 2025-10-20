@@ -3,7 +3,10 @@ package com.vlad1m1r.bltaxi.ui
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -74,6 +77,7 @@ fun BLTaxiScaffold(
                 }
             )
         },
+        contentWindowInsets = WindowInsets.statusBars,
         modifier = modifier
     ) { paddingValues ->
         NavHost(
