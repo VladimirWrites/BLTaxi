@@ -86,72 +86,116 @@ internal fun TaxiCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Prices and additional info section - draggable
+            // Prices table section - draggable
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
                     .then(dragModifier)
             ) {
-                // Tariff 1
-                Text(
-                    text = "Tariff 1",
-                    style = MaterialTheme.typography.subtitle2,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 12.sp,
-                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
-                )
-                Spacer(modifier = Modifier.height(4.dp))
+                // Table header row
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Start: ${taxi.itemTaxi.tariff1.start}",
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 14.sp
+                        text = "",
+                        style = MaterialTheme.typography.body2,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(1f)
                     )
                     Text(
-                        text = "Per km: ${taxi.itemTaxi.tariff1.pricePerKm}",
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 14.sp
+                        text = "Start",
+                        style = MaterialTheme.typography.body2,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+                        modifier = Modifier.weight(1f)
                     )
                     Text(
-                        text = "Wait: ${taxi.itemTaxi.tariff1.hourOfWaiting}",
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 14.sp
+                        text = "Per km",
+                        style = MaterialTheme.typography.body2,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = "Wait",
+                        style = MaterialTheme.typography.body2,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+                        modifier = Modifier.weight(1f)
                     )
                 }
 
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Tariff 2
-                Text(
-                    text = "Tariff 2",
-                    style = MaterialTheme.typography.subtitle2,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 12.sp,
-                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
-                )
                 Spacer(modifier = Modifier.height(4.dp))
+
+                // Tariff 1 row
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Start: ${taxi.itemTaxi.tariff2.start}",
+                        text = "Tariff 1:",
                         style = MaterialTheme.typography.body1,
-                        fontSize = 14.sp
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.weight(1f)
                     )
                     Text(
-                        text = "Per km: ${taxi.itemTaxi.tariff2.pricePerKm}",
+                        text = taxi.itemTaxi.tariff1.start,
                         style = MaterialTheme.typography.body1,
-                        fontSize = 14.sp
+                        fontSize = 13.sp,
+                        modifier = Modifier.weight(1f)
                     )
                     Text(
-                        text = "Wait: ${taxi.itemTaxi.tariff2.hourOfWaiting}",
+                        text = taxi.itemTaxi.tariff1.pricePerKm,
                         style = MaterialTheme.typography.body1,
-                        fontSize = 14.sp
+                        fontSize = 13.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = taxi.itemTaxi.tariff1.hourOfWaiting,
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 13.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(2.dp))
+
+                // Tariff 2 row
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "Tariff 2:",
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = taxi.itemTaxi.tariff2.start,
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 13.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = taxi.itemTaxi.tariff2.pricePerKm,
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 13.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(
+                        text = taxi.itemTaxi.tariff2.hourOfWaiting,
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 13.sp,
+                        modifier = Modifier.weight(1f)
                     )
                 }
 
