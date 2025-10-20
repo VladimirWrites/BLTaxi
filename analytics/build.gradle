@@ -5,18 +5,18 @@ apply plugin: 'com.google.devtools.ksp'
 apply from: '../buildsystem/java_version.gradle'
 
 android {
-    namespace "com.vlad1m1r.bltaxi.analytics"
+    namespace = "com.vlad1m1r.bltaxi.analytics"
 
     buildTypes {
         debug {
-            minifyEnabled false
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            minifyEnabled = false
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
         release {
-            minifyEnabled false
-            enableUnitTestCoverage false
-            enableAndroidTestCoverage false
+            minifyEnabled = false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
         }
     }
 

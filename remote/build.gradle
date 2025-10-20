@@ -6,7 +6,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: '../buildsystem/java_version.gradle'
 
 android {
-    namespace "com.vlad1m1r.bltaxi.remote"
+    namespace = "com.vlad1m1r.bltaxi.remote"
     defaultConfig {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -18,11 +18,11 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
         }
         debug {
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
     }
 }

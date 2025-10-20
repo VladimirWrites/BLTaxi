@@ -6,7 +6,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: '../buildsystem/java_version.gradle'
 
 android {
-    namespace "com.vlad1m1r.bltaxi.local"
+    namespace = "com.vlad1m1r.bltaxi.local"
     defaultConfig {
 
         testOptions.unitTests.includeAndroidResources = true
@@ -14,14 +14,14 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            minifyEnabled = false
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
         release {
-            minifyEnabled false
-            enableUnitTestCoverage false
-            enableAndroidTestCoverage false
+            minifyEnabled = false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
         }
     }
 

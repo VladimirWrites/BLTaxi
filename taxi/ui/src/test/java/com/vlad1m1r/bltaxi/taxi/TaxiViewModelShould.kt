@@ -1,6 +1,5 @@
 package com.vlad1m1r.bltaxi.taxi
 
-import android.os.Build
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
@@ -10,28 +9,34 @@ import com.vlad1m1r.bltaxi.analytics.Tracker
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.GetOrderedTaxiList
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.SaveTaxiOrder
+import com.vlad1m1r.bltaxi.taxi.domain.usecase.IsViberInstalled
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiViewModel
+import com.vlad1m1r.bltaxi.taxi.ui.TaxiAction
 import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import java.lang.reflect.Field
-import java.lang.reflect.Modifier
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [28])
 class TaxiViewModelShould {
 
     private val saveTaxiOrder = mock<SaveTaxiOrder>()
     private val shortcutHandler = mock<ShortcutHandler>()
     private val getOrderedTaxiList = mock<GetOrderedTaxiList>()
     private val executeAction = mock<ExecuteAction>()
+    private val isViberInstalled = mock<IsViberInstalled>()
     private val tracker = mock<Tracker>()
     private val dispatchers = CoroutineDispatcherProvider(
         Dispatchers.Unconfined, Dispatchers.Unconfined
     )
 
     private val taxiViewModel = TaxiViewModel(
-        saveTaxiOrder, { shortcutHandler }, getOrderedTaxiList, executeAction, tracker, dispatchers
+        saveTaxiOrder, { shortcutHandler }, getOrderedTaxiList, executeAction, isViberInstalled, tracker, dispatchers
     )
 
     private val itemTaxi = ItemTaxi(
@@ -50,53 +55,42 @@ class TaxiViewModelShould {
             val itemTaxi1 = itemTaxi.copy(id = 1)
             val itemTaxi2 = itemTaxi.copy(id = 2)
             val listItemTaxiViewModel = listOf(
-                ItemTaxiViewModel(itemTaxi1, {}, {}),
-                ItemTaxiViewModel(itemTaxi2, {}, {})
+                ItemTaxiViewModel(itemTaxi1, false, {}, {}),
+                ItemTaxiViewModel(itemTaxi2, false, {}, {})
             )
-            taxiViewModel.setTaxiOrder(listItemTaxiViewModel)
+            taxiViewModel.sendAction(TaxiAction.ReorderTaxis(listItemTaxiViewModel))
 
             verify(saveTaxiOrder).invoke(listOf(itemTaxi1, itemTaxi2))
         }
     }
 
     @Test
+    @Config(sdk = [25])
     fun createShortcuts_whenSavingOrderIfVersionCode25OrHigher() {
-        setFinalStatic(Build.VERSION::class.java.getField("SDK_INT"), 25)
-
         val itemTaxi1 = itemTaxi.copy(id = 1)
         val itemTaxi2 = itemTaxi.copy(id = 2)
         val listItemTaxiViewModel = listOf(
-            ItemTaxiViewModel(itemTaxi1, {}, {}),
-            ItemTaxiViewModel(itemTaxi2, {}, {})
+            ItemTaxiViewModel(itemTaxi1, false, {}, {}),
+            ItemTaxiViewModel(itemTaxi2, false, {}, {})
         )
 
-        taxiViewModel.setTaxiOrder(listItemTaxiViewModel)
+        taxiViewModel.sendAction(TaxiAction.ReorderTaxis(listItemTaxiViewModel))
 
         verify(shortcutHandler).addShortcutsForTaxis(listOf(itemTaxi1, itemTaxi2))
-
     }
 
     @Test
+    @Config(sdk = [24])
     fun doNotCreateShortcuts_whenSavingOrderIfVersionCode24OrLower() {
-        setFinalStatic(Build.VERSION::class.java.getField("SDK_INT"), 24)
-
         val itemTaxi1 = itemTaxi.copy(id = 1)
         val itemTaxi2 = itemTaxi.copy(id = 2)
         val listItemTaxiViewModel = listOf(
-            ItemTaxiViewModel(itemTaxi1, {}, {}),
-            ItemTaxiViewModel(itemTaxi2, {}, {})
+            ItemTaxiViewModel(itemTaxi1, false, {}, {}),
+            ItemTaxiViewModel(itemTaxi2, false, {}, {})
         )
 
-        taxiViewModel.setTaxiOrder(listItemTaxiViewModel)
+        taxiViewModel.sendAction(TaxiAction.ReorderTaxis(listItemTaxiViewModel))
 
         verifyNoMoreInteractions(shortcutHandler)
-    }
-
-    private fun setFinalStatic(field: Field, newValue: Any?) {
-        field.isAccessible = true
-        val modifiersField: Field = Field::class.java.getDeclaredField("modifiers")
-        modifiersField.isAccessible = true
-        modifiersField.setInt(field, field.modifiers and Modifier.FINAL.inv())
-        field.set(null, newValue)
     }
 }

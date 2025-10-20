@@ -6,18 +6,18 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: '../buildsystem/java_version.gradle'
 
 android {
-    namespace "com.vlad1m1r.bltaxi.sync"
+    namespace = "com.vlad1m1r.bltaxi.sync"
 
     buildTypes {
         debug {
-            minifyEnabled false
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            minifyEnabled = false
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
         release {
-            minifyEnabled false
-            enableUnitTestCoverage false
-            enableAndroidTestCoverage false
+            minifyEnabled = false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
         }
     }
 }

@@ -23,7 +23,7 @@ apply plugin: 'com.github.ben-manes.versions'
 allprojects {
     repositories {
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven { url = 'https://jitpack.io' }
         google()
     }
 }

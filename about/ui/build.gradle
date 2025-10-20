@@ -7,18 +7,18 @@ apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
-    namespace "com.vlad1m1r.bltaxi.about.ui"
+    namespace = "com.vlad1m1r.bltaxi.about.ui"
 
     buildTypes {
         debug {
-            minifyEnabled false
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            minifyEnabled = false
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
         release {
-            minifyEnabled false
-            enableUnitTestCoverage false
-            enableAndroidTestCoverage false
+            minifyEnabled = false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
         }
     }
 
@@ -47,8 +47,8 @@ dependencies {
     implementation libs.compose.material
     implementation libs.compose.ui.tooling.preview
     implementation libs.compose.runtime
-    implementation "androidx.compose.material:material-icons-core"
-    implementation "androidx.compose.material:material-icons-extended"
+    implementation libs.compose.material.icons.core
+    implementation libs.compose.material.icons.extended
     debugImplementation libs.compose.ui.tooling
 
     // Compose integration

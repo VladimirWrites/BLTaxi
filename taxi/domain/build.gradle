@@ -4,18 +4,18 @@ apply plugin: 'kotlin-android'
 apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
-    namespace "com.vlad1m1r.bltaxi.taxi.domain"
+    namespace = "com.vlad1m1r.bltaxi.taxi.domain"
 
     buildTypes {
         debug {
-            minifyEnabled false
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            minifyEnabled = false
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
         release {
-            minifyEnabled false
-            enableUnitTestCoverage false
-            enableAndroidTestCoverage false
+            minifyEnabled = false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
         }
     }
 }

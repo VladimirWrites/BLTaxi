@@ -20,7 +20,7 @@ class ItemTaxiViewModelShould {
     @Test
     fun makeViberVisible_whenViberNumberIsNotNullOrBlank() {
         val taxi = itemTaxi.copy(viberNumber = "not_blank")
-        val itemTaxiViewModel = ItemTaxiViewModel(taxi, {}, {})
+        val itemTaxiViewModel = ItemTaxiViewModel(taxi, true, {}, {})
 
         assertThat(itemTaxiViewModel.isViberVisible).isTrue()
     }
@@ -28,7 +28,7 @@ class ItemTaxiViewModelShould {
     @Test
     fun makeViberNotVisible_whenViberNumberIsNull() {
         val taxi = itemTaxi.copy(viberNumber = null)
-        val itemTaxiViewModel = ItemTaxiViewModel(taxi, {}, {})
+        val itemTaxiViewModel = ItemTaxiViewModel(taxi, true, {}, {})
 
         assertThat(itemTaxiViewModel.isViberVisible).isFalse()
     }
@@ -36,7 +36,7 @@ class ItemTaxiViewModelShould {
     @Test
     fun makeViberNotVisible_whenViberNumberIsBlank() {
         val taxi = itemTaxi.copy(viberNumber = "   \t\n")
-        val itemTaxiViewModel = ItemTaxiViewModel(taxi, {}, {})
+        val itemTaxiViewModel = ItemTaxiViewModel(taxi, true, {}, {})
 
         assertThat(itemTaxiViewModel.isViberVisible).isFalse()
     }
@@ -44,7 +44,7 @@ class ItemTaxiViewModelShould {
     @Test
     fun executeCallFun_whenCallTaxi() {
         val call = mock<(itemTaxi: ItemTaxi) -> Unit>()
-        val itemTaxiViewModel = ItemTaxiViewModel(itemTaxi, call, {})
+        val itemTaxiViewModel = ItemTaxiViewModel(itemTaxi, true, call, {})
 
         itemTaxiViewModel.callTaxi()
 
@@ -54,7 +54,7 @@ class ItemTaxiViewModelShould {
     @Test
     fun executeCallViberFun_whenCallTaxiOnViber() {
         val callViber = mock<(itemTaxi: ItemTaxi) -> Unit>()
-        val itemTaxiViewModel = ItemTaxiViewModel(itemTaxi, {}, callViber)
+        val itemTaxiViewModel = ItemTaxiViewModel(itemTaxi, true, {}, callViber)
 
         itemTaxiViewModel.callTaxiOnViber()
 

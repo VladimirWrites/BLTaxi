@@ -7,23 +7,22 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: '../buildsystem/java_version.gradle'
 
 android {
-    namespace "com.vlad1m1r.baseui"
+    namespace = "com.vlad1m1r.baseui"
 
     buildTypes {
         debug {
-            minifyEnabled false
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            minifyEnabled = false
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
         release {
-            minifyEnabled false
-            enableUnitTestCoverage false
-            enableAndroidTestCoverage false
+            minifyEnabled = false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
         }
     }
 
     buildFeatures {
-        dataBinding = true
         compose = true
     }
 }
@@ -39,10 +38,13 @@ dependencies {
     api libs.core.ktx
 
     // Compose
-    implementation platform(libs.compose.bom)
+    api platform(libs.compose.bom)
     api libs.compose.material
     api libs.compose.ui.tooling.preview
     api libs.compose.runtime
+    api libs.compose.material.icons.core
+    api libs.compose.material.icons.extended
+    debugImplementation libs.compose.ui.tooling
 
     implementation libs.hilt.android
     ksp libs.hilt.compiler

@@ -35,7 +35,7 @@ class OpenPlayStoreExecutorShould {
 
     @Test
     fun openPlayStore_whenPlayStoreIsAvailable() {
-        whenever(packageManager.queryIntentActivities(any(), any())).thenReturn(listOf(ResolveInfo()))
+        whenever(packageManager.queryIntentActivities(any<Intent>(), any<Int>())).thenReturn(listOf(ResolveInfo()))
 
         val intent = openPlayStoreExecutor(Action.OpenPlayStoreAction("com.vlad1m1r.bltaxi"))
 
@@ -48,7 +48,7 @@ class OpenPlayStoreExecutorShould {
 
     @Test
     fun openPlayStoreOnWeb_whenPlayStoreIsNotAvailable() {
-        whenever(packageManager.queryIntentActivities(any(), any())).thenReturn(emptyList())
+        whenever(packageManager.queryIntentActivities(any<Intent>(), any<Int>())).thenReturn(emptyList())
 
         openPlayStoreExecutor(Action.OpenPlayStoreAction("com.vlad1m1r.bltaxi"))
 

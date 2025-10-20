@@ -1,6 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
-          package="com.vlad1m1r.bltaxi">
+          xmlns:dist="http://schemas.android.com/apk/distribution">
 
     <queries>
         <package android:name="com.viber.voip" />

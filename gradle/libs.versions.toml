@@ -100,6 +100,8 @@ compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling"}
 compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata"}
 compose-runtime-rxjava2 = { group = "androidx.compose.runtime", name = "runtime-rxjava2"}
+compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core"}
+compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended"}
 
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity"}
 compose-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle"}

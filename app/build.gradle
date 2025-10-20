@@ -7,7 +7,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: "$project.rootDir/buildsystem/java_version.gradle"
 
 android {
-    namespace "com.vlad1m1r.bltaxi"
+    namespace = "com.vlad1m1r.bltaxi"
     defaultConfig {
         applicationId "com.vlad1m1r.bltaxi"
         versionCode libs.versions.versionCode.get().toInteger()
@@ -19,24 +19,23 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
-            enableUnitTestCoverage true
-            enableAndroidTestCoverage true
+            minifyEnabled = false
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled = true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile(
                     'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
-            enableUnitTestCoverage false
-            enableAndroidTestCoverage false
+            enableUnitTestCoverage = false
+            enableAndroidTestCoverage = false
         }
     }
 
     buildFeatures {
         buildConfig = true
-        dataBinding = true
     }
 
     testOptions {
@@ -82,8 +81,6 @@ dependencies {
     testImplementation libs.espresso.contrib
     testImplementation libs.test.core.ktx
     testImplementation libs.hilt.test
-
-    kspTest libs.databinding.compiler
 }
 apply plugin: 'com.google.gms.google-services'
 
