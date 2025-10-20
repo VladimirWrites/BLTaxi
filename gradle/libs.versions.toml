@@ -1,7 +1,7 @@
 [versions]
 
-versionCode = "20323"
-versionName = "2.3.2"
+versionCode = "30000"
+versionName = "3.0.0"
 
 minSdk = "21"
 targetSdk = "35"
