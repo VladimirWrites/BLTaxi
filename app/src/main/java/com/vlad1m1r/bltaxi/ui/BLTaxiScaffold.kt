@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -74,10 +75,10 @@ fun BLTaxiScaffold(
                     navController.navigate(Screen.About.route) {
                         launchSingleTop = true
                     }
-                }
+                },
+                modifier = Modifier.windowInsetsPadding(WindowInsets.statusBars)
             )
         },
-        contentWindowInsets = WindowInsets.statusBars,
         modifier = modifier
     ) { paddingValues ->
         NavHost(
