@@ -107,6 +107,11 @@ compose-activity = { group = "androidx.activity", name = "activity-compose", ver
 compose-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle"}
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 
+# Compose testing dependencies
+compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4"}
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest"}
+navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation" }
+
 reorderable = { group = "sh.calvin.reorderable", name = "reorderable", version.ref = "reorderable" }
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

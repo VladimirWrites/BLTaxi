@@ -1,69 +1,62 @@
 package com.vlad1m1r.bltaxi
 
-import android.os.Build
-import androidx.lifecycle.Lifecycle.State
-import androidx.navigation.findNavController
-import androidx.test.core.app.launchActivity
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
-import com.vlad1m1r.baseui.CoroutineDispatcherProvider
-import com.vlad1m1r.bltaxi.di.AppModule
-import com.vlad1m1r.bltaxi.taxi.ui.TaxiNavigator
-import dagger.hilt.android.testing.*
-import kotlinx.coroutines.Dispatchers
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithText
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
-
-@RunWith(RobolectricTestRunner::class)
-@UninstallModules(AppModule::class)
 @HiltAndroidTest
-@Config(sdk = [Build.VERSION_CODES.P], application = HiltTestApplication::class)
+@RunWith(RobolectricTestRunner::class)
+@Config(
+    sdk = [29],
+    application = HiltTestApplication::class,
+    qualifiers = "en"
+)
 class MainActivityShould {
 
-    @get:Rule
-    var hiltRule = HiltAndroidRule(this)
+    @get:Rule(order = 0)
+    val hiltRule = HiltAndroidRule(this)
 
-    @BindValue
-    val navigator: TaxiNavigator = mock<Navigator>()
+    @get:Rule(order = 1)
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
 
-    @BindValue
-    val coroutineDispatcherProvider = CoroutineDispatcherProvider(
-        main = Dispatchers.Unconfined,
-        io = Dispatchers.Unconfined
-    )
-
-    @Test
-    fun bindNavigator_onResume() {
-        val scenario = launchActivity<MainActivity>()
-
-        scenario.moveToState(State.RESUMED)
-
-        scenario.onActivity {
-            verify(navigator as Navigator).bind(it.findNavController(R.id.nav_host_fragment))
-        }
+    @Before
+    fun setup() {
+        hiltRule.inject()
     }
 
     @Test
-    fun unbindNavigator_onPause() {
-        val scenario = launchActivity<MainActivity>()
-
-        scenario.moveToState(State.STARTED)
-
-        verify(navigator as Navigator).unbind()
+    fun launchSuccessfully() {
+        // Activity launches without crashing - test passes if no exception thrown
+        composeTestRule.activity
     }
 
     @Test
-    fun navigateUp() {
-        val scenario = launchActivity<MainActivity>()
+    fun displayBLTaxiAppContent() {
+        // Verify the BLTaxiApp composable is rendered by checking for TopAppBar title
+        composeTestRule
+            .onNodeWithText("BL Taxi")
+            .assertIsDisplayed()
+    }
 
-        scenario.onActivity {
-            it.onSupportNavigateUp()
-        }
+    @Test
+    fun renderComposeContent() {
+        // Verify that MainActivity uses setContent (Compose) instead of setContentView (XML)
+        // This is validated by checking that the Compose UI hierarchy is present
+        val activity = composeTestRule.activity
+        assert(activity != null)
 
-        verify(navigator as Navigator).navigateUp()
+        // Verify we have Compose content by checking for the root composable
+        composeTestRule
+            .onNodeWithText("BL Taxi")
+            .assertExists()
     }
 }

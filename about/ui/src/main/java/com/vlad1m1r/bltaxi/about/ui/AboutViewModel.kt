@@ -87,34 +87,4 @@ class AboutViewModel @Inject constructor(
             }
         }
     }
-
-    // Legacy methods for backward compatibility with existing Fragment/tests
-    // TODO: Remove after migrating to Compose
-    @Deprecated("Use sendAction(AboutAction.SendEmailClicked) instead")
-    fun getAppVersionName() = appInfoProvider.getVersionName()
-
-    @Deprecated("Use sendAction(AboutAction.SendEmailClicked) instead")
-    fun writeEmail() {
-        sendAction(AboutAction.SendEmailClicked)
-    }
-
-    @Deprecated("Use sendAction(AboutAction.RateAppClicked) instead")
-    fun rateApp() {
-        sendAction(AboutAction.RateAppClicked)
-    }
-
-    @Deprecated("Use sendAction(AboutAction.ShareAppClicked) instead")
-    fun shareApp() {
-        sendAction(AboutAction.ShareAppClicked)
-    }
-
-    @Deprecated("Use sendAction(AboutAction.PrivacyPolicyClicked) instead")
-    fun openPrivacyPolicy() {
-        sendAction(AboutAction.PrivacyPolicyClicked)
-    }
-
-    @Deprecated("Use sendAction(AboutAction.TermsAndConditionsClicked) instead")
-    fun openTermsAndConditions() {
-        sendAction(AboutAction.TermsAndConditionsClicked)
-    }
 }

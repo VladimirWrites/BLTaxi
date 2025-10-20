@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 apply plugin: 'com.google.devtools.ksp'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'dagger.hilt.android.plugin'
@@ -36,6 +37,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
     }
 
     testOptions {
@@ -54,7 +56,17 @@ dependencies {
     implementation libs.fragment
 
     implementation libs.hilt.android
+    implementation libs.hilt.navigation.compose
     ksp libs.hilt.compiler
+
+    // Compose dependencies for navigation
+    implementation platform(libs.compose.bom)
+    implementation libs.compose.material
+    implementation libs.compose.ui.tooling.preview
+    implementation libs.compose.runtime
+    implementation libs.compose.navigation
+    implementation libs.compose.activity
+    debugImplementation libs.compose.ui.tooling
 
     implementation project(":taxi:domain")
     implementation project(":basedata")
@@ -81,6 +93,11 @@ dependencies {
     testImplementation libs.espresso.contrib
     testImplementation libs.test.core.ktx
     testImplementation libs.hilt.test
+    kspTest libs.hilt.compiler
+
+    // Compose test dependencies
+    testImplementation libs.compose.ui.test.junit4
+    testImplementation libs.navigation.testing
 }
 apply plugin: 'com.google.gms.google-services'
 
