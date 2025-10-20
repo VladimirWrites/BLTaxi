@@ -10,6 +10,7 @@ compileSdk = "36"
 kotlin = "2.2.20"
 ksp = "2.2.20-2.0.3"
 coroutines = "1.10.2"
+kotlinx-serialization = "1.9.0"
 
 android_x_legacy_v4 = "1.0.0"
 android_x_fragment = "1.8.3"
@@ -31,8 +32,9 @@ hilt = "2.56"
 hilt-navigation-compose = "1.2.0"
 hilt-work = "1.2.0"
 
-retrofit = "2.9.0"
-ok_http_interceptor = "4.12.0"
+retrofit = "3.0.0"
+retrofit-kotlinx-serialization = "1.0.0"
+ok_http_interceptor = "5.2.1"
 
 room = "2.6.1"
 
@@ -79,7 +81,8 @@ databinding-compiler = { group = "androidx.databinding", name = "databinding-com
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 ok-http-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "ok_http_interceptor" }
-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+retrofit-kotlinx-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofit-kotlinx-serialization" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 room_runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room_compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
@@ -152,6 +155,7 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 
 google-services-plugin = { id = "com.google.gms:google-services", version.ref = "google_services" }

@@ -18,8 +18,8 @@ class TaxiProviderRemoteShould {
         10,
         "name",
         "number",
-        "start",
-        "price",
+        Tariff("2,50 KM", "2,00 KM", "25,00 KM/h"),
+        Tariff("2,50 KM", "2,35 KM", "30,00 KM/h"),
         "additional",
         "viber"
     )

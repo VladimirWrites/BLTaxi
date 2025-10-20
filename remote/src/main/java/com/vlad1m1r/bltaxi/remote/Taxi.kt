@@ -3,16 +3,18 @@ package com.vlad1m1r.bltaxi.remote
 import androidx.annotation.Keep
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
 import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff as DomainTariff
+import kotlinx.serialization.Serializable
 
 @Keep
+@Serializable
 data class Taxi(
     val id: Long,
     val name: String,
     val number: String,
     val tariff1: Tariff,
     val tariff2: Tariff,
-    val additional: String?,
-    val viber: String?
+    val additional: String? = null,
+    val viber: String? = null
 ) {
     fun toItemTaxi(): ItemTaxi {
         return ItemTaxi(
