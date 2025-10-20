@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface TaxiService {
 
-    @GET("remote_data/taxi/v1/{language}/taxis.json")
+    @GET("remote_data/taxi/v2/{language}/taxis.json")
     suspend fun taxis(@Path("language") language: String): List<Taxi>
 }
 

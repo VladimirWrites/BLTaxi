@@ -54,6 +54,7 @@ android {
 dependencies {
     implementation libs.kotlin.coroutines.android
     implementation libs.fragment
+    implementation libs.preference.ktx
 
     implementation libs.hilt.android
     implementation libs.hilt.navigation.compose

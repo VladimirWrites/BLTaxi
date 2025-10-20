@@ -1,6 +1,5 @@
 package com.vlad1m1r.bltaxi.settings.ui
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -52,15 +51,8 @@ fun SettingsScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     var showThemeDialog by remember { mutableStateOf(false) }
 
-    LaunchedEffect(Unit) {
-        viewModel.effects.collect { effect ->
-            when (effect) {
-                is SettingsEffect.UpdateNightMode -> {
-                    AppCompatDelegate.setDefaultNightMode(effect.mode)
-                }
-            }
-        }
-    }
+    // Theme changes are now handled by BLTaxiApp observing SharedPreferences
+    // No need to collect effects for night mode in Compose
 
     SettingsContent(
         state = state,

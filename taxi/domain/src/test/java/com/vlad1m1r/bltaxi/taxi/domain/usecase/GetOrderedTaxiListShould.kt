@@ -5,6 +5,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import com.vlad1m1r.bltaxi.taxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
@@ -20,13 +21,21 @@ class GetOrderedTaxiListShould {
     )
 
     val itemTaxi = ItemTaxi(
-        0,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number"
+        id = 0,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1 = Tariff(
+            start = "2,50 KM",
+            pricePerKm = "2,00 KM",
+            hourOfWaiting = "25,00 KM/h"
+        ),
+        tariff2 = Tariff(
+            start = "2,50 KM",
+            pricePerKm = "2,35 KM",
+            hourOfWaiting = "30,00 KM/h"
+        ),
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number"
     )
 
     @Test

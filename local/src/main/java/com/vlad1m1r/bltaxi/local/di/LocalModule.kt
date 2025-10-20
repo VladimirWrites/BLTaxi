@@ -51,7 +51,9 @@ object LocalModule {
         val database = Room.databaseBuilder(
             context,
             TaxiDatabase::class.java, "bltaxi-database"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
 
         return TaxiProviderLocalImpl(database)
     }

@@ -93,18 +93,63 @@ internal fun TaxiCard(
                     .padding(horizontal = 16.dp)
                     .then(dragModifier)
             ) {
-                // Start price and kilometer price row
+                // Tariff 1
+                Text(
+                    text = "Tariff 1",
+                    style = MaterialTheme.typography.subtitle2,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Start: ${taxi.itemTaxi.startPrice}",
+                        text = "Start: ${taxi.itemTaxi.tariff1.start}",
                         style = MaterialTheme.typography.body1,
                         fontSize = 14.sp
                     )
                     Text(
-                        text = "Kilometer: ${taxi.itemTaxi.pricePerKm}",
+                        text = "Per km: ${taxi.itemTaxi.tariff1.pricePerKm}",
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 14.sp
+                    )
+                    Text(
+                        text = "Wait: ${taxi.itemTaxi.tariff1.hourOfWaiting}",
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 14.sp
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Tariff 2
+                Text(
+                    text = "Tariff 2",
+                    style = MaterialTheme.typography.subtitle2,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "Start: ${taxi.itemTaxi.tariff2.start}",
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 14.sp
+                    )
+                    Text(
+                        text = "Per km: ${taxi.itemTaxi.tariff2.pricePerKm}",
+                        style = MaterialTheme.typography.body1,
+                        fontSize = 14.sp
+                    )
+                    Text(
+                        text = "Wait: ${taxi.itemTaxi.tariff2.hourOfWaiting}",
                         style = MaterialTheme.typography.body1,
                         fontSize = 14.sp
                     )

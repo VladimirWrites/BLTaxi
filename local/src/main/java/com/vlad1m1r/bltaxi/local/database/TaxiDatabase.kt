@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Taxi::class], version = 1)
+@Database(entities = [Taxi::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class TaxiDatabase : RoomDatabase() {
     abstract fun taxiDao(): TaxiDao
