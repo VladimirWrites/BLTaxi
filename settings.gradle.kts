@@ -1,0 +1,17 @@
+include(
+    ":app",
+    ":analytics",
+    ":remote",
+    ":taxi:domain",
+    ":taxi:data",
+    ":taxi:ui",
+    ":baseui",
+    ":basedata",
+    ":local",
+    ":about:ui",
+    ":about:domain",
+    ":about:data",
+    ":settings:ui",
+    ":sync",
+    ":shortcuts"
+)
