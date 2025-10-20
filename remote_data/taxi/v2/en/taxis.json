@@ -1,0 +1,166 @@
+[
+  {
+    "id": 1,
+    "name": "Avala Taxi",
+    "number": "1500",
+    "additional": "20% discount on all rides",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Banja Luka Taxi",
+    "number": "1544",
+    "viber": "38765331544",
+    "additional": "20% discount on prices up to 20 KM",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Bel Taxi",
+    "number": "1550",
+    "viber": "38766155000",
+    "additional": "30% discount on prices up to 15 KM",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Big Taxi",
+    "number": "1511",
+    "viber": "38766211511",
+    "additional": "20% discount on prices up to 15 KM",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Euro Taxi",
+    "number": "1555",
+    "additional": "20% discount on rides up to 10 kilometres",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Hallo Taxi",
+    "number": "065561955",
+    "additional": "20% discount on city rides. Ride to Sarajevo costs 220 KM",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Ideal Taxi",
+    "number": "1545",
+    "additional": "30% discount on prices up to 7 KM",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Maxi Taxi",
+    "number": "1551",
+    "additional": "20% discount on all rides",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Mobil Taxi",
+    "number": "1566",
+    "additional": "30% discount on prices up to 7 KM",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Patrol Taxi",
+    "number": "1533",
+    "viber": "38766015330",
+    "additional": "20% discount on all rides",
+    "tariff1": {
+      "start": "2,50 KM",
+      "price_per_km": "2,00 KM",
+      "hour_of_waiting": "25,00 KM/h"
+    },
+    "tariff2": {
+      "start": "2,50 KM",
+      "price_per_km": "2,35 KM",
+      "hour_of_waiting": "30,00 KM/h"
+    }
+  }
+]
