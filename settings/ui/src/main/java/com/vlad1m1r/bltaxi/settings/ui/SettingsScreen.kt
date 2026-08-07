@@ -2,33 +2,31 @@ package com.vlad1m1r.bltaxi.settings.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Divider
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.RadioButton
-import androidx.compose.material.Switch
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Analytics
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,21 +39,24 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.vlad1m1r.baseui.theme.BLTaxiTheme
 
 @Composable
 fun SettingsScreen(
+    contentPadding: PaddingValues = PaddingValues(),
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     var showThemeDialog by remember { mutableStateOf(false) }
 
-    // Theme changes are now handled by BLTaxiApp observing SharedPreferences
-    // No need to collect effects for night mode in Compose
+    // Theme changes are handled by BLTaxiApp observing SharedPreferences,
+    // so there is no night mode effect to collect here.
 
     SettingsContent(
         state = state,
+        contentPadding = contentPadding,
         onAction = { action -> viewModel.sendAction(action) },
         onThemePickerClick = { showThemeDialog = true }
     )
@@ -75,6 +76,7 @@ fun SettingsScreen(
 @Composable
 private fun SettingsContent(
     state: SettingsState,
+    contentPadding: PaddingValues,
     onAction: (SettingsAction) -> Unit,
     onThemePickerClick: () -> Unit
 ) {
@@ -82,7 +84,7 @@ private fun SettingsContent(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .windowInsetsPadding(WindowInsets.navigationBars)
+            .padding(contentPadding)
     ) {
         // User Data Category
         CategoryHeader(text = stringResource(R.string.settings__category_user_data))
@@ -95,7 +97,7 @@ private fun SettingsContent(
             onCheckedChange = { onAction(SettingsAction.AnalyticsToggled(it)) }
         )
 
-        Divider()
+        HorizontalDivider()
 
         SwitchPreference(
             title = stringResource(R.string.settings__crash_reporting_title),
@@ -123,8 +125,8 @@ private fun SettingsContent(
 private fun CategoryHeader(text: String) {
     Text(
         text = text,
-        style = MaterialTheme.typography.subtitle1,
-        color = MaterialTheme.colors.secondary,
+        style = MaterialTheme.typography.titleMedium,
+        color = MaterialTheme.colorScheme.secondary,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(start = 72.dp, top = 16.dp, bottom = 8.dp, end = 16.dp)
     )
@@ -148,7 +150,7 @@ private fun SwitchPreference(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = MaterialTheme.colors.onSurface,
+            tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(end = 32.dp)
         )
 
@@ -157,13 +159,13 @@ private fun SwitchPreference(
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.onSurface
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Text(
                 text = summary,
-                style = MaterialTheme.typography.body2,
-                color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(top = 4.dp)
             )
         }
@@ -171,9 +173,9 @@ private fun SwitchPreference(
         Switch(
             checked = checked,
             onCheckedChange = onCheckedChange,
-            colors = androidx.compose.material.SwitchDefaults.colors(
-                checkedThumbColor = MaterialTheme.colors.secondary,
-                checkedTrackColor = MaterialTheme.colors.secondary.copy(alpha = 0.5f)
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = MaterialTheme.colorScheme.secondary,
+                checkedTrackColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.5f)
             )
         )
     }
@@ -196,20 +198,20 @@ private fun ListPreference(
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = MaterialTheme.colors.onSurface,
+            tint = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(end = 32.dp)
         )
 
         Column {
             Text(
                 text = title,
-                style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.onSurface
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
             )
             Text(
                 text = summary,
-                style = MaterialTheme.typography.body2,
-                color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                 modifier = Modifier.padding(top = 4.dp)
             )
         }
@@ -222,14 +224,10 @@ private fun ThemePickerDialog(
     onThemeSelected: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
-    val themeDefault = stringResource(R.string.theme_value_default)
-    val themeDark = stringResource(R.string.theme_value_dark)
-    val themeLight = stringResource(R.string.theme_value_light)
-
     val themes = listOf(
-        themeDefault to stringResource(R.string.settings__theme_default),
-        themeDark to stringResource(R.string.settings__theme_dark),
-        themeLight to stringResource(R.string.settings__theme_light)
+        stringResource(R.string.theme_value_default) to stringResource(R.string.settings__theme_default),
+        stringResource(R.string.theme_value_dark) to stringResource(R.string.settings__theme_dark),
+        stringResource(R.string.theme_value_light) to stringResource(R.string.settings__theme_light)
     )
 
     AlertDialog(
@@ -279,13 +277,14 @@ private fun getThemeDisplayName(themeValue: String): String {
 @Preview(showBackground = true)
 @Composable
 private fun SettingsScreenPreview() {
-    MaterialTheme {
+    BLTaxiTheme {
         SettingsContent(
             state = SettingsState(
                 selectedTheme = "theme_default",
                 isAnalyticsEnabled = true,
                 isCrashReportEnabled = true
             ),
+            contentPadding = PaddingValues(),
             onAction = {},
             onThemePickerClick = {}
         )

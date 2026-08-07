@@ -1,18 +1,21 @@
 package com.vlad1m1r.bltaxi.ui.components
 
-import androidx.compose.material.DropdownMenu
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -31,31 +34,30 @@ import com.vlad1m1r.bltaxi.R
  * @param onAboutClick Callback when About menu item is clicked
  * @param modifier Modifier for styling
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BLTaxiTopAppBar(
     title: String,
     showBackButton: Boolean,
     onBackClick: () -> Unit,
-    showMenu: Boolean = true,
     onSettingsClick: () -> Unit,
     onAboutClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    showMenu: Boolean = true
 ) {
     var menuExpanded by remember { mutableStateOf(false) }
 
     TopAppBar(
         title = { Text(text = title) },
-        navigationIcon = if (showBackButton) {
-            {
+        navigationIcon = {
+            if (showBackButton) {
                 IconButton(onClick = onBackClick) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = stringResource(R.string.content_description_navigate_back)
                     )
                 }
             }
-        } else {
-            null
         },
         actions = {
             if (showMenu) {
@@ -71,25 +73,29 @@ fun BLTaxiTopAppBar(
                     onDismissRequest = { menuExpanded = false }
                 ) {
                     DropdownMenuItem(
+                        text = { Text(stringResource(R.string.menu_settings)) },
                         onClick = {
                             menuExpanded = false
                             onSettingsClick()
                         }
-                    ) {
-                        Text(stringResource(R.string.menu_settings))
-                    }
+                    )
 
                     DropdownMenuItem(
+                        text = { Text(stringResource(R.string.menu_about)) },
                         onClick = {
                             menuExpanded = false
                             onAboutClick()
                         }
-                    ) {
-                        Text(stringResource(R.string.menu_about))
-                    }
+                    )
                 }
             }
         },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            titleContentColor = MaterialTheme.colorScheme.onPrimary,
+            navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+            actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+        ),
         modifier = modifier
     )
 }

@@ -1,9 +1,16 @@
 package com.vlad1m1r.bltaxi.ui
 
-import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
-import com.google.common.truth.Truth.assertThat
+import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import com.vlad1m1r.bltaxi.MainActivity
+import com.vlad1m1r.bltaxi.R
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -11,103 +18,95 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
 /**
- * Tests for navigation flows between screens.
- * Verifies navigation behavior including back navigation and menu-triggered navigation.
+ * Tests navigation between the Compose destinations, driven through the top app bar
+ * exactly as a user would: overflow menu to go forward, up button to come back.
  */
+@HiltAndroidTest
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [29])
+@Config(
+    sdk = [29],
+    application = HiltTestApplication::class,
+    qualifiers = "en"
+)
 class NavigationFlowShould {
 
-    @get:Rule
-    val composeTestRule = createComposeRule()
+    @get:Rule(order = 0)
+    val hiltRule = HiltAndroidRule(this)
+
+    @get:Rule(order = 1)
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
+
+    private val homeTitle by lazy {
+        composeTestRule.activity.getString(com.vlad1m1r.bltaxi.taxi.ui.R.string.app_name)
+    }
+    private val settingsTitle by lazy {
+        composeTestRule.activity.getString(com.vlad1m1r.bltaxi.settings.ui.R.string.settings__name)
+    }
+    private val aboutTitle by lazy {
+        composeTestRule.activity.getString(com.vlad1m1r.bltaxi.about.ui.R.string.about__name)
+    }
+    private val moreOptions by lazy {
+        composeTestRule.activity.getString(R.string.content_description_more_options)
+    }
+    private val navigateBack by lazy {
+        composeTestRule.activity.getString(R.string.content_description_navigate_back)
+    }
+
+    @Before
+    fun setup() {
+        hiltRule.inject()
+    }
+
+    private fun openOverflowItem(label: String) {
+        composeTestRule.onNodeWithContentDescription(moreOptions).performClick()
+        composeTestRule.onNodeWithText(label).performClick()
+        composeTestRule.waitForIdle()
+    }
+
+    @Test
+    fun startOnTaxiScreen() {
+        composeTestRule.onNodeWithText(homeTitle).assertIsDisplayed()
+        composeTestRule.onNodeWithContentDescription(navigateBack).assertDoesNotExist()
+    }
 
     @Test
     fun navigateFromTaxiToSettings() {
-        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+        openOverflowItem(settingsTitle)
 
-        composeTestRule.setContent {
-            navController.setCurrentDestination(Screen.Taxi.route)
-            navController.navigate(Screen.Settings.route)
-        }
-
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.Settings.route)
+        composeTestRule.onNodeWithText(settingsTitle).assertIsDisplayed()
     }
 
     @Test
     fun navigateFromTaxiToAbout() {
-        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+        openOverflowItem(aboutTitle)
 
-        composeTestRule.setContent {
-            navController.setCurrentDestination(Screen.Taxi.route)
-            navController.navigate(Screen.About.route)
-        }
-
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.About.route)
+        composeTestRule.onNodeWithText(aboutTitle).assertIsDisplayed()
     }
 
     @Test
     fun navigateBackFromSettingsToTaxi() {
-        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+        openOverflowItem(settingsTitle)
 
-        composeTestRule.setContent {
-            navController.setCurrentDestination(Screen.Taxi.route)
-            navController.navigate(Screen.Settings.route)
-            navController.popBackStack()
-        }
+        composeTestRule.onNodeWithContentDescription(navigateBack).performClick()
+        composeTestRule.waitForIdle()
 
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.Taxi.route)
+        composeTestRule.onNodeWithText(homeTitle).assertIsDisplayed()
     }
 
     @Test
     fun navigateBackFromAboutToTaxi() {
-        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+        openOverflowItem(aboutTitle)
 
-        composeTestRule.setContent {
-            navController.setCurrentDestination(Screen.Taxi.route)
-            navController.navigate(Screen.About.route)
-            navController.popBackStack()
-        }
+        composeTestRule.onNodeWithContentDescription(navigateBack).performClick()
+        composeTestRule.waitForIdle()
 
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.Taxi.route)
+        composeTestRule.onNodeWithText(homeTitle).assertIsDisplayed()
     }
 
     @Test
-    fun preventDuplicateNavigationToSettings() {
-        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
+    fun hideOverflowMenuOnDetailScreens() {
+        openOverflowItem(settingsTitle)
 
-        composeTestRule.setContent {
-            navController.setCurrentDestination(Screen.Taxi.route)
-            navController.navigate(Screen.Settings.route) {
-                launchSingleTop = true
-            }
-            navController.navigate(Screen.Settings.route) {
-                launchSingleTop = true
-            }
-        }
-
-        // Back stack should only have Taxi and Settings, not Settings twice
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.Settings.route)
-        navController.popBackStack()
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.Taxi.route)
-    }
-
-    @Test
-    fun preventDuplicateNavigationToAbout() {
-        val navController = TestNavHostController(ApplicationProvider.getApplicationContext())
-
-        composeTestRule.setContent {
-            navController.setCurrentDestination(Screen.Taxi.route)
-            navController.navigate(Screen.About.route) {
-                launchSingleTop = true
-            }
-            navController.navigate(Screen.About.route) {
-                launchSingleTop = true
-            }
-        }
-
-        // Back stack should only have Taxi and About, not About twice
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.About.route)
-        navController.popBackStack()
-        assertThat(navController.currentDestination?.route).isEqualTo(Screen.Taxi.route)
+        composeTestRule.onNodeWithContentDescription(moreOptions).assertDoesNotExist()
     }
 }

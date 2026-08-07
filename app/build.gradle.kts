@@ -1,13 +1,11 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("com.google.firebase.crashlytics")
     id("dagger.hilt.android.plugin")
 }
 
-apply(from = "$rootDir/buildsystem/java_version.gradle")
 
 android {
     namespace = "com.vlad1m1r.bltaxi"
@@ -16,9 +14,6 @@ android {
         applicationId = "com.vlad1m1r.bltaxi"
         versionCode = libs.versions.versionCode.get().toInt()
         versionName = libs.versions.versionName.get()
-        setProperty("archivesBaseName", "BL Taxi-$versionName")
-
-        testOptions.unitTests.isIncludeAndroidResources = true
     }
 
     buildTypes {
@@ -55,9 +50,14 @@ android {
     }
 }
 
+base {
+    archivesName = "BL Taxi-${libs.versions.versionName.get()}"
+}
+
 dependencies {
     implementation(libs.kotlin.coroutines.android)
     implementation(libs.preference.ktx)
+    implementation(libs.startup.runtime)
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
@@ -65,7 +65,7 @@ dependencies {
 
     // Compose dependencies for navigation
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.material)
+    implementation(libs.compose.material3)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.runtime)
     implementation(libs.compose.navigation)

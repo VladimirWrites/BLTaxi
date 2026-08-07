@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi
 
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -40,23 +40,11 @@ class MainActivityShould {
     }
 
     @Test
-    fun displayBLTaxiAppContent() {
-        // Verify the BLTaxiApp composable is rendered by checking for TopAppBar title
+    fun renderComposeContent() {
+        // MainActivity uses setContent (Compose), not setContentView (XML): the only way the
+        // app bar title can be found as a semantics node is through the Compose hierarchy.
         composeTestRule
             .onNodeWithText("BL Taxi")
             .assertIsDisplayed()
-    }
-
-    @Test
-    fun renderComposeContent() {
-        // Verify that MainActivity uses setContent (Compose) instead of setContentView (XML)
-        // This is validated by checking that the Compose UI hierarchy is present
-        val activity = composeTestRule.activity
-        assert(activity != null)
-
-        // Verify we have Compose content by checking for the root composable
-        composeTestRule
-            .onNodeWithText("BL Taxi")
-            .assertExists()
     }
 }

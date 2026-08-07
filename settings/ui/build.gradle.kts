@@ -1,19 +1,14 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 }
 
-apply(from = "$rootDir/buildsystem/java_version.gradle")
 
 android {
     namespace = "com.vlad1m1r.bltaxi.settings.ui"
 
-    defaultConfig {
-        testOptions.unitTests.isIncludeAndroidResources = true
-    }
 
     buildTypes {
         debug {
@@ -49,7 +44,7 @@ dependencies {
 
     // Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.material)
+    implementation(libs.compose.material3)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material.icons.core)
@@ -59,10 +54,10 @@ dependencies {
     // Compose integration
     implementation(libs.compose.activity)
     implementation(libs.compose.lifecycle.viewmodel)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.lifecycle.viewmodel.compose)
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
+    implementation(libs.lifecycle.runtime.compose)
 
     // For PreferenceManager (SharedPreferences helper)
     implementation(libs.preference.ktx)
@@ -76,6 +71,7 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.mockito.inline)
     testImplementation(libs.robolectric)
+    testImplementation(libs.test.core.ktx)
     testImplementation(libs.arch.core.testing)
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation(libs.kotlinx.coroutines.test)
 }

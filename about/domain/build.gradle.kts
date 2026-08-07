@@ -1,9 +1,7 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
 }
 
-apply(from = "$rootDir/buildsystem/java_version.gradle")
 
 android {
     namespace = "com.vlad1m1r.bltaxi.about.domain"

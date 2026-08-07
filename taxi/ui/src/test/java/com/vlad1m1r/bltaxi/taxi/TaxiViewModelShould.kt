@@ -1,19 +1,22 @@
 package com.vlad1m1r.bltaxi.taxi
 
+import com.google.common.truth.Truth.assertThat
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
+import org.mockito.kotlin.whenever
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.about.domain.usecase.ExecuteAction
 import com.vlad1m1r.bltaxi.analytics.Tracker
+import com.vlad1m1r.bltaxi.taxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.GetOrderedTaxiList
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.SaveTaxiOrder
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.IsViberInstalled
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiAction
-import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -40,56 +43,65 @@ class TaxiViewModelShould {
     )
 
     private val itemTaxi = ItemTaxi(
-        10,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number"
+        id = 10,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1 = Tariff("start_price", "price_per_km", "hour_of_waiting"),
+        tariff2 = Tariff("start_price_2", "price_per_km_2", "hour_of_waiting_2"),
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number"
     )
 
-    @Test
-    fun setTaxiOrder() {
-        runBlocking {
-            val itemTaxi1 = itemTaxi.copy(id = 1)
-            val itemTaxi2 = itemTaxi.copy(id = 2)
-            val listItemTaxiViewModel = listOf(
-                ItemTaxiViewModel(itemTaxi1, false, {}, {}),
-                ItemTaxiViewModel(itemTaxi2, false, {}, {})
-            )
-            taxiViewModel.sendAction(TaxiAction.ReorderTaxis(listItemTaxiViewModel))
+    private val itemTaxi1 = itemTaxi.copy(id = 1)
+    private val itemTaxi2 = itemTaxi.copy(id = 2)
 
-            verify(saveTaxiOrder).invoke(listOf(itemTaxi1, itemTaxi2))
+    private fun loadTwoTaxis() = runBlocking {
+        whenever(getOrderedTaxiList()).thenReturn(TaxisResult.Success(listOf(itemTaxi1, itemTaxi2)))
+        taxiViewModel.sendAction(TaxiAction.LoadTaxis)
+    }
+
+    @Test
+    fun setTaxiOrder_whenTaxiIsMoved() {
+        runBlocking {
+            loadTwoTaxis()
+
+            taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 1))
+
+            verify(saveTaxiOrder).invoke(listOf(itemTaxi2, itemTaxi1))
+            assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
+                .isEqualTo(listOf(itemTaxi2, itemTaxi1))
+        }
+    }
+
+    @Test
+    fun ignoreMove_whenIndicesAreOutOfBounds() {
+        runBlocking {
+            loadTwoTaxis()
+
+            taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 5))
+
+            verifyNoMoreInteractions(saveTaxiOrder)
+            assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
+                .isEqualTo(listOf(itemTaxi1, itemTaxi2))
         }
     }
 
     @Test
     @Config(sdk = [25])
     fun createShortcuts_whenSavingOrderIfVersionCode25OrHigher() {
-        val itemTaxi1 = itemTaxi.copy(id = 1)
-        val itemTaxi2 = itemTaxi.copy(id = 2)
-        val listItemTaxiViewModel = listOf(
-            ItemTaxiViewModel(itemTaxi1, false, {}, {}),
-            ItemTaxiViewModel(itemTaxi2, false, {}, {})
-        )
+        loadTwoTaxis()
 
-        taxiViewModel.sendAction(TaxiAction.ReorderTaxis(listItemTaxiViewModel))
+        taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 1))
 
-        verify(shortcutHandler).addShortcutsForTaxis(listOf(itemTaxi1, itemTaxi2))
+        verify(shortcutHandler).addShortcutsForTaxis(listOf(itemTaxi2, itemTaxi1))
     }
 
     @Test
     @Config(sdk = [24])
     fun doNotCreateShortcuts_whenSavingOrderIfVersionCode24OrLower() {
-        val itemTaxi1 = itemTaxi.copy(id = 1)
-        val itemTaxi2 = itemTaxi.copy(id = 2)
-        val listItemTaxiViewModel = listOf(
-            ItemTaxiViewModel(itemTaxi1, false, {}, {}),
-            ItemTaxiViewModel(itemTaxi2, false, {}, {})
-        )
+        loadTwoTaxis()
 
-        taxiViewModel.sendAction(TaxiAction.ReorderTaxis(listItemTaxiViewModel))
+        taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 1))
 
         verifyNoMoreInteractions(shortcutHandler)
     }

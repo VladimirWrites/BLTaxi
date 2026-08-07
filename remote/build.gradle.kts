@@ -1,12 +1,10 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 }
 
-apply(from = "../buildsystem/java_version.gradle")
 
 android {
     namespace = "com.vlad1m1r.bltaxi.remote"

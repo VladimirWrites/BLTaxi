@@ -13,7 +13,7 @@ class ExecuteActionShould {
 
     @Test
     fun callActionExecutor() {
-        val action = mock<Action>()
+        val action = Action.OpenUrlAction("https://vladimirj.com")
 
         executeAction(action)
 

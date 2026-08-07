@@ -54,67 +54,7 @@ class AboutViewModelShould {
     }
 
     @Test
-    fun returnVersionName() {
-        assertThat(aboutViewModel.getAppVersionName()).isEqualTo("version_name")
-    }
-
-    @Test
-    fun writeEmail() = runTest {
-        val email = "email"
-        whenever(stringResolver.getString(R.string.about__email)).thenReturn(email)
-
-        aboutViewModel.writeEmail()
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        verify(actionInteractor).invoke(Action.SendEmailAction(email))
-    }
-
-    @Test
-    fun rateApp() = runTest {
-        val appId = "app_id"
-        whenever(appInfoProvider.getApplicationId()).thenReturn(appId)
-
-        aboutViewModel.rateApp()
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        verify(actionInteractor).invoke(Action.OpenPlayStoreAction(appId))
-    }
-
-    @Test
-    fun shareApp() = runTest {
-        val playStoreUrl = "play_store_url"
-        whenever(stringResolver.getString(R.string.about__play_store_url)).thenReturn(playStoreUrl)
-
-        aboutViewModel.shareApp()
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        verify(actionInteractor).invoke(Action.ShareAction(playStoreUrl))
-    }
-
-    @Test
-    fun openPrivacyPolicy() = runTest {
-        val privacyPolicy = "privacy_policy"
-        whenever(stringResolver.getString(R.string.about__privacy_policy_url)).thenReturn(privacyPolicy)
-
-        aboutViewModel.openPrivacyPolicy()
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        verify(actionInteractor).invoke(Action.OpenUrlAction(privacyPolicy))
-    }
-
-    @Test
-    fun openTermsAndConditions() = runTest {
-        val termsAndConditions = "terms_and_conditions"
-        whenever(stringResolver.getString(R.string.about__terms_and_conditions_url)).thenReturn(termsAndConditions)
-
-        aboutViewModel.openTermsAndConditions()
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        verify(actionInteractor).invoke(Action.OpenUrlAction(termsAndConditions))
-    }
-
-    @Test
-    fun `send email action directly`() = runTest {
+    fun `send email action`() = runTest {
         val email = "email"
         whenever(stringResolver.getString(R.string.about__email)).thenReturn(email)
 
@@ -125,7 +65,7 @@ class AboutViewModelShould {
     }
 
     @Test
-    fun `send rate app action directly`() = runTest {
+    fun `send rate app action`() = runTest {
         val appId = "app_id"
         whenever(appInfoProvider.getApplicationId()).thenReturn(appId)
 
@@ -136,7 +76,7 @@ class AboutViewModelShould {
     }
 
     @Test
-    fun `send share app action directly`() = runTest {
+    fun `send share app action`() = runTest {
         val playStoreUrl = "play_store_url"
         whenever(stringResolver.getString(R.string.about__play_store_url)).thenReturn(playStoreUrl)
 
@@ -147,7 +87,7 @@ class AboutViewModelShould {
     }
 
     @Test
-    fun `send privacy policy action directly`() = runTest {
+    fun `send privacy policy action`() = runTest {
         val privacyPolicy = "privacy_policy"
         whenever(stringResolver.getString(R.string.about__privacy_policy_url)).thenReturn(privacyPolicy)
 
@@ -158,7 +98,7 @@ class AboutViewModelShould {
     }
 
     @Test
-    fun `send terms and conditions action directly`() = runTest {
+    fun `send terms and conditions action`() = runTest {
         val termsAndConditions = "terms_and_conditions"
         whenever(stringResolver.getString(R.string.about__terms_and_conditions_url)).thenReturn(termsAndConditions)
 

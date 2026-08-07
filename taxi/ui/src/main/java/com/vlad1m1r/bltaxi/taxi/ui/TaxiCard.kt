@@ -1,23 +1,40 @@
 package com.vlad1m1r.bltaxi.taxi.ui
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.vlad1m1r.baseui.theme.BLTaxiTheme
 import com.vlad1m1r.baseui.theme.LocalExtendedColors
 import com.vlad1m1r.baseui.theme.TransparentColor
+import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff
 import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.ui.preview.TaxiPreviewParameterProvider
 
@@ -31,7 +48,9 @@ internal fun TaxiCard(
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        elevation = if (isDragging) 8.dp else 4.dp
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = if (isDragging) 8.dp else 4.dp
+        )
     ) {
         Column(
             modifier = Modifier.fillMaxWidth()
@@ -52,24 +71,22 @@ internal fun TaxiCard(
                 ) {
                     Text(
                         text = taxi.itemTaxi.name,
-                        style = MaterialTheme.typography.h6,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
                     )
 
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
                             imageVector = Icons.Default.Phone,
-                            contentDescription = "Phone",
+                            contentDescription = stringResource(R.string.taxi__phone_number),
                             modifier = Modifier.size(20.dp),
-                            tint = MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
+                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = taxi.itemTaxi.phoneNumber,
-                            style = MaterialTheme.typography.body1,
-                            fontSize = 18.sp,
-                            color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f)
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                         )
                     }
                 }
@@ -93,111 +110,21 @@ internal fun TaxiCard(
                     .padding(horizontal = 16.dp)
                     .then(dragModifier)
             ) {
-                // Table header row
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "",
-                        style = MaterialTheme.typography.body2,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = "Start",
-                        style = MaterialTheme.typography.body2,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = "Per km",
-                        style = MaterialTheme.typography.body2,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = "Wait",
-                        style = MaterialTheme.typography.body2,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colors.onSurface.copy(alpha = 0.6f),
-                        modifier = Modifier.weight(1f)
-                    )
-                }
+                TariffHeaderRow()
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                // Tariff 1 row
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "Tariff 1:",
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Medium,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = taxi.itemTaxi.tariff1.start,
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = taxi.itemTaxi.tariff1.pricePerKm,
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = taxi.itemTaxi.tariff1.hourOfWaiting,
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
+                TariffRow(
+                    label = stringResource(R.string.taxi__tariff_1),
+                    tariff = taxi.itemTaxi.tariff1
+                )
 
                 Spacer(modifier = Modifier.height(2.dp))
 
-                // Tariff 2 row
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = "Tariff 2:",
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Medium,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = taxi.itemTaxi.tariff2.start,
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = taxi.itemTaxi.tariff2.pricePerKm,
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Text(
-                        text = taxi.itemTaxi.tariff2.hourOfWaiting,
-                        style = MaterialTheme.typography.body1,
-                        fontSize = 13.sp,
-                        modifier = Modifier.weight(1f)
-                    )
-                }
+                TariffRow(
+                    label = stringResource(R.string.taxi__tariff_2),
+                    tariff = taxi.itemTaxi.tariff2
+                )
 
                 // Additional info (discount, etc.)
                 val additionalInfo = taxi.itemTaxi.additionalInfo
@@ -205,8 +132,7 @@ internal fun TaxiCard(
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = additionalInfo,
-                        style = MaterialTheme.typography.body2,
-                        fontSize = 14.sp
+                        style = MaterialTheme.typography.bodyMedium
                     )
                 }
             }
@@ -219,84 +145,125 @@ internal fun TaxiCard(
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)
             ) {
-                // Buttons row
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    // Viber button (if available)
                     if (taxi.isViberVisible) {
-                        OutlinedButton(
+                        TaxiActionButton(
+                            text = stringResource(R.string.taxi__viber),
                             onClick = onViberClick,
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(48.dp),
-                            colors = ButtonDefaults.outlinedButtonColors(
-                                backgroundColor = TransparentColor,
-                                contentColor = MaterialTheme.colors.secondary
-                            ),
-                            border = androidx.compose.foundation.BorderStroke(
-                                1.dp,
-                                MaterialTheme.colors.secondary
-                            )
-                        ) {
-                            Text(
-                                text = "VIBER",
-                                fontSize = 14.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
+                            modifier = Modifier.weight(1f)
+                        )
                     }
 
-                    // Call button
-                    OutlinedButton(
+                    TaxiActionButton(
+                        text = stringResource(R.string.taxi__call),
                         onClick = onCallClick,
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(48.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            backgroundColor = TransparentColor,
-                            contentColor = MaterialTheme.colors.secondary
-                        ),
-                        border = androidx.compose.foundation.BorderStroke(
-                            1.dp,
-                            MaterialTheme.colors.secondary
-                        )
-                    ) {
-                        Text(
-                            text = "CALL",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
+                        modifier = Modifier.weight(1f)
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
-            }  // Close buttons column
-        }  // Close outer column
-    }  // Close card
+            }
+        }
+    }
+}
+
+@Composable
+private fun TariffHeaderRow() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Spacer(modifier = Modifier.weight(1f))
+        TariffHeaderCell(stringResource(R.string.taxi__start))
+        TariffHeaderCell(stringResource(R.string.taxi__per_kilometer))
+        TariffHeaderCell(stringResource(R.string.taxi__waiting))
+    }
+}
+
+@Composable
+private fun RowScope.TariffHeaderCell(text: String) {
+    Text(
+        text = text,
+        style = MaterialTheme.typography.labelMedium,
+        fontWeight = FontWeight.Bold,
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+        modifier = Modifier.weight(1f)
+    )
+}
+
+@Composable
+private fun TariffRow(
+    label: String,
+    tariff: Tariff
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier.weight(1f)
+        )
+        Text(
+            text = tariff.start,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.weight(1f)
+        )
+        Text(
+            text = tariff.pricePerKm,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.weight(1f)
+        )
+        Text(
+            text = tariff.hourOfWaiting,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+@Composable
+private fun TaxiActionButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    OutlinedButton(
+        onClick = onClick,
+        modifier = modifier.height(48.dp),
+        colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = TransparentColor,
+            contentColor = MaterialTheme.colorScheme.secondary
+        ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.secondary)
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelLarge,
+            fontWeight = FontWeight.Bold
+        )
+    }
 }
 
 @Composable
 private fun CheckerPattern(
     modifier: Modifier = Modifier
 ) {
-    // Use theme-aware colors for proper contrast in both light and dark themes
+    // Theme-aware colors for proper contrast in both light and dark themes
     val extendedColors = LocalExtendedColors.current
     val darkSquare = extendedColors.checkerDarkSquare
-
-    val lightSquare = if (MaterialTheme.colors.isLight) {
-        MaterialTheme.colors.surface  // Card surface color (light gray) in light theme
-    } else {
-        MaterialTheme.colors.onSurface.copy(alpha = 0.6f)  // Same as phone icon in dark theme
-    }
+    val lightSquare = extendedColors.checkerLightSquare
 
     val squareSize = 4.dp  // Size of each checker square
 
     Canvas(modifier = modifier) {
         val squareSizePx = squareSize.toPx()
         val width = size.width
-        val height = size.height
 
         // Calculate number of squares needed
         val numRows = 3  // Three rows as specified
@@ -311,10 +278,8 @@ private fun CheckerPattern(
                     col % 2 != 0  // Odd row: grey on odd columns
                 }
 
-                val color = if (isGrey) darkSquare else lightSquare
-
                 drawRect(
-                    color = color,
+                    color = if (isGrey) darkSquare else lightSquare,
                     topLeft = Offset(col * squareSizePx, row * squareSizePx),
                     size = Size(squareSizePx, squareSizePx)
                 )

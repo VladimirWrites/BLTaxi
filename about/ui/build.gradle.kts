@@ -1,12 +1,10 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
-apply(from = "$rootDir/buildsystem/java_version.gradle")
 
 android {
     namespace = "com.vlad1m1r.bltaxi.about.ui"
@@ -46,7 +44,7 @@ dependencies {
 
     // Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.material)
+    implementation(libs.compose.material3)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material.icons.core)
@@ -56,10 +54,10 @@ dependencies {
     // Compose integration
     implementation(libs.compose.activity)
     implementation(libs.compose.lifecycle.viewmodel)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.lifecycle.viewmodel.compose)
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
+    implementation(libs.lifecycle.runtime.compose)
 
     implementation(project(":baseui"))
     implementation(project(":about:domain"))
@@ -71,5 +69,5 @@ dependencies {
     testImplementation(libs.mockito.inline)
     testImplementation(libs.robolectric)
     testImplementation(libs.arch.core.testing)
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation(libs.kotlinx.coroutines.test)
 }

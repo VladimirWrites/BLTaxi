@@ -1,30 +1,38 @@
 package com.vlad1m1r.bltaxi.ui
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material.Scaffold
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.vlad1m1r.bltaxi.about.ui.AboutScreen
-import com.vlad1m1r.bltaxi.about.ui.AboutViewModel
 import com.vlad1m1r.bltaxi.settings.ui.SettingsScreen
-import com.vlad1m1r.bltaxi.settings.ui.SettingsViewModel
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiScreen
-import com.vlad1m1r.bltaxi.taxi.ui.TaxiViewModel
 import com.vlad1m1r.bltaxi.ui.components.BLTaxiTopAppBar
+
+private const val TRANSITION_DURATION_MS = 300
+
+private fun AnimatedContentTransitionScope<*>.slideIn(fromRight: Boolean): EnterTransition =
+    slideInHorizontally(
+        initialOffsetX = { if (fromRight) it else -it },
+        animationSpec = tween(TRANSITION_DURATION_MS)
+    )
+
+private fun AnimatedContentTransitionScope<*>.slideOut(toRight: Boolean): ExitTransition =
+    slideOutHorizontally(
+        targetOffsetX = { if (toRight) it else -it },
+        animationSpec = tween(TRANSITION_DURATION_MS)
+    )
 
 /**
  * Main scaffold composable that manages the app's navigation structure and top app bar.
@@ -49,7 +57,6 @@ fun BLTaxiScaffold(
 
     // Determine title based on current route
     val title = when (currentRoute) {
-        Screen.Taxi.route -> stringResource(com.vlad1m1r.bltaxi.taxi.ui.R.string.app_name)
         Screen.Settings.route -> stringResource(com.vlad1m1r.bltaxi.settings.ui.R.string.settings__name)
         Screen.About.route -> stringResource(com.vlad1m1r.bltaxi.about.ui.R.string.about__name)
         else -> stringResource(com.vlad1m1r.bltaxi.taxi.ui.R.string.app_name)
@@ -66,9 +73,7 @@ fun BLTaxiScaffold(
             BLTaxiTopAppBar(
                 title = title,
                 showBackButton = showBackButton,
-                onBackClick = {
-                    navController.popBackStack()
-                },
+                onBackClick = { navController.popBackStack() },
                 showMenu = showMenu,
                 onSettingsClick = {
                     navController.navigate(Screen.Settings.route) {
@@ -79,128 +84,47 @@ fun BLTaxiScaffold(
                     navController.navigate(Screen.About.route) {
                         launchSingleTop = true
                     }
-                },
-                modifier = Modifier.windowInsetsPadding(WindowInsets.statusBars)
+                }
             )
         },
         modifier = modifier
-    ) { paddingValues ->
+    ) { contentPadding ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Taxi.route,
-            modifier = Modifier.padding(paddingValues)
+            startDestination = Screen.Taxi.route
         ) {
-            // Taxi Screen (Home) - with slide animations
+            // Taxi Screen (Home): always the left-most destination, so it slides in and out
+            // to the left, except when it is popped (which cannot happen from the home screen).
             composable(
                 route = Screen.Taxi.route,
-                enterTransition = {
-                    // When returning to Taxi (pop enter), slide in from left
-                    slideInHorizontally(
-                        initialOffsetX = { -it },
-                        animationSpec = tween(300)
-                    )
-                },
-                exitTransition = {
-                    // When leaving Taxi, slide out to left
-                    slideOutHorizontally(
-                        targetOffsetX = { -it },
-                        animationSpec = tween(300)
-                    )
-                },
-                popEnterTransition = {
-                    // When returning to Taxi via back, slide in from left
-                    slideInHorizontally(
-                        initialOffsetX = { -it },
-                        animationSpec = tween(300)
-                    )
-                },
-                popExitTransition = {
-                    // When leaving Taxi via back (shouldn't happen), slide out to right
-                    slideOutHorizontally(
-                        targetOffsetX = { it },
-                        animationSpec = tween(300)
-                    )
-                }
+                enterTransition = { slideIn(fromRight = false) },
+                exitTransition = { slideOut(toRight = false) },
+                popEnterTransition = { slideIn(fromRight = false) },
+                popExitTransition = { slideOut(toRight = true) }
             ) {
-                val viewModel: TaxiViewModel = hiltViewModel()
-                TaxiScreen(viewModel = viewModel)
+                TaxiScreen(contentPadding = contentPadding)
             }
 
-            // Settings Screen - with slide animations
+            // Settings Screen: slides in from the right, back navigation slides it out right.
             composable(
                 route = Screen.Settings.route,
-                enterTransition = {
-                    // When navigating to Settings, slide in from right
-                    slideInHorizontally(
-                        initialOffsetX = { it },
-                        animationSpec = tween(300)
-                    )
-                },
-                exitTransition = {
-                    // When leaving Settings to another screen, slide out to left
-                    slideOutHorizontally(
-                        targetOffsetX = { -it },
-                        animationSpec = tween(300)
-                    )
-                },
-                popEnterTransition = {
-                    // When returning to Settings (shouldn't happen), slide in from right
-                    slideInHorizontally(
-                        initialOffsetX = { it },
-                        animationSpec = tween(300)
-                    )
-                },
-                popExitTransition = {
-                    // When going back from Settings, slide out to right
-                    slideOutHorizontally(
-                        targetOffsetX = { it },
-                        animationSpec = tween(300)
-                    )
-                }
+                enterTransition = { slideIn(fromRight = true) },
+                exitTransition = { slideOut(toRight = false) },
+                popEnterTransition = { slideIn(fromRight = true) },
+                popExitTransition = { slideOut(toRight = true) }
             ) {
-                val viewModel: SettingsViewModel = hiltViewModel()
-                SettingsScreen(viewModel = viewModel)
+                SettingsScreen(contentPadding = contentPadding)
             }
 
-            // About Screen - with slide animations
+            // About Screen: slides in from the right, back navigation slides it out right.
             composable(
                 route = Screen.About.route,
-                enterTransition = {
-                    // When navigating to About, slide in from right
-                    slideInHorizontally(
-                        initialOffsetX = { it },
-                        animationSpec = tween(300)
-                    )
-                },
-                exitTransition = {
-                    // When leaving About to another screen, slide out to left
-                    slideOutHorizontally(
-                        targetOffsetX = { -it },
-                        animationSpec = tween(300)
-                    )
-                },
-                popEnterTransition = {
-                    // When returning to About (shouldn't happen), slide in from right
-                    slideInHorizontally(
-                        initialOffsetX = { it },
-                        animationSpec = tween(300)
-                    )
-                },
-                popExitTransition = {
-                    // When going back from About, slide out to right
-                    slideOutHorizontally(
-                        targetOffsetX = { it },
-                        animationSpec = tween(300)
-                    )
-                }
+                enterTransition = { slideIn(fromRight = true) },
+                exitTransition = { slideOut(toRight = false) },
+                popEnterTransition = { slideIn(fromRight = true) },
+                popExitTransition = { slideOut(toRight = true) }
             ) {
-                val viewModel: AboutViewModel = hiltViewModel()
-                AboutScreen(
-                    viewModel = viewModel,
-                    onNavigateBack = {
-                        navController.popBackStack()
-                    }
-                )
+                AboutScreen(contentPadding = contentPadding)
             }
         }
     }

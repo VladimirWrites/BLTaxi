@@ -1,18 +1,13 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 }
 
-apply(from = "../buildsystem/java_version.gradle")
 
 android {
     namespace = "com.vlad1m1r.bltaxi.local"
 
-    defaultConfig {
-        testOptions.unitTests.isIncludeAndroidResources = true
-    }
 
     buildTypes {
         debug {

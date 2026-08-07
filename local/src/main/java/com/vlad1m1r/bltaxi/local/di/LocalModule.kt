@@ -52,7 +52,7 @@ object LocalModule {
             context,
             TaxiDatabase::class.java, "bltaxi-database"
         )
-            .fallbackToDestructiveMigration()
+            .fallbackToDestructiveMigration(dropAllTables = true)
             .build()
 
         return TaxiProviderLocalImpl(database)

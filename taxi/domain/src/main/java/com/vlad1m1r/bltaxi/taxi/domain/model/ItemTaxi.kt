@@ -8,8 +8,4 @@ data class ItemTaxi(
     val tariff2: Tariff,
     val additionalInfo: String? = null,
     val viberNumber: String? = null
-) {
-    // Backwards compatibility properties
-    val startPrice: String get() = tariff1.start
-    val pricePerKm: String get() = tariff1.pricePerKm
-}
+)

@@ -1,19 +1,14 @@
 plugins {
     id("com.android.library")
-    id("kotlin-android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 }
 
-apply(from = "$rootDir/buildsystem/java_version.gradle")
 
 android {
     namespace = "com.vlad1m1r.bltaxi.taxi.ui"
 
-    defaultConfig {
-        testOptions.unitTests.isIncludeAndroidResources = true
-    }
 
     buildTypes {
         debug {
@@ -52,7 +47,7 @@ dependencies {
 
     // Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.material)
+    implementation(libs.compose.material3)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material.icons.core)
@@ -62,7 +57,7 @@ dependencies {
     // Compose integration
     implementation(libs.compose.activity)
     implementation(libs.compose.lifecycle.viewmodel)
-    implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.lifecycle.viewmodel.compose)
 
     // Lifecycle
     implementation(libs.lifecycle.runtime.compose)

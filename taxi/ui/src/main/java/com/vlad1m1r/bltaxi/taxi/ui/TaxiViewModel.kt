@@ -74,8 +74,20 @@ class TaxiViewModel @Inject constructor(
             TaxiAction.LoadTaxis -> loadTaxis()
             is TaxiAction.CallTaxi -> callTaxi(action.taxiViewModel.itemTaxi)
             is TaxiAction.CallTaxiOnViber -> callTaxiOnViber(action.taxiViewModel.itemTaxi)
-            is TaxiAction.ReorderTaxis -> setTaxiOrder(action.taxis)
+            is TaxiAction.MoveTaxi -> moveTaxi(action.from, action.to)
         }
+    }
+
+    /**
+     * Reorders the current list in place. The indices come from drag gestures, which can
+     * outrun the state the UI last rendered, so they are validated against the current list.
+     */
+    private fun moveTaxi(from: Int, to: Int) {
+        val current = _state.value.taxis
+        if (from !in current.indices || to !in current.indices || from == to) return
+
+        val reordered = current.toMutableList().apply { add(to, removeAt(from)) }
+        setTaxiOrder(reordered)
     }
 
     private fun loadTaxis() {
@@ -116,7 +128,9 @@ class TaxiViewModel @Inject constructor(
     }
 
     private fun callTaxiOnViber(itemTaxi: ItemTaxi) {
+        val viberNumber = itemTaxi.viberNumber
+        if (viberNumber.isNullOrBlank()) return
         tracker.track(CallEvent(itemTaxi.id, itemTaxi.name, CallEvent.CallVariant.VIBER))
-        executeAction(Action.CallNumberOnViberAction(itemTaxi.viberNumber!!))
+        executeAction(Action.CallNumberOnViberAction(viberNumber))
     }
 }

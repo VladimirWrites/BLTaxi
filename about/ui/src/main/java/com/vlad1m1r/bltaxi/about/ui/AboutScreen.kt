@@ -1,26 +1,26 @@
 package com.vlad1m1r.bltaxi.about.ui
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,15 +29,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.compose.material.icons.filled.Description
 import com.vlad1m1r.baseui.theme.BLTaxiTheme
 
 @Composable
 fun AboutScreen(
-    viewModel: AboutViewModel = hiltViewModel(),
-    onNavigateBack: () -> Unit = {}
+    contentPadding: PaddingValues = PaddingValues(),
+    viewModel: AboutViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -53,6 +52,7 @@ fun AboutScreen(
 
     AboutContent(
         state = state,
+        contentPadding = contentPadding,
         onAction = { action -> viewModel.sendAction(action) }
     )
 }
@@ -60,18 +60,19 @@ fun AboutScreen(
 @Composable
 private fun AboutContent(
     state: AboutState,
+    contentPadding: PaddingValues,
     onAction: (AboutAction) -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .windowInsetsPadding(WindowInsets.navigationBars)
+            .padding(contentPadding)
             .padding(8.dp)
     ) {
         Card(
             modifier = Modifier.fillMaxWidth(),
-            elevation = 2.dp
+            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
         ) {
             Column(
                 modifier = Modifier.padding(16.dp)
@@ -79,7 +80,7 @@ private fun AboutContent(
                 // Author text
                 Text(
                     text = stringResource(R.string.about__author),
-                    style = MaterialTheme.typography.subtitle1,
+                    style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
 
@@ -88,7 +89,7 @@ private fun AboutContent(
                 // Version text
                 Text(
                     text = stringResource(R.string.about__version, state.appVersion),
-                    style = MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
 
@@ -156,6 +157,7 @@ private fun AboutScreenPreview() {
     BLTaxiTheme {
         AboutContent(
             state = AboutState(appVersion = "1.2.3"),
+            contentPadding = PaddingValues(),
             onAction = {}
         )
     }

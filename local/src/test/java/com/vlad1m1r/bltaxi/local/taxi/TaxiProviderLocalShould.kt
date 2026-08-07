@@ -7,6 +7,7 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import com.vlad1m1r.bltaxi.taxi.domain.Language
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff
 import com.vlad1m1r.bltaxi.local.database.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -19,24 +20,28 @@ class TaxiProviderLocalShould {
     private val taxiProviderLocal: TaxiProviderLocal = TaxiProviderLocalImpl(taxiDatabase)
 
     private val itemTaxi = ItemTaxi(
-        10,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number"
+        id = 10,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1 = Tariff("start_price", "price_per_km", "hour_of_waiting"),
+        tariff2 = Tariff("start_price_2", "price_per_km_2", "hour_of_waiting_2"),
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number"
     )
 
     private val taxi = Taxi(
-        10,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number",
-        Language.HR
+        taxiId = 10,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1Start = "start_price",
+        tariff1PricePerKm = "price_per_km",
+        tariff1HourOfWaiting = "hour_of_waiting",
+        tariff2Start = "start_price_2",
+        tariff2PricePerKm = "price_per_km_2",
+        tariff2HourOfWaiting = "hour_of_waiting_2",
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number",
+        language = Language.HR
     )
 
     @Test

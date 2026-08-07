@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
@@ -18,13 +19,13 @@ class ShortcutInfoProviderShould {
     private val shortcutInfoProvider = ShortcutInfoProvider(context)
 
     private val itemTaxi = ItemTaxi(
-        0,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number"
+        id = 0,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1 = Tariff("start_price", "price_per_km", "hour_of_waiting"),
+        tariff2 = Tariff("start_price_2", "price_per_km_2", "hour_of_waiting_2"),
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number"
     )
 
     @Test
