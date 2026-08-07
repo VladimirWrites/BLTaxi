@@ -2,6 +2,9 @@
 <resources>
     <string name="taxi__call">Pozovi</string>
     <string name="taxi__viber">Viber</string>
+    <string name="taxi__call_number">Pozovi %1$s</string>
+    <string name="taxi__show_details">Prika&#382;i cijene</string>
+    <string name="taxi__hide_details">Sakrij cijene</string>
 
     <string name="taxi__phone_number">Broj telefona</string>
     <string name="taxi__start">Start</string>

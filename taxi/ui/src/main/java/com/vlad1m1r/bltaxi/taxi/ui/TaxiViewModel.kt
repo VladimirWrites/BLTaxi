@@ -74,20 +74,37 @@ class TaxiViewModel @Inject constructor(
             TaxiAction.LoadTaxis -> loadTaxis()
             is TaxiAction.CallTaxi -> callTaxi(action.taxiViewModel.itemTaxi)
             is TaxiAction.CallTaxiOnViber -> callTaxiOnViber(action.taxiViewModel.itemTaxi)
-            is TaxiAction.MoveTaxi -> moveTaxi(action.from, action.to)
         }
     }
 
     /**
-     * Reorders the current list in place. The indices come from drag gestures, which can
-     * outrun the state the UI last rendered, so they are validated against the current list.
+     * Persists an order the user produced by dragging and refreshes the launcher shortcuts.
+     *
+     * Called once when a drag finishes, not on every position the finger crosses. While the drag
+     * is in flight the list lives in the UI as Compose state, because the drag library needs each
+     * move applied before its callback returns — see TaxiList.
      */
-    private fun moveTaxi(from: Int, to: Int) {
-        val current = _state.value.taxis
-        if (from !in current.indices || to !in current.indices || from == to) return
+    fun saveOrder(reordered: List<ItemTaxiViewModel>) {
+        if (reordered.isEmpty()) return
 
-        val reordered = current.toMutableList().apply { add(to, removeAt(from)) }
-        setTaxiOrder(reordered)
+        // Deliberately no _state update.
+        //
+        // This runs from onDragStopped, while the drag library is still animating the dropped
+        // card into place and the other cards with it. Emitting new state here recomposes the
+        // grid and forces a relayout in the middle of that animation, which makes the whole list
+        // visibly shift on drop even though the order is already correct.
+        //
+        // The list on screen is owned by the composable for as long as it is on screen; the
+        // ViewModel only needs the order in order to persist it. A later load reads it back from
+        // storage.
+
+        val taxis = reordered.map { it.itemTaxi }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+            shortcutHandler.get().addShortcutsForTaxis(taxis)
+        }
+        viewModelScope.launch(dispatchers.io) {
+            saveTaxiOrder(taxis)
+        }
     }
 
     private fun loadTaxis() {
@@ -111,16 +128,6 @@ class TaxiViewModel @Inject constructor(
         }
     }
 
-    private fun setTaxiOrder(viewModelList: List<ItemTaxiViewModel>) {
-        val taxis = viewModelList.map { it.itemTaxi }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-            shortcutHandler.get().addShortcutsForTaxis(taxis)
-        }
-        viewModelScope.launch(dispatchers.io) {
-            saveTaxiOrder(taxis)
-        }
-        _state.update { it.copy(taxis = viewModelList) }
-    }
 
     private fun callTaxi(itemTaxi: ItemTaxi) {
         tracker.track(CallEvent(itemTaxi.id, itemTaxi.name, CallEvent.CallVariant.CALL))

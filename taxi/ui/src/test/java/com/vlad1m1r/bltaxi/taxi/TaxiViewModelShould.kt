@@ -60,25 +60,38 @@ class TaxiViewModelShould {
         taxiViewModel.sendAction(TaxiAction.LoadTaxis)
     }
 
+    /** Mirrors what TaxiList hands back when a drag finishes: the already-reordered list. */
+    private fun reversedOrder() = taxiViewModel.state.value.taxis.reversed()
+
     @Test
-    fun setTaxiOrder_whenTaxiIsMoved() {
+    fun leaveStateAlone_whenDragFinishes() {
+        loadTwoTaxis()
+
+        taxiViewModel.saveOrder(reversedOrder())
+
+        // Emitting here would recompose the grid while the drop animation is still running and
+        // make the list jump. The screen already shows the new order; only storage needs telling.
+        assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
+            .isEqualTo(listOf(itemTaxi1, itemTaxi2))
+    }
+
+    @Test
+    fun persistOrder_whenDragFinishes() {
         runBlocking {
             loadTwoTaxis()
 
-            taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 1))
+            taxiViewModel.saveOrder(reversedOrder())
 
             verify(saveTaxiOrder).invoke(listOf(itemTaxi2, itemTaxi1))
-            assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
-                .isEqualTo(listOf(itemTaxi2, itemTaxi1))
         }
     }
 
     @Test
-    fun ignoreMove_whenIndicesAreOutOfBounds() {
+    fun ignoreOrder_whenListIsEmpty() {
         runBlocking {
             loadTwoTaxis()
 
-            taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 5))
+            taxiViewModel.saveOrder(emptyList())
 
             verifyNoMoreInteractions(saveTaxiOrder)
             assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
@@ -91,7 +104,7 @@ class TaxiViewModelShould {
     fun createShortcuts_whenSavingOrderIfVersionCode25OrHigher() {
         loadTwoTaxis()
 
-        taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 1))
+        taxiViewModel.saveOrder(reversedOrder())
 
         verify(shortcutHandler).addShortcutsForTaxis(listOf(itemTaxi2, itemTaxi1))
     }
@@ -101,7 +114,7 @@ class TaxiViewModelShould {
     fun doNotCreateShortcuts_whenSavingOrderIfVersionCode24OrLower() {
         loadTwoTaxis()
 
-        taxiViewModel.sendAction(TaxiAction.MoveTaxi(0, 1))
+        taxiViewModel.saveOrder(reversedOrder())
 
         verifyNoMoreInteractions(shortcutHandler)
     }

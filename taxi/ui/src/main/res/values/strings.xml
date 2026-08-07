@@ -5,6 +5,9 @@
 
     <string name="taxi__call">Call</string>
     <string name="taxi__viber">Viber</string>
+    <string name="taxi__call_number">Call %1$s</string>
+    <string name="taxi__show_details">Show prices</string>
+    <string name="taxi__hide_details">Hide prices</string>
 
     <string name="taxi__phone_number">Phone number</string>
     <string name="taxi__start">Start</string>

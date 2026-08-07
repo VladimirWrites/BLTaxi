@@ -47,6 +47,9 @@ espresso_core = "3.7.0"
 test_core_ktx = "1.7.0"
 
 compose = "2026.06.01"
+# Expressive components (ButtonGroup, MaterialShapes, LoadingIndicator) are not in the
+# stable material3 the BOM pins; they ship in the 1.5 alpha line.
+compose-material3 = "1.5.0-alpha25"
 reorderable = "3.1.0"
 
 gradle-android = "9.3.1"
@@ -83,7 +86,7 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose" }
 compose-runtime = { group = "androidx.compose.runtime", name = "runtime"}
-compose-material3 = { group = "androidx.compose.material3", name = "material3"}
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview"}
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling"}
 compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core"}

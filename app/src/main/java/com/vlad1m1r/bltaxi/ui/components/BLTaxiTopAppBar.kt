@@ -48,7 +48,12 @@ fun BLTaxiTopAppBar(
     var menuExpanded by remember { mutableStateOf(false) }
 
     TopAppBar(
-        title = { Text(text = title) },
+        title = {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.headlineSmall
+            )
+        },
         navigationIcon = {
             if (showBackButton) {
                 IconButton(onClick = onBackClick) {
@@ -90,11 +95,13 @@ fun BLTaxiTopAppBar(
                 }
             }
         },
+        // Expressive keeps the bar on the screen's own surface rather than a coloured slab, so
+        // the cards and the call buttons carry the accent instead of competing with it.
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            titleContentColor = MaterialTheme.colorScheme.onPrimary,
-            navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-            actionIconContentColor = MaterialTheme.colorScheme.onPrimary
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
+            navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
+            actionIconContentColor = MaterialTheme.colorScheme.onSurfaceVariant
         ),
         modifier = modifier
     )
