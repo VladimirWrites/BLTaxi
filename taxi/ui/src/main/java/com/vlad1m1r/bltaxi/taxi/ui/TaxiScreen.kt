@@ -58,8 +58,18 @@ fun TaxiScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
+    // Which cards are open is held here, not inside TaxiList. TaxiList leaves composition
+    // whenever the screen flips to loading or error, and rememberSaveable discards an entry as
+    // soon as its composable is removed — so expansion did not survive a rotation.
+    val expandedIds = rememberSaveable(
+        saver = listSaver(
+            save = { it.toList() },
+            restore = { it.toMutableStateList() }
+        )
+    ) { mutableStateListOf<Long>() }
+
     LaunchedEffect(Unit) {
-        viewModel.sendAction(TaxiAction.LoadTaxis)
+        viewModel.loadTaxisIfNeeded()
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -77,6 +87,8 @@ fun TaxiScreen(
                 TaxiList(
                     taxis = state.taxis,
                     contentPadding = contentPadding,
+                    isExpanded = { id -> id in expandedIds },
+                    onToggleExpanded = { id -> if (!expandedIds.remove(id)) expandedIds.add(id) },
                     onCallClick = { taxi -> viewModel.sendAction(TaxiAction.CallTaxi(taxi)) },
                     onViberClick = { taxi -> viewModel.sendAction(TaxiAction.CallTaxiOnViber(taxi)) },
                     onOrderChanged = viewModel::saveOrder
@@ -149,6 +161,8 @@ private fun ErrorState(
 private fun TaxiList(
     taxis: List<ItemTaxiViewModel>,
     contentPadding: PaddingValues,
+    isExpanded: (Long) -> Boolean,
+    onToggleExpanded: (Long) -> Unit,
     onCallClick: (ItemTaxiViewModel) -> Unit,
     onViberClick: (ItemTaxiViewModel) -> Unit,
     onOrderChanged: (List<ItemTaxiViewModel>) -> Unit
@@ -191,15 +205,6 @@ private fun TaxiList(
         }
     )
 
-    // Keyed by taxi id rather than list position, so expansion follows a card through a reorder
-    // and survives configuration changes.
-    val expandedIds = rememberSaveable(
-        saver = listSaver(
-            save = { it.toList() },
-            restore = { it.toMutableStateList() }
-        )
-    ) { mutableStateListOf<Long>() }
-
     val layoutDirection = LocalLayoutDirection.current
 
     // Staggered, because an expanded card is much taller than a collapsed one. In a uniform
@@ -225,10 +230,8 @@ private fun TaxiList(
                 val id = taxi.itemTaxi.id
                 TaxiCard(
                     taxi = taxi,
-                    isExpanded = id in expandedIds,
-                    onToggleExpanded = {
-                        if (!expandedIds.remove(id)) expandedIds.add(id)
-                    },
+                    isExpanded = isExpanded(id),
+                    onToggleExpanded = { onToggleExpanded(id) },
                     onCallClick = { onCallClick(taxi) },
                     onViberClick = { onViberClick(taxi) },
                     isDragging = isDragging,
@@ -252,6 +255,8 @@ private fun TaxiListPreview(
             TaxiList(
                 taxis = taxis,
                 contentPadding = PaddingValues(),
+                isExpanded = { false },
+                onToggleExpanded = {},
                 onCallClick = {},
                 onViberClick = {},
                 onOrderChanged = {}
@@ -270,6 +275,8 @@ private fun TaxiListDarkPreview(
             TaxiList(
                 taxis = taxis,
                 contentPadding = PaddingValues(),
+                isExpanded = { false },
+                onToggleExpanded = {},
                 onCallClick = {},
                 onViberClick = {},
                 onOrderChanged = {}

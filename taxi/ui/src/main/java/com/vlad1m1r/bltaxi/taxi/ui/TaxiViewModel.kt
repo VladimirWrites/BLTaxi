@@ -69,6 +69,20 @@ class TaxiViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Loads the list unless it is already there.
+     *
+     * The screen asks for this every time it enters composition, which includes every rotation
+     * and every return from Settings or About. Reloading each time threw the list away and
+     * flashed the spinner; the ViewModel outlives all of those, so its data is still good.
+     */
+    fun loadTaxisIfNeeded() {
+        val current = _state.value
+        if (current.taxis.isEmpty() && !current.isLoading) {
+            sendAction(TaxiAction.LoadTaxis)
+        }
+    }
+
     private fun handleAction(action: TaxiAction) {
         when (action) {
             TaxiAction.LoadTaxis -> loadTaxis()

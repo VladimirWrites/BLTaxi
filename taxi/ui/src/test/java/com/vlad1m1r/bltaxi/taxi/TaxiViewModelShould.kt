@@ -2,6 +2,7 @@ package com.vlad1m1r.bltaxi.taxi
 
 import com.google.common.truth.Truth.assertThat
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
 import org.mockito.kotlin.whenever
@@ -62,6 +63,32 @@ class TaxiViewModelShould {
 
     /** Mirrors what TaxiList hands back when a drag finishes: the already-reordered list. */
     private fun reversedOrder() = taxiViewModel.state.value.taxis.reversed()
+
+    @Test
+    fun loadOnce_whenScreenReentersComposition() {
+        runBlocking {
+            loadTwoTaxis()
+
+            // Rotation, or coming back from Settings, re-runs the screen's launch effect.
+            taxiViewModel.loadTaxisIfNeeded()
+            taxiViewModel.loadTaxisIfNeeded()
+
+            verify(getOrderedTaxiList, times(1)).invoke()
+        }
+    }
+
+    @Test
+    fun load_whenNothingLoadedYet() {
+        runBlocking {
+            whenever(getOrderedTaxiList()).thenReturn(TaxisResult.Success(listOf(itemTaxi1)))
+
+            taxiViewModel.loadTaxisIfNeeded()
+
+            verify(getOrderedTaxiList).invoke()
+            assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
+                .isEqualTo(listOf(itemTaxi1))
+        }
+    }
 
     @Test
     fun leaveStateAlone_whenDragFinishes() {
