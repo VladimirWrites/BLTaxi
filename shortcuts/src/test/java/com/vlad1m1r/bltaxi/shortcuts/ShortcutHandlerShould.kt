@@ -2,19 +2,20 @@ package com.vlad1m1r.bltaxi.shortcuts
 
 import android.content.pm.ShortcutInfo
 import android.content.pm.ShortcutManager
-import com.nhaarman.mockitokotlin2.*
+import org.mockito.kotlin.*
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff
 import org.junit.Test
 
 class ShortcutHandlerShould {
     private val itemTaxi = ItemTaxi(
-        0,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number"
+        id = 0,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1 = Tariff("start_price", "price_per_km", "hour_of_waiting"),
+        tariff2 = Tariff("start_price_2", "price_per_km_2", "hour_of_waiting_2"),
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number"
     )
 
     private val shortcutInfo = mock<ShortcutInfo>()

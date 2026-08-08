@@ -2,9 +2,7 @@ package com.vlad1m1r.bltaxi.di
 
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.AppInfoProviderImpl
-import com.vlad1m1r.bltaxi.Navigator
 import com.vlad1m1r.bltaxi.about.ui.AppInfoProvider
-import com.vlad1m1r.bltaxi.taxi.ui.TaxiNavigator
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -17,12 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-    @Singleton
-    @Provides
-    fun provideTaxiNavigator(): TaxiNavigator {
-        return Navigator()
-    }
 
     @Provides
     fun provideCoroutineDispatcherProvider(): CoroutineDispatcherProvider {

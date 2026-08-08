@@ -1,15 +1,31 @@
 package com.vlad1m1r.bltaxi.about.ui
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import com.vlad1m1r.basedata.StringResolver
 import com.vlad1m1r.bltaxi.about.domain.Action
 import com.vlad1m1r.bltaxi.about.domain.usecase.ExecuteAction
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class AboutViewModelShould {
+
+    @get:Rule
+    val instantExecutorRule = InstantTaskExecutorRule()
+
+    private val testDispatcher = StandardTestDispatcher()
 
     private val actionInteractor = mock<ExecuteAction>()
     private val appInfoProvider = mock<AppInfoProvider> {
@@ -17,50 +33,78 @@ class AboutViewModelShould {
     }
     private val stringResolver = mock<StringResolver>()
 
-    private val aboutViewModel = AboutViewModel(actionInteractor, appInfoProvider, stringResolver)
+    private lateinit var aboutViewModel: AboutViewModel
 
-    @Test
-    fun returnVersionName() {
-        assertThat(aboutViewModel.getAppVersionName()).isEqualTo("version_name")
+    @Before
+    fun setUp() {
+        Dispatchers.setMain(testDispatcher)
+        aboutViewModel = AboutViewModel(actionInteractor, appInfoProvider, stringResolver)
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
     }
 
     @Test
-    fun writeEmail() {
+    fun `initialize state with app version`() = runTest {
+        val state = aboutViewModel.state.value
+        assertThat(state.appVersion).isEqualTo("version_name")
+        assertThat(state.isLoading).isFalse()
+    }
+
+    @Test
+    fun `send email action`() = runTest {
         val email = "email"
         whenever(stringResolver.getString(R.string.about__email)).thenReturn(email)
-        aboutViewModel.writeEmail()
+
+        aboutViewModel.sendAction(AboutAction.SendEmailClicked)
+        testDispatcher.scheduler.advanceUntilIdle()
+
         verify(actionInteractor).invoke(Action.SendEmailAction(email))
     }
 
     @Test
-    fun rateApp() {
+    fun `send rate app action`() = runTest {
         val appId = "app_id"
         whenever(appInfoProvider.getApplicationId()).thenReturn(appId)
-        aboutViewModel.rateApp()
+
+        aboutViewModel.sendAction(AboutAction.RateAppClicked)
+        testDispatcher.scheduler.advanceUntilIdle()
+
         verify(actionInteractor).invoke(Action.OpenPlayStoreAction(appId))
     }
 
     @Test
-    fun shareApp() {
+    fun `send share app action`() = runTest {
         val playStoreUrl = "play_store_url"
         whenever(stringResolver.getString(R.string.about__play_store_url)).thenReturn(playStoreUrl)
-        aboutViewModel.shareApp()
+
+        aboutViewModel.sendAction(AboutAction.ShareAppClicked)
+        testDispatcher.scheduler.advanceUntilIdle()
+
         verify(actionInteractor).invoke(Action.ShareAction(playStoreUrl))
     }
 
     @Test
-    fun openPrivacyPolicy() {
+    fun `send privacy policy action`() = runTest {
         val privacyPolicy = "privacy_policy"
         whenever(stringResolver.getString(R.string.about__privacy_policy_url)).thenReturn(privacyPolicy)
-        aboutViewModel.openPrivacyPolicy()
+
+        aboutViewModel.sendAction(AboutAction.PrivacyPolicyClicked)
+        testDispatcher.scheduler.advanceUntilIdle()
+
         verify(actionInteractor).invoke(Action.OpenUrlAction(privacyPolicy))
     }
 
     @Test
-    fun openTermsAndConditions() {
+    fun `send terms and conditions action`() = runTest {
         val termsAndConditions = "terms_and_conditions"
         whenever(stringResolver.getString(R.string.about__terms_and_conditions_url)).thenReturn(termsAndConditions)
-        aboutViewModel.openTermsAndConditions()
+
+        aboutViewModel.sendAction(AboutAction.TermsAndConditionsClicked)
+        testDispatcher.scheduler.advanceUntilIdle()
+
         verify(actionInteractor).invoke(Action.OpenUrlAction(termsAndConditions))
     }
 }

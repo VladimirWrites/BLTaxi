@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Content descriptions for accessibility -->
+    <string name="content_description_navigate_back">Navigate back</string>
+    <string name="content_description_more_options">More options</string>
+
+    <!-- Menu items -->
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+</resources>

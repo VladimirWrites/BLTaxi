@@ -1,5 +1,6 @@
 <resources>
     <string name="about__name">About</string>
+    <string name="about__app_name" translatable="false">BL Taxi</string>
     <string name="about__author">Author: Vladimir Jovanović</string>
     <string name="about__version">Version: %1$s</string>
     <string name="about__rate_app">Rate the App</string>

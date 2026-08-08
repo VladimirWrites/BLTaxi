@@ -23,14 +23,18 @@ class TaxiDaoShould {
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     val taxi = Taxi(
-        10,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number",
-        Language.HR
+        taxiId = 10,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1Start = "start_price",
+        tariff1PricePerKm = "price_per_km",
+        tariff1HourOfWaiting = "hour_of_waiting",
+        tariff2Start = "start_price_2",
+        tariff2PricePerKm = "price_per_km_2",
+        tariff2HourOfWaiting = "hour_of_waiting_2",
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number",
+        language = Language.HR
     )
 
     private lateinit var database: TaxiDatabase

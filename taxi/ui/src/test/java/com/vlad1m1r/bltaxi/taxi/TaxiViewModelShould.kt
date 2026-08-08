@@ -1,102 +1,148 @@
 package com.vlad1m1r.bltaxi.taxi
 
-import android.os.Build
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import com.google.common.truth.Truth.assertThat
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.verifyNoMoreInteractions
+import org.mockito.kotlin.whenever
 import com.vlad1m1r.baseui.CoroutineDispatcherProvider
 import com.vlad1m1r.bltaxi.about.domain.usecase.ExecuteAction
 import com.vlad1m1r.bltaxi.analytics.Tracker
+import com.vlad1m1r.bltaxi.taxi.domain.TaxisResult
 import com.vlad1m1r.bltaxi.taxi.domain.model.ItemTaxi
+import com.vlad1m1r.bltaxi.taxi.domain.model.Tariff
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.GetOrderedTaxiList
 import com.vlad1m1r.bltaxi.taxi.domain.usecase.SaveTaxiOrder
+import com.vlad1m1r.bltaxi.taxi.domain.usecase.IsViberInstalled
 import com.vlad1m1r.bltaxi.shortcuts.ShortcutHandler
 import com.vlad1m1r.bltaxi.taxi.ui.TaxiViewModel
-import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
+import com.vlad1m1r.bltaxi.taxi.ui.TaxiAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import java.lang.reflect.Field
-import java.lang.reflect.Modifier
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [28])
 class TaxiViewModelShould {
 
     private val saveTaxiOrder = mock<SaveTaxiOrder>()
     private val shortcutHandler = mock<ShortcutHandler>()
     private val getOrderedTaxiList = mock<GetOrderedTaxiList>()
     private val executeAction = mock<ExecuteAction>()
+    private val isViberInstalled = mock<IsViberInstalled>()
     private val tracker = mock<Tracker>()
     private val dispatchers = CoroutineDispatcherProvider(
         Dispatchers.Unconfined, Dispatchers.Unconfined
     )
 
     private val taxiViewModel = TaxiViewModel(
-        saveTaxiOrder, { shortcutHandler }, getOrderedTaxiList, executeAction, tracker, dispatchers
+        saveTaxiOrder, { shortcutHandler }, getOrderedTaxiList, executeAction, isViberInstalled, tracker, dispatchers
     )
 
     private val itemTaxi = ItemTaxi(
-        10,
-        "name",
-        "phone_number",
-        "start_price",
-        "price_per_km",
-        "additional_info",
-        "viber_number"
+        id = 10,
+        name = "name",
+        phoneNumber = "phone_number",
+        tariff1 = Tariff("start_price", "price_per_km", "hour_of_waiting"),
+        tariff2 = Tariff("start_price_2", "price_per_km_2", "hour_of_waiting_2"),
+        additionalInfo = "additional_info",
+        viberNumber = "viber_number"
     )
 
-    @Test
-    fun setTaxiOrder() {
-        runBlocking {
-            val itemTaxi1 = itemTaxi.copy(id = 1)
-            val itemTaxi2 = itemTaxi.copy(id = 2)
-            val listItemTaxiViewModel = listOf(
-                ItemTaxiViewModel(itemTaxi1, {}, {}),
-                ItemTaxiViewModel(itemTaxi2, {}, {})
-            )
-            taxiViewModel.setTaxiOrder(listItemTaxiViewModel)
+    private val itemTaxi1 = itemTaxi.copy(id = 1)
+    private val itemTaxi2 = itemTaxi.copy(id = 2)
 
-            verify(saveTaxiOrder).invoke(listOf(itemTaxi1, itemTaxi2))
+    private fun loadTwoTaxis() = runBlocking {
+        whenever(getOrderedTaxiList()).thenReturn(TaxisResult.Success(listOf(itemTaxi1, itemTaxi2)))
+        taxiViewModel.sendAction(TaxiAction.LoadTaxis)
+    }
+
+    /** Mirrors what TaxiList hands back when a drag finishes: the already-reordered list. */
+    private fun reversedOrder() = taxiViewModel.state.value.taxis.reversed()
+
+    @Test
+    fun loadOnce_whenScreenReentersComposition() {
+        runBlocking {
+            loadTwoTaxis()
+
+            // Rotation, or coming back from Settings, re-runs the screen's launch effect.
+            taxiViewModel.loadTaxisIfNeeded()
+            taxiViewModel.loadTaxisIfNeeded()
+
+            verify(getOrderedTaxiList, times(1)).invoke()
         }
     }
 
     @Test
-    fun createShortcuts_whenSavingOrderIfVersionCode25OrHigher() {
-        setFinalStatic(Build.VERSION::class.java.getField("SDK_INT"), 25)
+    fun load_whenNothingLoadedYet() {
+        runBlocking {
+            whenever(getOrderedTaxiList()).thenReturn(TaxisResult.Success(listOf(itemTaxi1)))
 
-        val itemTaxi1 = itemTaxi.copy(id = 1)
-        val itemTaxi2 = itemTaxi.copy(id = 2)
-        val listItemTaxiViewModel = listOf(
-            ItemTaxiViewModel(itemTaxi1, {}, {}),
-            ItemTaxiViewModel(itemTaxi2, {}, {})
-        )
+            taxiViewModel.loadTaxisIfNeeded()
 
-        taxiViewModel.setTaxiOrder(listItemTaxiViewModel)
-
-        verify(shortcutHandler).addShortcutsForTaxis(listOf(itemTaxi1, itemTaxi2))
-
+            verify(getOrderedTaxiList).invoke()
+            assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
+                .isEqualTo(listOf(itemTaxi1))
+        }
     }
 
     @Test
-    fun doNotCreateShortcuts_whenSavingOrderIfVersionCode24OrLower() {
-        setFinalStatic(Build.VERSION::class.java.getField("SDK_INT"), 24)
+    fun leaveStateAlone_whenDragFinishes() {
+        loadTwoTaxis()
 
-        val itemTaxi1 = itemTaxi.copy(id = 1)
-        val itemTaxi2 = itemTaxi.copy(id = 2)
-        val listItemTaxiViewModel = listOf(
-            ItemTaxiViewModel(itemTaxi1, {}, {}),
-            ItemTaxiViewModel(itemTaxi2, {}, {})
-        )
+        taxiViewModel.saveOrder(reversedOrder())
 
-        taxiViewModel.setTaxiOrder(listItemTaxiViewModel)
-
-        verifyNoMoreInteractions(shortcutHandler)
+        // Emitting here would recompose the grid while the drop animation is still running and
+        // make the list jump. The screen already shows the new order; only storage needs telling.
+        assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
+            .isEqualTo(listOf(itemTaxi1, itemTaxi2))
     }
 
-    private fun setFinalStatic(field: Field, newValue: Any?) {
-        field.isAccessible = true
-        val modifiersField: Field = Field::class.java.getDeclaredField("modifiers")
-        modifiersField.isAccessible = true
-        modifiersField.setInt(field, field.modifiers and Modifier.FINAL.inv())
-        field.set(null, newValue)
+    @Test
+    fun persistOrder_whenDragFinishes() {
+        runBlocking {
+            loadTwoTaxis()
+
+            taxiViewModel.saveOrder(reversedOrder())
+
+            verify(saveTaxiOrder).invoke(listOf(itemTaxi2, itemTaxi1))
+        }
+    }
+
+    @Test
+    fun ignoreOrder_whenListIsEmpty() {
+        runBlocking {
+            loadTwoTaxis()
+
+            taxiViewModel.saveOrder(emptyList())
+
+            verifyNoMoreInteractions(saveTaxiOrder)
+            assertThat(taxiViewModel.state.value.taxis.map { it.itemTaxi })
+                .isEqualTo(listOf(itemTaxi1, itemTaxi2))
+        }
+    }
+
+    @Test
+    @Config(sdk = [25])
+    fun createShortcuts_whenSavingOrderIfVersionCode25OrHigher() {
+        loadTwoTaxis()
+
+        taxiViewModel.saveOrder(reversedOrder())
+
+        verify(shortcutHandler).addShortcutsForTaxis(listOf(itemTaxi2, itemTaxi1))
+    }
+
+    @Test
+    @Config(sdk = [24])
+    fun doNotCreateShortcuts_whenSavingOrderIfVersionCode24OrLower() {
+        loadTwoTaxis()
+
+        taxiViewModel.saveOrder(reversedOrder())
+
+        verifyNoMoreInteractions(shortcutHandler)
     }
 }

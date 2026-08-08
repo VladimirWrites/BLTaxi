@@ -8,10 +8,10 @@ import android.content.pm.ResolveInfo
 import android.os.Build
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
+import org.mockito.kotlin.any
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import com.vlad1m1r.bltaxi.about.data.OpenPlayStoreExecutor
 import com.vlad1m1r.bltaxi.about.data.OpenUrlExecutor
 import com.vlad1m1r.bltaxi.about.domain.Action
@@ -35,7 +35,7 @@ class OpenPlayStoreExecutorShould {
 
     @Test
     fun openPlayStore_whenPlayStoreIsAvailable() {
-        whenever(packageManager.queryIntentActivities(any(), any())).thenReturn(listOf(ResolveInfo()))
+        whenever(packageManager.queryIntentActivities(any<Intent>(), any<Int>())).thenReturn(listOf(ResolveInfo()))
 
         val intent = openPlayStoreExecutor(Action.OpenPlayStoreAction("com.vlad1m1r.bltaxi"))
 
@@ -48,7 +48,7 @@ class OpenPlayStoreExecutorShould {
 
     @Test
     fun openPlayStoreOnWeb_whenPlayStoreIsNotAvailable() {
-        whenever(packageManager.queryIntentActivities(any(), any())).thenReturn(emptyList())
+        whenever(packageManager.queryIntentActivities(any<Intent>(), any<Int>())).thenReturn(emptyList())
 
         openPlayStoreExecutor(Action.OpenPlayStoreAction("com.vlad1m1r.bltaxi"))
 

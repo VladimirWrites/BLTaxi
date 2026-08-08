@@ -2,8 +2,16 @@
 <resources>
     <string name="taxi__call">Pozovi</string>
     <string name="taxi__viber">Viber</string>
-    <string name="taxi__start_taxi">Start: </string>
-    <string name="taxi__kilometer_taxi">Kilometar: </string>
+    <string name="taxi__call_number">Pozovi %1$s</string>
+    <string name="taxi__show_details">Prika&#382;i cijene</string>
+    <string name="taxi__hide_details">Sakrij cijene</string>
+
+    <string name="taxi__phone_number">Broj telefona</string>
+    <string name="taxi__start">Start</string>
+    <string name="taxi__per_kilometer">Po km</string>
+    <string name="taxi__waiting">Čekanje</string>
+    <string name="taxi__tariff_1">Tarifa 1:</string>
+    <string name="taxi__tariff_2">Tarifa 2:</string>
 
     <string name="settings">Podešavanja</string>
     <string name="about">O aplikaciji</string>

@@ -4,8 +4,8 @@ data class ItemTaxi(
     val id: Long = 0,
     val name: String,
     val phoneNumber: String,
-    val startPrice: String,
-    val pricePerKm: String,
+    val tariff1: Tariff,
+    val tariff2: Tariff,
     val additionalInfo: String? = null,
     val viberNumber: String? = null
 )

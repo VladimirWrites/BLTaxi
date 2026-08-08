@@ -1,10 +1,19 @@
 package com.vlad1m1r.bltaxi.about.ui
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.vlad1m1r.basedata.StringResolver
 import com.vlad1m1r.bltaxi.about.domain.Action
 import com.vlad1m1r.bltaxi.about.domain.usecase.ExecuteAction
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,35 +23,68 @@ class AboutViewModel @Inject constructor(
     private val stringResolver: StringResolver
 ) : ViewModel() {
 
-    fun getAppVersionName() = appInfoProvider.getVersionName()
+    // Actions flow - UI sends actions to ViewModel
+    private val _actions = MutableSharedFlow<AboutAction>()
+    private val actions: SharedFlow<AboutAction> = _actions.asSharedFlow()
 
-    fun writeEmail() {
-        executeAction(
-            Action.SendEmailAction(stringResolver.getString(R.string.about__email))
-        )
+    // State flow - ViewModel exposes state to UI
+    private val _state = MutableStateFlow(AboutState())
+    val state: StateFlow<AboutState> = _state.asStateFlow()
+
+    // Effects flow - One-time events
+    private val _effects = MutableSharedFlow<AboutEffect>()
+    val effects: SharedFlow<AboutEffect> = _effects.asSharedFlow()
+
+    init {
+        initializeState()
+        observeActions()
     }
 
-    fun rateApp() {
-        executeAction(
-            Action.OpenPlayStoreAction(appInfoProvider.getApplicationId())
-        )
+    private fun initializeState() {
+        _state.update { it.copy(appVersion = appInfoProvider.getVersionName()) }
     }
 
-    fun shareApp() {
-        executeAction(
-            Action.ShareAction(stringResolver.getString(R.string.about__play_store_url))
-        )
+    private fun observeActions() {
+        viewModelScope.launch {
+            actions.collect { action ->
+                handleAction(action)
+            }
+        }
     }
 
-    fun openPrivacyPolicy() {
-        executeAction(
-            Action.OpenUrlAction(stringResolver.getString(R.string.about__privacy_policy_url))
-        )
+    fun sendAction(action: AboutAction) {
+        viewModelScope.launch {
+            _actions.emit(action)
+        }
     }
 
-    fun openTermsAndConditions() {
-        executeAction(
-            Action.OpenUrlAction(stringResolver.getString(R.string.about__terms_and_conditions_url))
-        )
+    private fun handleAction(action: AboutAction) {
+        when (action) {
+            AboutAction.SendEmailClicked -> {
+                executeAction(
+                    Action.SendEmailAction(stringResolver.getString(R.string.about__email))
+                )
+            }
+            AboutAction.RateAppClicked -> {
+                executeAction(
+                    Action.OpenPlayStoreAction(appInfoProvider.getApplicationId())
+                )
+            }
+            AboutAction.ShareAppClicked -> {
+                executeAction(
+                    Action.ShareAction(stringResolver.getString(R.string.about__play_store_url))
+                )
+            }
+            AboutAction.PrivacyPolicyClicked -> {
+                executeAction(
+                    Action.OpenUrlAction(stringResolver.getString(R.string.about__privacy_policy_url))
+                )
+            }
+            AboutAction.TermsAndConditionsClicked -> {
+                executeAction(
+                    Action.OpenUrlAction(stringResolver.getString(R.string.about__terms_and_conditions_url))
+                )
+            }
+        }
     }
 }

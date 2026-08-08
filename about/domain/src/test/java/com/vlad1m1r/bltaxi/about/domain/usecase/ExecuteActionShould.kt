@@ -1,7 +1,7 @@
 package com.vlad1m1r.bltaxi.about.domain.usecase
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import com.vlad1m1r.bltaxi.about.domain.Action
 import com.vlad1m1r.bltaxi.about.domain.ActionExecutor
 import org.junit.Test
@@ -13,7 +13,7 @@ class ExecuteActionShould {
 
     @Test
     fun callActionExecutor() {
-        val action = mock<Action>()
+        val action = Action.OpenUrlAction("https://vladimirj.com")
 
         executeAction(action)
 
