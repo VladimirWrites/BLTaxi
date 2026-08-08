@@ -4,6 +4,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.firebase.crashlytics")
     id("dagger.hilt.android.plugin")
+    id("androidx.baselineprofile")
 }
 
 
@@ -34,6 +35,16 @@ android {
         }
     }
 
+    // The baseline profile plugin derives nonMinifiedRelease and benchmarkRelease from release.
+    // Release itself is unsigned here, so those would build but fail to install on the device
+    // that has to run the generator. They are throwaway measurement builds, so the debug key is
+    // the right one — and this deliberately does not touch the real release variant.
+    buildTypes.configureEach {
+        if (name == "nonMinifiedRelease" || name == "benchmarkRelease") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
     buildFeatures {
         buildConfig = true
         compose = true
@@ -58,6 +69,7 @@ dependencies {
     implementation(libs.kotlin.coroutines.android)
     implementation(libs.preference.ktx)
     implementation(libs.startup.runtime)
+    implementation(libs.profileinstaller)
 
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
@@ -101,6 +113,9 @@ dependencies {
     // Compose test dependencies
     testImplementation(libs.compose.ui.test.junit4)
     testImplementation(libs.navigation.testing)
+
+    // Supplies the generated profile to release builds.
+    baselineProfile(project(":baselineprofile"))
 }
 
 apply(plugin = "com.google.gms.google-services")

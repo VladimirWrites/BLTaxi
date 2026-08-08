@@ -35,6 +35,7 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,6 +48,9 @@ import com.vlad1m1r.bltaxi.taxi.ui.adapter.ItemTaxiViewModel
 import com.vlad1m1r.bltaxi.taxi.ui.preview.TaxiListPreviewParameterProvider
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyStaggeredGridState
+
+/** Looked up by the baseline profile generator through UiAutomator. */
+const val TaxiListTestTag = "taxiList"
 
 private val ScreenPadding = 16.dp
 private val CardSpacing = 16.dp
@@ -223,7 +227,9 @@ private fun TaxiList(
         ),
         verticalItemSpacing = CardSpacing,
         horizontalArrangement = Arrangement.spacedBy(CardSpacing),
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag(TaxiListTestTag)
     ) {
         items(orderedTaxis, key = { it.itemTaxi.id }) { taxi ->
             ReorderableItem(reorderableState, key = taxi.itemTaxi.id) { isDragging ->

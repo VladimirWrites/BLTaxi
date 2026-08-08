@@ -19,6 +19,7 @@ buildscript {
         classpath(libs.firebase.crashlytics.plugin)
         classpath(libs.hilt.gradle.plugin)
         classpath(libs.gradle.versions.plugin)
+        classpath(libs.baselineprofile.gradle.plugin)
     }
 }
 

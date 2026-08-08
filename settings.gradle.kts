@@ -13,5 +13,6 @@ include(
     ":about:data",
     ":settings:ui",
     ":sync",
-    ":shortcuts"
+    ":shortcuts",
+    ":baselineprofile"
 )
